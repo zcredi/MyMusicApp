@@ -15,6 +15,15 @@
 		866D44262A3366D300A64A2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866D44242A3366D300A64A2D /* LaunchScreen.storyboard */; };
 		866D442F2A3367CC00A64A2D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 866D442E2A3367CC00A64A2D /* Realm */; };
 		866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 866D44302A3367CC00A64A2D /* RealmSwift */; };
+		86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE79FE2A371AD900663854 /* UIColor+App.swift */; };
+		86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A002A371AE300663854 /* UIFont+App.swift */; };
+		86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A022A371AF300663854 /* MainTabBarController.swift */; };
+		86CE7A152A374FA600663854 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86CE7A122A374FA600663854 /* Roboto-Bold.ttf */; };
+		86CE7A162A374FA600663854 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86CE7A132A374FA600663854 /* Roboto-Medium.ttf */; };
+		86CE7A172A374FA600663854 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86CE7A142A374FA600663854 /* Roboto-Regular.ttf */; };
+		86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A182A375F2E00663854 /* HomepageViewController.swift */; };
+		86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A1D2A375F7800663854 /* FavoritesViewController.swift */; };
+		86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A1F2A375F9500663854 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +35,15 @@
 		866D44222A3366D300A64A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		866D44252A3366D300A64A2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		866D44272A3366D300A64A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86CE79FE2A371AD900663854 /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
+		86CE7A002A371AE300663854 /* UIFont+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+App.swift"; sourceTree = "<group>"; };
+		86CE7A022A371AF300663854 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		86CE7A122A374FA600663854 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		86CE7A132A374FA600663854 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		86CE7A142A374FA600663854 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		86CE7A182A375F2E00663854 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
+		86CE7A1D2A375F7800663854 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		86CE7A1F2A375F9500663854 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +78,11 @@
 		866D44182A3366D200A64A2D /* MyMusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				866D44362A3368D900A64A2D /* SupportingFiles */,
-				866D44352A3368CC00A64A2D /* Service */,
+				86CE79FA2A371A3600663854 /* Modules */,
+				86CE79FB2A371A5000663854 /* Common */,
 				866D44342A3368AC00A64A2D /* UIConstants */,
+				866D44352A3368CC00A64A2D /* Service */,
 				866D44322A33687C00A64A2D /* Applecation */,
-				866D44332A33689500A64A2D /* NavigationModule */,
-				866D44192A3366D200A64A2D /* AppDelegate.swift */,
-				866D441B2A3366D200A64A2D /* SceneDelegate.swift */,
-				866D441D2A3366D200A64A2D /* ViewController.swift */,
-				866D441F2A3366D200A64A2D /* Main.storyboard */,
-				866D44222A3366D300A64A2D /* Assets.xcassets */,
-				866D44242A3366D300A64A2D /* LaunchScreen.storyboard */,
 				866D44272A3366D300A64A2D /* Info.plist */,
 			);
 			path = MyMusicApp;
@@ -79,20 +91,22 @@
 		866D44322A33687C00A64A2D /* Applecation */ = {
 			isa = PBXGroup;
 			children = (
+				86CE7A042A371AFF00663854 /* Fonts */,
+				866D44192A3366D200A64A2D /* AppDelegate.swift */,
+				866D441B2A3366D200A64A2D /* SceneDelegate.swift */,
+				866D441D2A3366D200A64A2D /* ViewController.swift */,
+				866D441F2A3366D200A64A2D /* Main.storyboard */,
+				866D44222A3366D300A64A2D /* Assets.xcassets */,
+				866D44242A3366D300A64A2D /* LaunchScreen.storyboard */,
 			);
 			path = Applecation;
-			sourceTree = "<group>";
-		};
-		866D44332A33689500A64A2D /* NavigationModule */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NavigationModule;
 			sourceTree = "<group>";
 		};
 		866D44342A3368AC00A64A2D /* UIConstants */ = {
 			isa = PBXGroup;
 			children = (
+				86CE79FE2A371AD900663854 /* UIColor+App.swift */,
+				86CE7A002A371AE300663854 /* UIFont+App.swift */,
 			);
 			path = UIConstants;
 			sourceTree = "<group>";
@@ -100,15 +114,180 @@
 		866D44352A3368CC00A64A2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		866D44362A3368D900A64A2D /* SupportingFiles */ = {
+		86CE79FA2A371A3600663854 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A092A374D7100663854 /* Welcome */,
+				86CE7A0C2A374D9000663854 /* AuthPage */,
+				86CE7A082A371BD400663854 /* HomePage */,
+				86CE7A1A2A375F4200663854 /* Favorites */,
+				86CE7A0F2A374DB500663854 /* Profile */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		86CE79FB2A371A5000663854 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				86CE79FC2A371AA400663854 /* Managers */,
+				86CE79FD2A371AA800663854 /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		86CE79FC2A371AA400663854 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = SupportingFiles;
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		86CE79FD2A371AA800663854 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		86CE7A042A371AFF00663854 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A122A374FA600663854 /* Roboto-Bold.ttf */,
+				86CE7A132A374FA600663854 /* Roboto-Medium.ttf */,
+				86CE7A142A374FA600663854 /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		86CE7A052A371BB200663854 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A182A375F2E00663854 /* HomepageViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86CE7A062A371BC500663854 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86CE7A072A371BCA00663854 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		86CE7A082A371BD400663854 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A072A371BCA00663854 /* Modules */,
+				86CE7A062A371BC500663854 /* Views */,
+				86CE7A052A371BB200663854 /* Controllers */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		86CE7A092A374D7100663854 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A0B2A374D8600663854 /* Views */,
+				86CE7A0A2A374D7700663854 /* Controllers */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		86CE7A0A2A374D7700663854 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86CE7A0B2A374D8600663854 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86CE7A0C2A374D9000663854 /* AuthPage */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A0E2A374DA000663854 /* Views */,
+				86CE7A0D2A374D9B00663854 /* Controllers */,
+			);
+			path = AuthPage;
+			sourceTree = "<group>";
+		};
+		86CE7A0D2A374D9B00663854 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86CE7A0E2A374DA000663854 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86CE7A0F2A374DB500663854 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A112A374DC400663854 /* Views */,
+				86CE7A102A374DC000663854 /* Controllers */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		86CE7A102A374DC000663854 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A1F2A375F9500663854 /* ProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86CE7A112A374DC400663854 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86CE7A1A2A375F4200663854 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A1C2A375F6600663854 /* Views */,
+				86CE7A1B2A375F5900663854 /* Controllers */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		86CE7A1B2A375F5900663854 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A1D2A375F7800663854 /* FavoritesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86CE7A1C2A375F6600663854 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,8 +355,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86CE7A172A374FA600663854 /* Roboto-Regular.ttf in Resources */,
+				86CE7A162A374FA600663854 /* Roboto-Medium.ttf in Resources */,
 				866D44262A3366D300A64A2D /* LaunchScreen.storyboard in Resources */,
 				866D44232A3366D300A64A2D /* Assets.xcassets in Resources */,
+				86CE7A152A374FA600663854 /* Roboto-Bold.ttf in Resources */,
 				866D44212A3366D200A64A2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,6 +372,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				866D441E2A3366D200A64A2D /* ViewController.swift in Sources */,
+				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
+				86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */,
+				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
+				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
+				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
+				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				866D441A2A3366D200A64A2D /* AppDelegate.swift in Sources */,
 				866D441C2A3366D200A64A2D /* SceneDelegate.swift in Sources */,
 			);
