@@ -12,7 +12,7 @@ final class SongView {
         let pageControl = UIPageControl()
         pageControl.layer.cornerRadius = 1.5
         pageControl.numberOfPages = 2
-        pageControl.currentPage = 1
+        pageControl.currentPage = 0
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = .neutralGray
         pageControl.frame = CGRect(x: 0, y: 0, width: 45, height: 3)
@@ -147,11 +147,17 @@ final class SongView {
     }()
     
     lazy var playButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "play"), for: .normal)
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "play"), for: .normal)
+        button.tintColor = .neutralBlack
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
         button.backgroundColor = .brandGreen
         button.layer.cornerRadius = 37
         button.layer.masksToBounds = true
+        button.layer.shadowColor = UIColor.brandGreen.cgColor
+        button.layer.shadowOpacity = 1
+        button.layer.shadowOffset = CGSize(width: 30, height: 30)
+        button.layer.shadowRadius = 15
         
         return button
     }()

@@ -12,7 +12,6 @@ import SwiftUI
 final class SongViewControllers: UIViewController {
     private var songView = SongView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brandBlack
@@ -130,22 +129,3 @@ extension SongViewControllers {
         }
     }
 }
-//
-//struct ContentViewController: UIViewControllerRepresentable {
-//
-//    typealias UIViewControllerType = SongViewControllers
-//
-//    func makeUIViewController(context: Context) -> UIViewControllerType {
-//        return SongViewControllers()
-//    }
-//
-//    func updateUIViewController(_ uiViewController: SongViewControllers, context: Context) {}
-//}
-//
-//struct ContentViewController_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentViewController()
-//            .edgesIgnoringSafeArea(.all)
-//            .colorScheme(.light) // or .dark
-//    }
-//}
