@@ -25,19 +25,22 @@ class MainTabBarController: UITabBarController {
     private func setupItems() {
         
         let homepage = HomepageViewController()
+        let explore = ExploreViewController()
         let favorites = FavoritesViewController()
         let profile = ProfileViewController()
         
 
-        setViewControllers([homepage, favorites, profile], animated: true)
+        setViewControllers([homepage, explore, favorites, profile], animated: true)
         
         guard let items = tabBar.items else { return }
         
         items[0].image = UIImage(named: "home")
         items[0].title = "Home"
-        items[1].image = UIImage(named: "like")
-        items[1].title = "Favorites"
-        items[2].image = UIImage(named: "profile")
-        items[2].title = " Account"
+        items[1].image = UIImage(named: "explore")
+        items[1].title = "Explore"
+        items[2].image = UIImage(named: "like")
+        items[2].title = "Favorites"
+        items[3].image = UIImage(named: "profile")
+        items[3].title = " Account"
     }
 }
