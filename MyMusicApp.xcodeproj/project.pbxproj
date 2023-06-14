@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57F2A8242A37837B00266DE9 /* NewSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8232A37837A00266DE9 /* NewSongsView.swift */; };
+		57F2A8262A37847000266DE9 /* RecentlyMusicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8252A37847000266DE9 /* RecentlyMusicTableView.swift */; };
+		57F2A8312A3845E000266DE9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 57F2A8302A3845E000266DE9 /* Kingfisher */; };
+		57F2A8362A384D6700266DE9 /* PopularAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8352A384D6700266DE9 /* PopularAlbumView.swift */; };
+		57F2A8382A3852CA00266DE9 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8372A3852CA00266DE9 /* SongCell.swift */; };
+		57F2A83A2A385B6200266DE9 /* RecentlyMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8392A385B6200266DE9 /* RecentlyMusicCell.swift */; };
+		57F2A83D2A38DE8800266DE9 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 57F2A83C2A38DE8800266DE9 /* SpotifyiOS */; };
+		57F2A8B92A39F41400266DE9 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8B82A39F41400266DE9 /* Constans.swift */; };
+		57F2A8C12A39FFE900266DE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8C02A39FFE900266DE9 /* NetworkManager.swift */; };
+		57F2A8C32A3A000300266DE9 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8C22A3A000300266DE9 /* MusicModel.swift */; };
+		57F2A8C52A3A103C00266DE9 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2A8C42A3A103C00266DE9 /* AlbumCell.swift */; };
 		866D441A2A3366D200A64A2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D44192A3366D200A64A2D /* AppDelegate.swift */; };
 		866D441C2A3366D200A64A2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D441B2A3366D200A64A2D /* SceneDelegate.swift */; };
 		866D441E2A3366D200A64A2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D441D2A3366D200A64A2D /* ViewController.swift */; };
@@ -27,6 +38,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57F2A8232A37837A00266DE9 /* NewSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSongsView.swift; sourceTree = "<group>"; };
+		57F2A8252A37847000266DE9 /* RecentlyMusicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyMusicTableView.swift; sourceTree = "<group>"; };
+		57F2A8352A384D6700266DE9 /* PopularAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularAlbumView.swift; sourceTree = "<group>"; };
+		57F2A8372A3852CA00266DE9 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		57F2A8392A385B6200266DE9 /* RecentlyMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyMusicCell.swift; sourceTree = "<group>"; };
+		57F2A8B82A39F41400266DE9 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
+		57F2A8C02A39FFE900266DE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		57F2A8C22A3A000300266DE9 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		57F2A8C42A3A103C00266DE9 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		866D44162A3366D200A64A2D /* MyMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866D44192A3366D200A64A2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866D441B2A3366D200A64A2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,14 +71,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F2A8312A3845E000266DE9 /* Kingfisher in Frameworks */,
 				866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */,
 				866D442F2A3367CC00A64A2D /* Realm in Frameworks */,
+				57F2A83D2A38DE8800266DE9 /* SpotifyiOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57F2A8442A39B0A900266DE9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				57F2A8B82A39F41400266DE9 /* Constans.swift */,
+				57F2A8C02A39FFE900266DE9 /* NetworkManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		866D440D2A3366D200A64A2D = {
 			isa = PBXGroup;
 			children = (
@@ -82,7 +113,6 @@
 				86CE79FB2A371A5000663854 /* Common */,
 				866D44342A3368AC00A64A2D /* UIConstants */,
 				866D44352A3368CC00A64A2D /* Service */,
-				866D44322A33687C00A64A2D /* Applecation */,
 				866D44272A3366D300A64A2D /* Info.plist */,
 			);
 			path = MyMusicApp;
@@ -114,7 +144,9 @@
 		866D44352A3368CC00A64A2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				57F2A8442A39B0A900266DE9 /* API */,
 				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
+				866D44322A33687C00A64A2D /* Applecation */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -175,6 +207,9 @@
 		86CE7A062A371BC500663854 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				57F2A8232A37837A00266DE9 /* NewSongsView.swift */,
+				57F2A8252A37847000266DE9 /* RecentlyMusicTableView.swift */,
+				57F2A8352A384D6700266DE9 /* PopularAlbumView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +217,10 @@
 		86CE7A072A371BCA00663854 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				57F2A8372A3852CA00266DE9 /* SongCell.swift */,
+				57F2A8C42A3A103C00266DE9 /* AlbumCell.swift */,
+				57F2A8C22A3A000300266DE9 /* MusicModel.swift */,
+				57F2A8392A385B6200266DE9 /* RecentlyMusicCell.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -309,6 +348,8 @@
 			packageProductDependencies = (
 				866D442E2A3367CC00A64A2D /* Realm */,
 				866D44302A3367CC00A64A2D /* RealmSwift */,
+				57F2A8302A3845E000266DE9 /* Kingfisher */,
+				57F2A83C2A38DE8800266DE9 /* SpotifyiOS */,
 			);
 			productName = MyMusicApp;
 			productReference = 866D44162A3366D200A64A2D /* MyMusicApp.app */;
@@ -340,6 +381,8 @@
 			mainGroup = 866D440D2A3366D200A64A2D;
 			packageReferences = (
 				866D442D2A3367CC00A64A2D /* XCRemoteSwiftPackageReference "realm-swift" */,
+				57F2A82F2A3845E000266DE9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				57F2A83B2A38DE8800266DE9 /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = 866D44172A3366D200A64A2D /* Products */;
 			projectDirPath = "";
@@ -371,15 +414,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F2A8C12A39FFE900266DE9 /* NetworkManager.swift in Sources */,
 				866D441E2A3366D200A64A2D /* ViewController.swift in Sources */,
+				57F2A8B92A39F41400266DE9 /* Constans.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
 				86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */,
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
+				57F2A8242A37837B00266DE9 /* NewSongsView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
+				57F2A8262A37847000266DE9 /* RecentlyMusicTableView.swift in Sources */,
+				57F2A83A2A385B6200266DE9 /* RecentlyMusicCell.swift in Sources */,
+				57F2A8C32A3A000300266DE9 /* MusicModel.swift in Sources */,
+				57F2A8362A384D6700266DE9 /* PopularAlbumView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				866D441A2A3366D200A64A2D /* AppDelegate.swift in Sources */,
+				57F2A8382A3852CA00266DE9 /* SongCell.swift in Sources */,
 				866D441C2A3366D200A64A2D /* SceneDelegate.swift in Sources */,
+				57F2A8C52A3A103C00266DE9 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +653,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		57F2A82F2A3845E000266DE9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.7.0;
+			};
+		};
+		57F2A83B2A38DE8800266DE9 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		866D442D2A3367CC00A64A2D /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -612,6 +680,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		57F2A8302A3845E000266DE9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57F2A82F2A3845E000266DE9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		57F2A83C2A38DE8800266DE9 /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57F2A83B2A38DE8800266DE9 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
 		866D442E2A3367CC00A64A2D /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 866D442D2A3367CC00A64A2D /* XCRemoteSwiftPackageReference "realm-swift" */;
