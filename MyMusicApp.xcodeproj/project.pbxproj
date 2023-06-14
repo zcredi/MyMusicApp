@@ -25,6 +25,10 @@
 		86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A1D2A375F7800663854 /* FavoritesViewController.swift */; };
 		86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A1F2A375F9500663854 /* ProfileViewController.swift */; };
 		86CE7A262A38A6FA00663854 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A252A38A6FA00663854 /* ExploreViewController.swift */; };
+		86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A292A38A89A00663854 /* UILabel+App.swift */; };
+		86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A2B2A38BD3800663854 /* RecentlyView.swift */; };
+		86CE7A2F2A38C2BD00663854 /* RecentlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A2E2A38C2BD00663854 /* RecentlyCollectionViewCell.swift */; };
+		86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A302A39D61A00663854 /* TopTrendingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		86CE7A1D2A375F7800663854 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		86CE7A1F2A375F9500663854 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		86CE7A252A38A6FA00663854 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		86CE7A292A38A89A00663854 /* UILabel+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+App.swift"; sourceTree = "<group>"; };
+		86CE7A2B2A38BD3800663854 /* RecentlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyView.swift; sourceTree = "<group>"; };
+		86CE7A2E2A38C2BD00663854 /* RecentlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		86CE7A302A39D61A00663854 /* TopTrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +115,7 @@
 		866D44342A3368AC00A64A2D /* UIConstants */ = {
 			isa = PBXGroup;
 			children = (
+				86CE7A282A38A87F00663854 /* UIKIt */,
 				86CE79FE2A371AD900663854 /* UIColor+App.swift */,
 				86CE7A002A371AE300663854 /* UIFont+App.swift */,
 			);
@@ -314,6 +323,9 @@
 		86CE7A232A38A6DC00663854 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				86CE7A2D2A38C29300663854 /* Cell */,
+				86CE7A2B2A38BD3800663854 /* RecentlyView.swift */,
+				86CE7A302A39D61A00663854 /* TopTrendingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +335,22 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		86CE7A282A38A87F00663854 /* UIKIt */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A292A38A89A00663854 /* UILabel+App.swift */,
+			);
+			path = UIKIt;
+			sourceTree = "<group>";
+		};
+		86CE7A2D2A38C29300663854 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				86CE7A2E2A38C2BD00663854 /* RecentlyCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +436,8 @@
 			files = (
 				866D441E2A3366D200A64A2D /* ViewController.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
+				86CE7A2F2A38C2BD00663854 /* RecentlyCollectionViewCell.swift in Sources */,
+				86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */,
 				86CE7A262A38A6FA00663854 /* ExploreViewController.swift in Sources */,
 				86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */,
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
@@ -415,6 +445,8 @@
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				866D441A2A3366D200A64A2D /* AppDelegate.swift in Sources */,
+				86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */,
+				86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */,
 				866D441C2A3366D200A64A2D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

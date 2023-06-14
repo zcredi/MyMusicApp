@@ -27,4 +27,8 @@ extension UIColor {
     static var neutralBlack: UIColor {
         UIColor(red: 0.127, green: 0.139, blue: 0.183, alpha: 1)
     }
+    
+    static var collectionColor: UIColor {
+        UIColor(red: 0.114, green: 0.096, blue: 0.217, alpha: 1)
+    }
 }
