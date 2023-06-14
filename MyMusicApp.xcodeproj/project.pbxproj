@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EDADCF62A385679004E560F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7EDADCF52A385679004E560F /* SnapKit */; };
+		7EDADCF92A3856AB004E560F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCF82A3856AB004E560F /* SongView.swift */; };
+		7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */; };
+		7EDADCFF2A38BD6C004E560F /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCFE2A38BD6C004E560F /* AlbumViewController.swift */; };
+		7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD002A38BD73004E560F /* AlbumView.swift */; };
+		7EDADD032A38D635004E560F /* UILabel + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD022A38D635004E560F /* UILabel + ext.swift */; };
+		7EDADD062A38E7E7004E560F /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD052A38E7E7004E560F /* AlbumTableViewCell.swift */; };
 		866D441A2A3366D200A64A2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D44192A3366D200A64A2D /* AppDelegate.swift */; };
 		866D441C2A3366D200A64A2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D441B2A3366D200A64A2D /* SceneDelegate.swift */; };
 		866D441E2A3366D200A64A2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D441D2A3366D200A64A2D /* ViewController.swift */; };
@@ -27,6 +34,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EDADCF82A3856AB004E560F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewControllers.swift; sourceTree = "<group>"; };
+		7EDADCFE2A38BD6C004E560F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		7EDADD002A38BD73004E560F /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		7EDADD022A38D635004E560F /* UILabel + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + ext.swift"; sourceTree = "<group>"; };
+		7EDADD052A38E7E7004E560F /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		866D44162A3366D200A64A2D /* MyMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866D44192A3366D200A64A2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866D441B2A3366D200A64A2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EDADCF62A385679004E560F /* SnapKit in Frameworks */,
 				866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */,
 				866D442F2A3367CC00A64A2D /* Realm in Frameworks */,
 			);
@@ -59,6 +73,117 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EDADCF02A3854DD004E560F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7EDADCF12A3854E5004E560F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7EDADCF22A3854FB004E560F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADCF32A385502004E560F /* Managers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7EDADCF32A385502004E560F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7EDADCF72A385680004E560F /* Song */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADCFA2A3856B0004E560F /* Views */,
+				7EDADCFB2A3856B6004E560F /* Controllers */,
+			);
+			path = Song;
+			sourceTree = "<group>";
+		};
+		7EDADCFA2A3856B0004E560F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADD002A38BD73004E560F /* AlbumView.swift */,
+				7EDADCF82A3856AB004E560F /* SongView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7EDADCFB2A3856B6004E560F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADCFE2A38BD6C004E560F /* AlbumViewController.swift */,
+				7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */,
+				7EDADD052A38E7E7004E560F /* AlbumTableViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7EDADD042A38D63A004E560F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADD022A38D635004E560F /* UILabel + ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7EDADD072A38EFCF004E560F /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADD082A38EFE2004E560F /* Views */,
+				7EDADD092A38EFEB004E560F /* Controllers */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		7EDADD082A38EFE2004E560F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7EDADD092A38EFEB004E560F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7EDADD0A2A38F001004E560F /* AuthPage */ = {
+			isa = PBXGroup;
+			children = (
+				7EDADD0B2A38F00C004E560F /* Views */,
+				7EDADD0C2A38F010004E560F /* Controllers */,
+			);
+			path = AuthPage;
+			sourceTree = "<group>";
+		};
+		7EDADD0B2A38F00C004E560F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7EDADD0C2A38F010004E560F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		866D440D2A3366D200A64A2D = {
 			isa = PBXGroup;
 			children = (
@@ -78,8 +203,8 @@
 		866D44182A3366D200A64A2D /* MyMusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				7EDADCF22A3854FB004E560F /* Common */,
 				86CE79FA2A371A3600663854 /* Modules */,
-				86CE79FB2A371A5000663854 /* Common */,
 				866D44342A3368AC00A64A2D /* UIConstants */,
 				866D44352A3368CC00A64A2D /* Service */,
 				866D44322A33687C00A64A2D /* Applecation */,
@@ -91,6 +216,7 @@
 		866D44322A33687C00A64A2D /* Applecation */ = {
 			isa = PBXGroup;
 			children = (
+				7EDADD042A38D63A004E560F /* Extensions */,
 				86CE7A042A371AFF00663854 /* Fonts */,
 				866D44192A3366D200A64A2D /* AppDelegate.swift */,
 				866D441B2A3366D200A64A2D /* SceneDelegate.swift */,
@@ -122,36 +248,14 @@
 		86CE79FA2A371A3600663854 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				86CE7A092A374D7100663854 /* Welcome */,
-				86CE7A0C2A374D9000663854 /* AuthPage */,
+				7EDADD072A38EFCF004E560F /* Welcome */,
+				7EDADD0A2A38F001004E560F /* AuthPage */,
 				86CE7A082A371BD400663854 /* HomePage */,
 				86CE7A1A2A375F4200663854 /* Favorites */,
+				7EDADCF72A385680004E560F /* Song */,
 				86CE7A0F2A374DB500663854 /* Profile */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		86CE79FB2A371A5000663854 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				86CE79FC2A371AA400663854 /* Managers */,
-				86CE79FD2A371AA800663854 /* Extensions */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		86CE79FC2A371AA400663854 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		86CE79FD2A371AA800663854 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		86CE7A042A371AFF00663854 /* Fonts */ = {
@@ -196,56 +300,10 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
-		86CE7A092A374D7100663854 /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				86CE7A0B2A374D8600663854 /* Views */,
-				86CE7A0A2A374D7700663854 /* Controllers */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
-		86CE7A0A2A374D7700663854 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		86CE7A0B2A374D8600663854 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		86CE7A0C2A374D9000663854 /* AuthPage */ = {
-			isa = PBXGroup;
-			children = (
-				86CE7A0E2A374DA000663854 /* Views */,
-				86CE7A0D2A374D9B00663854 /* Controllers */,
-			);
-			path = AuthPage;
-			sourceTree = "<group>";
-		};
-		86CE7A0D2A374D9B00663854 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		86CE7A0E2A374DA000663854 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		86CE7A0F2A374DB500663854 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				86CE7A112A374DC400663854 /* Views */,
+				7EDADCF02A3854DD004E560F /* Views */,
 				86CE7A102A374DC000663854 /* Controllers */,
 			);
 			path = Profile;
@@ -259,17 +317,10 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		86CE7A112A374DC400663854 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		86CE7A1A2A375F4200663854 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				86CE7A1C2A375F6600663854 /* Views */,
+				7EDADCF12A3854E5004E560F /* Views */,
 				86CE7A1B2A375F5900663854 /* Controllers */,
 			);
 			path = Favorites;
@@ -281,13 +332,6 @@
 				86CE7A1D2A375F7800663854 /* FavoritesViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		86CE7A1C2A375F6600663854 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +353,7 @@
 			packageProductDependencies = (
 				866D442E2A3367CC00A64A2D /* Realm */,
 				866D44302A3367CC00A64A2D /* RealmSwift */,
+				7EDADCF52A385679004E560F /* SnapKit */,
 			);
 			productName = MyMusicApp;
 			productReference = 866D44162A3366D200A64A2D /* MyMusicApp.app */;
@@ -340,6 +385,7 @@
 			mainGroup = 866D440D2A3366D200A64A2D;
 			packageReferences = (
 				866D442D2A3367CC00A64A2D /* XCRemoteSwiftPackageReference "realm-swift" */,
+				7EDADCF42A385679004E560F /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 866D44172A3366D200A64A2D /* Products */;
 			projectDirPath = "";
@@ -371,14 +417,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EDADCFF2A38BD6C004E560F /* AlbumViewController.swift in Sources */,
 				866D441E2A3366D200A64A2D /* ViewController.swift in Sources */,
+				7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
 				86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */,
+				7EDADD062A38E7E7004E560F /* AlbumTableViewCell.swift in Sources */,
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
+				7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
+				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,
 				866D441A2A3366D200A64A2D /* AppDelegate.swift in Sources */,
+				7EDADD032A38D635004E560F /* UILabel + ext.swift in Sources */,
 				866D441C2A3366D200A64A2D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,6 +653,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7EDADCF42A385679004E560F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		866D442D2A3367CC00A64A2D /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -612,6 +672,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7EDADCF52A385679004E560F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EDADCF42A385679004E560F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		866D442E2A3367CC00A64A2D /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 866D442D2A3367CC00A64A2D /* XCRemoteSwiftPackageReference "realm-swift" */;
