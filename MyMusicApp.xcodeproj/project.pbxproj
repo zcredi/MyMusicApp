@@ -28,6 +28,11 @@
 		573F6DA52A3A208D002990D8 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D992A3A208D002990D8 /* Constans.swift */; };
 		573F6DA82A3A20B7002990D8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 573F6DA72A3A20B7002990D8 /* Kingfisher */; };
 		7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED182072A39ADB000FC24EC /* SongPageViewController.swift */; };
+		7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */; };
+		7ED7C5E82A3AF9780014EB83 /* metallica_-_nothing-else-matters.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E52A3AF9770014EB83 /* metallica_-_nothing-else-matters.mp3 */; };
+		7ED7C5E92A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E62A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 */; };
+		7ED7C5EA2A3AF9780014EB83 /* Rammstein Feuer frei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E72A3AF9780014EB83 /* Rammstein Feuer frei.mp3 */; };
+		7ED7C5EE2A3B2E200014EB83 /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED7C5ED2A3B2E200014EB83 /* AudioPlayerProtocol.swift */; };
 		7EDADCF62A385679004E560F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7EDADCF52A385679004E560F /* SnapKit */; };
 		7EDADCF92A3856AB004E560F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCF82A3856AB004E560F /* SongView.swift */; };
 		7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */; };
@@ -70,6 +75,11 @@
 		573F6D982A3A208D002990D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		573F6D992A3A208D002990D8 /* Constans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
 		7ED182072A39ADB000FC24EC /* SongPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPageViewController.swift; sourceTree = "<group>"; };
+		7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		7ED7C5E52A3AF9770014EB83 /* metallica_-_nothing-else-matters.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "metallica_-_nothing-else-matters.mp3"; sourceTree = "<group>"; };
+		7ED7C5E62A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Murray One night in Bangkoc.mp3"; sourceTree = "<group>"; };
+		7ED7C5E72A3AF9780014EB83 /* Rammstein Feuer frei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rammstein Feuer frei.mp3"; sourceTree = "<group>"; };
+		7ED7C5ED2A3B2E200014EB83 /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
 		7EDADCF82A3856AB004E560F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewControllers.swift; sourceTree = "<group>"; };
 		7EDADCFE2A38BD6C004E560F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +155,26 @@
 				573F6D992A3A208D002990D8 /* Constans.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7ED7C5E42A3AF2DC0014EB83 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				7ED7C5EC2A3B2E0E0014EB83 /* Protocols */,
+				7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */,
+				7ED7C5E52A3AF9770014EB83 /* metallica_-_nothing-else-matters.mp3 */,
+				7ED7C5E62A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 */,
+				7ED7C5E72A3AF9780014EB83 /* Rammstein Feuer frei.mp3 */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		7ED7C5EC2A3B2E0E0014EB83 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7ED7C5ED2A3B2E200014EB83 /* AudioPlayerProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		7EDADCF02A3854DD004E560F /* Views */ = {
@@ -295,6 +325,7 @@
 				573F6D972A3A208D002990D8 /* API */,
 				573F6D882A3A208D002990D8 /* Applecation */,
 				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
+				7ED7C5E42A3AF2DC0014EB83 /* AudioPlayer */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -506,10 +537,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED7C5EA2A3AF9780014EB83 /* Rammstein Feuer frei.mp3 in Resources */,
 				573F6DA02A3A208D002990D8 /* Roboto-Medium.ttf in Resources */,
 				573F6DA12A3A208D002990D8 /* Roboto-Regular.ttf in Resources */,
 				573F6DA22A3A208D002990D8 /* Roboto-Bold.ttf in Resources */,
+				7ED7C5E82A3AF9780014EB83 /* metallica_-_nothing-else-matters.mp3 in Resources */,
 				573F6D9C2A3A208D002990D8 /* LaunchScreen.storyboard in Resources */,
+				7ED7C5E92A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 in Resources */,
 				573F6D9B2A3A208D002990D8 /* Assets.xcassets in Resources */,
 				573F6D9D2A3A208D002990D8 /* Main.storyboard in Resources */,
 			);
@@ -527,6 +561,7 @@
 				7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */,
 				573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
+				7ED7C5EE2A3B2E200014EB83 /* AudioPlayerProtocol.swift in Sources */,
 				86CE7A2F2A38C2BD00663854 /* RecentlyCollectionViewCell.swift in Sources */,
 				573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */,
 				86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */,
@@ -544,6 +579,7 @@
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
+				7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */,
 				573F6D9F2A3A208D002990D8 /* AppDelegate.swift in Sources */,
 				573F6DA32A3A208D002990D8 /* SceneDelegate.swift in Sources */,
 				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,

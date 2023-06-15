@@ -75,7 +75,7 @@ final class SongView {
     
     lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "like"), for: .normal)
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .neutralWhite
         
         return button
@@ -114,7 +114,7 @@ final class SongView {
         let label = UILabel()
         label.font = .robotoRegular14()
         label.textColor = .white
-        label.text = "2.43"
+        label.text = "0"
         
         return label
         
@@ -124,7 +124,6 @@ final class SongView {
         let label = UILabel()
         label.font = .robotoRegular14()
         label.textColor = .white
-        label.text = "3.05"
         
         return label
         
@@ -148,7 +147,6 @@ final class SongView {
     
     lazy var playButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "play"), for: .normal)
         button.tintColor = .neutralBlack
         button.imageView?.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
         button.backgroundColor = .brandGreen
