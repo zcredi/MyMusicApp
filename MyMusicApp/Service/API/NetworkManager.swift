@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-  func fetchMusic(keyword: String, completion: @escaping (Result<[MusicResult], Error>) -> Void)
+  func fetchMusic(keyword: String, completion: @escaping (Result<[MusicResult1], Error>) -> Void)
 }
 
 enum NetworkError: Error {
@@ -18,7 +18,7 @@ enum NetworkError: Error {
 }
 
 final class NetworkService: NetworkServiceProtocol {
-  func fetchMusic(keyword: String, completion: @escaping (Result<[MusicResult], Error>) -> Void) {
+  func fetchMusic(keyword: String, completion: @escaping (Result<[MusicResult1], Error>) -> Void) {
     guard let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
       completion(.failure(NetworkError.invalidKeyword))
       return
@@ -44,7 +44,7 @@ final class NetworkService: NetworkServiceProtocol {
       
       do {
         let decoder = JSONDecoder()
-        let musicModel = try decoder.decode(MusicModel.self, from: data)
+        let musicModel = try decoder.decode(MusicModel1.self, from: data)
         completion(.success(musicModel.feed.results))
       } catch {
         completion(.failure(error))
@@ -54,8 +54,8 @@ final class NetworkService: NetworkServiceProtocol {
     task.resume()
   }
   
-  func fetchTopMusic(completion: @escaping (Result<[MusicResult], Error>) -> Void) {
-    let urlString = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/25/songs.json"
+  func fetchTopMusic(completion: @escaping (Result<[MusicResult1], Error>) -> Void) {
+    let urlString = "https://itunes.apple.com/us/rss/topsongs/limit=10/json"
 
     guard let url = URL(string: urlString) else {
       completion(.failure(NetworkError.invalidURL))
@@ -75,7 +75,7 @@ final class NetworkService: NetworkServiceProtocol {
 
       do {
         let decoder = JSONDecoder()
-        let musicModel = try decoder.decode(MusicModel.self, from: data)
+        let musicModel = try decoder.decode(MusicModel1.self, from: data)
 
         var modifiedResults = musicModel.feed.results
 
@@ -87,7 +87,7 @@ final class NetworkService: NetworkServiceProtocol {
         }
         var modifiedFeed = musicModel.feed
         modifiedFeed.results = modifiedResults
-        let modifiedMusicModel = MusicModel(feed: modifiedFeed)
+        let modifiedMusicModel = MusicModel1(feed: modifiedFeed)
         completion(.success(modifiedMusicModel.feed.results))
       } catch {
         completion(.failure(error))
@@ -96,8 +96,8 @@ final class NetworkService: NetworkServiceProtocol {
     task.resume()
   }
   
-  func fetchTopAlbums(completion: @escaping (Result<[Album], Error>) -> Void) {
-    let url = URL(string: "https://rss.applemarketingtools.com/api/v2/us/music/most-played/10/albums.json")!
+  func fetchTopAlbums(completion: @escaping (Result<[Album1], Error>) -> Void) {
+    let url = URL(string: "https://itunes.apple.com/us/rss/topalbums/limit=10/json")!
 
     URLSession.shared.dataTask(with: url) { data, response, error in
       if let error = error {
@@ -112,7 +112,7 @@ final class NetworkService: NetworkServiceProtocol {
 
       do {
         let decoder = JSONDecoder()
-        let response = try decoder.decode(AlbumResponse.self, from: data)
+        let response = try decoder.decode(AlbumResponse1.self, from: data)
         var modifiedAlbums = response.feed.results
         for i in 0..<modifiedAlbums.count {
           modifiedAlbums[i].artworkUrl100 = modifiedAlbums[i].artworkUrl100.replacingOccurrences(

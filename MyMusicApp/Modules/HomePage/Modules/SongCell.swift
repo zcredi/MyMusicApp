@@ -59,11 +59,18 @@ class SongCell: UICollectionViewCell {
     .cacheOriginalImage
   ]
   
-  func configureCell(with musicResult: MusicResult) {
-    nameLabel.text = musicResult.name
-    authorLabel.text = musicResult.artistName
-    songImageView.kf.setImage(with: URL(string: musicResult.artworkUrl100))
+  func configureCell(with musicResult: Entry) {
+    nameLabel.text = musicResult.name.label
+    authorLabel.text = musicResult.artist.label
+
+    if let imageUrlString = musicResult.images.first?.label,
+       let imageUrl = URL(string: imageUrlString) {
+      songImageView.kf.setImage(with: imageUrl)
+    } else {
+      songImageView.image = nil
+    }
   }
+
   
   private func setupViews() {
     contentView.addSubview(songImageView)

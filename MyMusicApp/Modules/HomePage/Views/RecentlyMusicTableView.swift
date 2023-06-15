@@ -8,9 +8,8 @@
 import UIKit
 
 class RecentlyMusicTableView: UITableView {
-    
-    weak var parentViewController: UIViewController?
-  var songs: [MusicResult] = [] {
+
+  var songs: [Entry] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.reloadData()
@@ -36,7 +35,7 @@ class RecentlyMusicTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-  func update(with musicResults: [MusicResult]) {
+  func update(with musicResults: [Entry]) {
       songs = musicResults
   }
 }
@@ -48,18 +47,12 @@ extension RecentlyMusicTableView: UITableViewDelegate, UITableViewDataSource {
         return songs.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else {
-            return UITableViewCell()
-        }
-      let songNumber = indexPath.row + 1
-          cell.configureCell(with: songs[indexPath.row], songNumber: songNumber)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      guard parentViewController != nil else {
-                return
-            }
-        }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else {
+          return UITableViewCell()
+      }
+      let songNumber = indexPath.row
+      cell.configureCell(with: songs[indexPath.row], songNumber: songNumber)
+      return cell
+  }
 }
