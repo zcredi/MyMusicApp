@@ -11,7 +11,8 @@ import Kingfisher
 class AlbumCell: UICollectionViewCell {
 
     static let identifier = "AlbumCell"
-
+    let musicPlayer = MusicPlayer()
+  
     let songImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -60,11 +61,17 @@ class AlbumCell: UICollectionViewCell {
         .cacheOriginalImage
     ]
 
-    func configureCell(with musicResult: Album) {
-        songImageView.kf.setImage(with: URL(string: musicResult.artworkUrl100))
-        authorLabel.text = musicResult.artistName
-        albumLabel.text = musicResult.name
+  func configureCell(with musicResult: Entry) {
+    albumLabel.text = musicResult.name.label
+    authorLabel.text = musicResult.artist.label
+
+    if let imageUrlString = musicResult.images.first?.label,
+       let imageUrl = URL(string: imageUrlString) {
+      songImageView.kf.setImage(with: imageUrl)
+    } else {
+      songImageView.image = nil
     }
+  }
 
     private func setupViews() {
         contentView.addSubview(songImageView)

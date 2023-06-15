@@ -5,36 +5,36 @@
 //  Created by Александра Савчук on 14.06.2023.
 //
 
-struct MusicModel: Codable {
-    let feed: Feed
+struct MusicModel1: Codable {
+    let feed: Feed1
 }
 
-struct Feed: Codable {
+struct Feed1: Codable {
     let title: String
-    var results: [MusicResult]
+    var results: [MusicResult1]
 }
 
-struct MusicResult: Codable {
+struct MusicResult1: Codable {
     let artistName, id, name, releaseDate, kind, artistId, artistUrl: String
     let contentAdvisoryRating: String?
-    let genres: [Genre]
+    let genres: [Genre1]
     var artworkUrl100: String
     let url: String
 }
 
-struct Genre: Codable {
+struct Genre1: Codable {
   let genreId, name, url: String
 }
 
-struct AlbumResponse: Codable {
-  let feed: AlbumFeed
+struct AlbumResponse1: Codable {
+  let feed: AlbumFeed1
 }
 
-struct AlbumFeed: Codable {
-  let results: [Album]
+struct AlbumFeed1: Codable {
+  let results: [Album1]
 }
 
-struct Album: Codable {
+struct Album1: Codable {
   let artistName: String
   let id: String
   let name: String
@@ -44,20 +44,20 @@ struct Album: Codable {
   let artistUrl: String
   let contentAdvisoryRating: String?
   var artworkUrl100: String
-  let genres: [Genre]
+  let genres: [Genre1]
   let url: String
 }
 
 
-struct Author: Codable {
+struct Author1: Codable {
   let name: String
   let url: String
 }
 
-struct Link: Codable {
+struct Link1: Codable {
   let selfLink: String
-  
-  enum CodingKeys: String, CodingKey {
+
+  enum CodingKeys1: String, CodingKey {
     case selfLink = "self"
   }
 }

@@ -6,12 +6,16 @@
 //
 
 import UIKit
-import UIKit
+
+protocol NewSongsViewDelegate: AnyObject {
+    func newSongsView(_ newSongsView: NewSongsView, didSelectSongAt indexPath: IndexPath)
+}
 
 class NewSongsView: UIView {
     var collectionView: UICollectionView!
+    weak var delegate: NewSongsViewDelegate?
 
-    var songs: [MusicResult] = [] {
+    var songs: [Entry] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -30,7 +34,7 @@ class NewSongsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func update(with musicResults: [MusicResult]) {
+    func update(with musicResults: [Entry]) {
         songs = musicResults
     }
 
@@ -80,6 +84,6 @@ extension NewSongsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     // MARK: - UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Handle song selection
+        delegate?.newSongsView(self, didSelectSongAt: indexPath)
     }
 }

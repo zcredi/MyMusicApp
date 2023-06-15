@@ -11,7 +11,7 @@ class PopularAlbumView: UIView {
 
     var collectionView: UICollectionView!
 
-    var songs: [Album] = [] {
+    var songs: [Entry] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -49,7 +49,7 @@ class PopularAlbumView: UIView {
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
-    func update(with musicResults: [Album]) {
+    func update(with musicResults: [Entry]) {
         songs = musicResults
     }
 }
