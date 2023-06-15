@@ -21,6 +21,7 @@ class HomepageViewController: UIViewController {
   private let recentlyMusicTableView = RecentlyMusicTableView()
 
   var musicResults: [MusicResult] = []
+  var albumResults: [Album] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,6 +29,7 @@ class HomepageViewController: UIViewController {
     setupViews()
     setupConstraints()
     fetchPopularMusic()
+    fetchPopularAlbum()
   }
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -39,22 +41,33 @@ class HomepageViewController: UIViewController {
   }
 
   //MARK: - Network requests
-
   private func fetchPopularMusic() {
     let networkService = NetworkService()
-    networkService.fetchMusic(keyword: "eminem") { result in
-      switch result {
-      case .success(let musicResults):
-        self.musicResults = musicResults
-        DispatchQueue.main.async {
-          self.newSongsView.update(with: musicResults)
-          self.albumsView.update(with: musicResults)
-          self.recentlyMusicTableView.update(with: musicResults)
-        }
-
+      networkService.fetchTopMusic { result in
+          switch result {
+          case .success(let musicResults):
+              self.musicResults = musicResults
+              DispatchQueue.main.async {
+                  self.newSongsView.update(with: musicResults)
+                  self.recentlyMusicTableView.update(with: musicResults)
+              }
       case .failure(let error):
-        // Обработка ошибки загрузки
         print("Ошибка загрузки новых релизов:", error)
+      }
+    }
+  }
+
+  private func fetchPopularAlbum() {
+    let networkService = NetworkService()
+      networkService.fetchTopAlbums { result in
+          switch result {
+          case .success(let musicResults):
+              self.albumResults = musicResults
+              DispatchQueue.main.async {
+                  self.albumsView.update(with: musicResults)
+              }
+      case .failure(let error):
+        print("Ошибка загрузки новых альбомов:", error)
       }
     }
   }
@@ -150,10 +163,10 @@ class HomepageViewController: UIViewController {
       viewAllButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
       viewAllButton.centerYAnchor.constraint(equalTo: newSongslabel.centerYAnchor),
 
-      newSongsView.topAnchor.constraint(equalTo: newSongslabel.bottomAnchor, constant: 9),
+      newSongsView.topAnchor.constraint(equalTo: newSongslabel.bottomAnchor, constant: -2),
       newSongsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
       newSongsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-      newSongsView.heightAnchor.constraint(equalToConstant: 220),
+      newSongsView.heightAnchor.constraint(equalToConstant: 170),
 
       popularAlbumLabel.topAnchor.constraint(equalTo: newSongsView.bottomAnchor, constant: 15),
       popularAlbumLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
@@ -161,7 +174,7 @@ class HomepageViewController: UIViewController {
       albumsView.topAnchor.constraint(equalTo: popularAlbumLabel.bottomAnchor, constant: 15),
       albumsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
       albumsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-      albumsView.heightAnchor.constraint(equalToConstant: 100),
+      albumsView.heightAnchor.constraint(equalToConstant: 190),
 
       recentlyMusicLabel.topAnchor.constraint(equalTo: albumsView.bottomAnchor, constant: 15),
       recentlyMusicLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),

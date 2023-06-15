@@ -11,7 +11,7 @@ class PopularAlbumView: UIView {
 
     var collectionView: UICollectionView!
 
-    var songs: [MusicResult] = [] {
+    var songs: [Album] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -49,7 +49,7 @@ class PopularAlbumView: UIView {
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
-    func update(with musicResults: [MusicResult]) {
+    func update(with musicResults: [Album]) {
         songs = musicResults
     }
 }
@@ -72,8 +72,8 @@ extension PopularAlbumView: UICollectionViewDelegate, UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
-        let itemWidth = screenWidth - 16 // Account for any content insets or spacing
-        let itemHeight: CGFloat = 100
+        let itemWidth = screenWidth - 16
+        let itemHeight: CGFloat = 190
         return CGSize(width: itemWidth, height: itemHeight)
     }
 

@@ -69,7 +69,7 @@ class RecommendedCell: UITableViewCell {
 
     func configureCell(with musicResult: MusicResult, songNumber: Int) {
         songNumberLabel.text = "\(songNumber)"
-        nameLabel.text = musicResult.trackName
+        nameLabel.text = musicResult.name
         authorLabel.text = musicResult.artistName
         songImageView.kf.setImage(with: URL(string: musicResult.artworkUrl100))
     }
