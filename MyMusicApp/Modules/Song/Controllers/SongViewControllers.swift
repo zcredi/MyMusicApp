@@ -10,14 +10,100 @@ import SnapKit
 import SwiftUI
 
 final class SongViewControllers: UIViewController {
+    
     private var songView = SongView()
+    private let audioPlayer = AudioPlayer.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        audioPlayer.delegate = self
+    
         view.backgroundColor = .brandBlack
         
+        setDurationTime()
         setViews()
         setConstraints()
+        setTargets()
+        updateButtonImage(isPlay: false)
+    }
+    
+    private func setDurationTime() {
+        let duration = audioPlayer.getTrackDuration()
+        
+        songView.rightSliderLabel.text = "\(convertSecondsToMinutes(Float(duration)))"
+        songView.sliderView.maximumValue = Float(Int(duration))
+    }
+    
+    private func setTargets() {
+        songView.likeButton.addTarget(self, action: #selector(changeStatusLikeButton), for: .touchUpInside)
+        songView.sliderView.addTarget(self, action: #selector(rewindTrack), for: [.touchUpInside])
+        songView.playButton.addTarget(self, action: #selector(controlPlayer), for: .touchUpInside)
+        songView.nextTrackButton.addTarget(self, action: #selector(nextTrack), for: .touchUpInside)
+        songView.previousTrackButton.addTarget(self, action: #selector(previousTrack), for: .touchUpInside)
+    }
+    
+    private func convertSecondsToMinutes(_ totalSeconds: Float) -> Float {
+        let minute = Float(Int(totalSeconds) / 60)
+        let seconds = Float(Int(totalSeconds) % 60)
+    
+        return Float(minute + (seconds / 100))
+    }
+    
+    @objc func changeStatusLikeButton() {
+        if songView.likeButton.imageView?.image == UIImage(systemName: "heart") {
+            songView.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            songView.likeButton.tintColor = .brandGreen
+        } else {
+            songView.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            songView.likeButton.tintColor = .neutralWhite
+        }
+    }
+    
+    @objc private func controlPlayer() {
+        audioPlayer.isPlayerPlaying() ? audioPlayer.pausePlayer() : audioPlayer.startPlayer()
+    }
+    
+    @objc private func rewindTrack() {
+        audioPlayer.rewindTrack(at: songView.sliderView.value)
+        audioPlayer.startPlayer()
+    }
+    
+    @objc private func nextTrack() {
+        audioPlayer.nextTrack()
+        
+        let duration = audioPlayer.getTrackDuration()
+        songView.rightSliderLabel.text = "\(convertSecondsToMinutes(Float(duration)))"
+        songView.sliderView.maximumValue = Float(duration)
+    }
+    
+    @objc private func previousTrack() {
+        audioPlayer.previousTrack()
+        
+        let duration = audioPlayer.getTrackDuration()
+        songView.rightSliderLabel.text = "\(convertSecondsToMinutes(Float(duration)))"
+        songView.sliderView.maximumValue = Float(duration)
+    }
+}
+
+extension SongViewControllers: AudioPlayerDelegate {
+    func updateButtonImage(isPlay: Bool) {
+        let image = isPlay ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play")
+        
+        songView.playButton.setImage(image, for: .normal)
+    }
+    
+    func updateCurrentTimeLabel(duration: Int) {
+        songView.leftSliderLabel.text = "\(convertSecondsToMinutes(Float(duration)))"
+    }
+    
+    func updateTotalDuration(duration: Float) {
+        songView.sliderView.maximumValue = convertSecondsToMinutes(duration)
+    }
+    
+    func updateSlider(value: Float) {
+        let newValue = value / songView.sliderView.maximumValue
+        
+        songView.sliderView.value = songView.sliderView.maximumValue * newValue
     }
 }
 
@@ -56,7 +142,7 @@ extension SongViewControllers {
 extension SongViewControllers {
     private func setConstraints() {
         songView.songPageControl.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(122)
+            make.top.equalToSuperview().inset(100)
             make.centerX.equalToSuperview()
         }
         
@@ -83,7 +169,7 @@ extension SongViewControllers {
         
         songView.topButtonsStackView.snp.makeConstraints { make in
             make.height.equalTo(30)
-            make.top.equalTo(songView.describingSongLabel.snp.bottom).inset(-30)
+            make.top.equalTo(songView.describingSongLabel.snp.bottom).inset(-50)
             make.leading.trailing.equalToSuperview().inset(10)
         }
         
