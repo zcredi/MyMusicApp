@@ -22,6 +22,14 @@ extension UIFont {
         return UIFont.init(name: "Roboto-Regular", size: 14)
     }
     
+    static func montserrat12() -> UIFont? {
+        return UIFont.init(name: "Montserrat", size: 12)
+    }
+    
+    static func montserrat14() -> UIFont? {
+        return UIFont.init(name: "Montserrat", size: 14)
+    }
+    
     static func robotoRegular16() -> UIFont? {
         return UIFont.init(name: "IRoboto-Regular", size: 16)
     }
