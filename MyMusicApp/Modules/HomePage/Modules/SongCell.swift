@@ -62,7 +62,7 @@ class SongCell: UICollectionViewCell {
   func configureCell(with musicResult: Entry) {
     nameLabel.text = musicResult.name.label
     authorLabel.text = musicResult.artist.label
-
+    
     if let imageUrlString = musicResult.images.first?.label,
        let imageUrl = URL(string: imageUrlString) {
       songImageView.kf.setImage(with: imageUrl)
@@ -70,7 +70,7 @@ class SongCell: UICollectionViewCell {
       songImageView.image = nil
     }
   }
-
+  
   
   private func setupViews() {
     contentView.addSubview(songImageView)
