@@ -8,16 +8,7 @@
 import UIKit
 
 class PasswordConfirmationView: UIViewController {
-    
-    private lazy var backArrowButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "arrow_back"), for: .normal)
-        button.contentMode = .scaleAspectFit
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(goToSignInPage), for: .touchUpInside)
-        return button
-    }()
-    
+        
     private lazy var forgotPasswordLabel: UILabel = {
         let label = UILabel()
         label.text = "Forgot Password?"
@@ -42,7 +33,10 @@ class PasswordConfirmationView: UIViewController {
     
     private let passwordInput: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Password"
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.neutralGray])
+        textField.textColor = UIColor.neutralWhite
         textField.font = UIFont.montserrat14()
         textField.backgroundColor = .clear
         textField.textAlignment = .left
@@ -78,7 +72,10 @@ class PasswordConfirmationView: UIViewController {
     
     private let confirmPasswordInput: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Confirm Password"
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Confirm Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.neutralGray])
+        textField.textColor = UIColor.neutralWhite
         textField.font = UIFont.montserrat14()
         textField.backgroundColor = .clear
         textField.textAlignment = .left
@@ -131,12 +128,10 @@ class PasswordConfirmationView: UIViewController {
         super.viewDidLoad()
         setupView()
         setConstraints()
-        navigationItem.hidesBackButton = true
         view.backgroundColor = UIColor.brandBlack
     }
 
     private func setupView() {
-        view.addSubview(backArrowButton)
         view.addSubview(forgotPasswordLabel)
         view.addSubview(informationLabel)
         view.addSubview(passwordInput)
@@ -167,13 +162,8 @@ class PasswordConfirmationView: UIViewController {
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-            
-            backArrowButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
-            backArrowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            backArrowButton.heightAnchor.constraint(equalToConstant: 32),
-            backArrowButton.widthAnchor.constraint(equalToConstant: 32),
         
-            forgotPasswordLabel.topAnchor.constraint(equalTo: backArrowButton.bottomAnchor, constant: 32),
+            forgotPasswordLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 112),
             forgotPasswordLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
             informationLabel.topAnchor.constraint(equalTo: forgotPasswordLabel.topAnchor, constant: 55),

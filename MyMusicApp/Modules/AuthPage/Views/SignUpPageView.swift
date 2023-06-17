@@ -35,7 +35,10 @@ class SignUpPageView: UIViewController {
     
     private let nameInput: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Name"
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Name",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.neutralGray])
+        textField.textColor = UIColor.neutralWhite
         textField.font = UIFont.montserrat14()
         textField.backgroundColor = .clear
         textField.textAlignment = .left
@@ -53,7 +56,10 @@ class SignUpPageView: UIViewController {
         
     private let emailInput: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "E-mail"
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "E-mail",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.neutralGray])
+        textField.textColor = UIColor.neutralWhite
         textField.font = UIFont.montserrat14()
         textField.backgroundColor = .clear
         textField.textAlignment = .left
@@ -80,7 +86,10 @@ class SignUpPageView: UIViewController {
     
     private let passwordInput: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Password"
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.neutralGray])
+        textField.textColor = UIColor.neutralWhite
         textField.font = UIFont.montserrat14()
         textField.backgroundColor = .clear
         textField.textAlignment = .left

@@ -15,8 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
             guard let windowScene = (scene as? UIWindowScene) else { return }
             window = UIWindow(windowScene: windowScene)
-            let viewController = SignUpPageView()
+            let viewController = AuthPageView()
             let navigationController = UINavigationController(rootViewController: viewController)
+            UINavigationBar.appearance().backIndicatorImage = UIImage(named: "arrow_back")
+            UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "arrow_back")
+            UINavigationBar.appearance().tintColor = UIColor.neutralWhite
+            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for: .default)
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
             window?.overrideUserInterfaceStyle = .unspecified
