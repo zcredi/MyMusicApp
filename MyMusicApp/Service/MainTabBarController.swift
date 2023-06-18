@@ -17,7 +17,14 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        tabBar.backgroundColor = .brandBlack
+        if #available(iOS 15, *) {
+            let appearance = UITabBarAppearance()
+            appearance.backgroundColor = .brandBlack
+            tabBar.standardAppearance = appearance
+        } else {
+            tabBar.backgroundColor = .brandBlack
+        }
+        
         tabBar.tintColor = .brandGreen
         tabBar.unselectedItemTintColor = .neutralGray
     }
