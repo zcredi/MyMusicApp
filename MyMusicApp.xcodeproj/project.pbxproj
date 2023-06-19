@@ -296,6 +296,7 @@
 				86CE7A1A2A375F4200663854 /* Favorites */,
 				7EDADCF72A385680004E560F /* Song */,
 				86CE7A0F2A374DB500663854 /* Profile */,
+				4358C3242A39E880003B68F1 /* Search */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -603,6 +604,8 @@
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
 				7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
+				4358C3292A39EA58003B68F1 /* ResultViewCell.swift in Sources */,
+				4358C32D2A39EA91003B68F1 /* SearchViewController.swift in Sources */,
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
 				CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
