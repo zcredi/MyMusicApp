@@ -56,6 +56,10 @@
 		86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A292A38A89A00663854 /* UILabel+App.swift */; };
 		86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A2B2A38BD3800663854 /* RecentlyView.swift */; };
 		86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A302A39D61A00663854 /* TopTrendingView.swift */; };
+		CE22E45E2A3B9950002B8925 /* SignUpPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */; };
+		CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */; };
+		CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */; };
+		CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +110,10 @@
 		86CE7A292A38A89A00663854 /* UILabel+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+App.swift"; sourceTree = "<group>"; };
 		86CE7A2B2A38BD3800663854 /* RecentlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyView.swift; sourceTree = "<group>"; };
 		86CE7A302A39D61A00663854 /* TopTrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingView.swift; sourceTree = "<group>"; };
+		CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageView.swift; sourceTree = "<group>"; };
+		CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPageView.swift; sourceTree = "<group>"; };
+		CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConfirmationView.swift; sourceTree = "<group>"; };
+		CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,21 +208,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7EDADCF22A3854FB004E560F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				7EDADCF32A385502004E560F /* Managers */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		7EDADCF32A385502004E560F /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		7EDADCF72A385680004E560F /* Song */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,52 +237,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7EDADD072A38EFCF004E560F /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				7EDADD082A38EFE2004E560F /* Views */,
-				7EDADD092A38EFEB004E560F /* Controllers */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
-		7EDADD082A38EFE2004E560F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7EDADD092A38EFEB004E560F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		7EDADD0A2A38F001004E560F /* AuthPage */ = {
-			isa = PBXGroup;
-			children = (
-				7EDADD0B2A38F00C004E560F /* Views */,
-				7EDADD0C2A38F010004E560F /* Controllers */,
-			);
-			path = AuthPage;
-			sourceTree = "<group>";
-		};
-		7EDADD0B2A38F00C004E560F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7EDADD0C2A38F010004E560F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		866D440D2A3366D200A64A2D = {
 			isa = PBXGroup;
 			children = (
@@ -309,7 +256,7 @@
 		866D44182A3366D200A64A2D /* MyMusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADCF22A3854FB004E560F /* Common */,
+				CE6AD3F52A3B6366008FFC72 /* Common */,
 				86CE79FA2A371A3600663854 /* Modules */,
 				866D44342A3368AC00A64A2D /* UIConstants */,
 				866D44352A3368CC00A64A2D /* Service */,
@@ -342,8 +289,8 @@
 		86CE79FA2A371A3600663854 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADD072A38EFCF004E560F /* Welcome */,
-				7EDADD0A2A38F001004E560F /* AuthPage */,
+				CE6AD3FA2A3B63A5008FFC72 /* AuthPage */,
+				CE6AD3F72A3B6383008FFC72 /* Welcome */,
 				86CE7A082A371BD400663854 /* HomePage */,
 				86CE7A212A38A6B700663854 /* Explore */,
 				86CE7A1A2A375F4200663854 /* Favorites */,
@@ -480,6 +427,71 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		CE6AD3F52A3B6366008FFC72 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3F62A3B6373008FFC72 /* Managers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CE6AD3F62A3B6373008FFC72 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE6AD3F72A3B6383008FFC72 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3F92A3B6392008FFC72 /* Controllers */,
+				CE6AD3F82A3B638C008FFC72 /* Views */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		CE6AD3F82A3B638C008FFC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE6AD3F92A3B6392008FFC72 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE6AD3FA2A3B63A5008FFC72 /* AuthPage */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3FC2A3B63CF008FFC72 /* Controllers */,
+				CE6AD3FB2A3B63C8008FFC72 /* Views */,
+			);
+			path = AuthPage;
+			sourceTree = "<group>";
+		};
+		CE6AD3FB2A3B63C8008FFC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */,
+				CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */,
+				CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */,
+				CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE6AD3FC2A3B63CF008FFC72 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -575,7 +587,8 @@
 				573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */,
 				573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
-				7ED7C5EE2A3B2E200014EB83 /* AudioPlayerProtocol.swift in Sources */,
+				CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */,
+				86CE7A2F2A38C2BD00663854 /* RecentlyCollectionViewCell.swift in Sources */,
 				573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */,
 				86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */,
 				573F6D852A3A202D002990D8 /* MusicModel.swift in Sources */,
@@ -591,17 +604,19 @@
 				7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
+				CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
-				7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */,
-				864F5DD72A3F498400D3DB7E /* TopicView.swift in Sources */,
+				CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */,
+
 				573F6D9F2A3A208D002990D8 /* AppDelegate.swift in Sources */,
 				573F6DA32A3A208D002990D8 /* SceneDelegate.swift in Sources */,
 				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,
 				86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */,
 				573F6D872A3A202D002990D8 /* SongCell.swift in Sources */,
+				CE22E45E2A3B9950002B8925 /* SignUpPageView.swift in Sources */,
 				86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */,
 				7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */,
 			);
