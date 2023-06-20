@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572BFA922A41C5F10001D805 /* AllSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BFA912A41C5F10001D805 /* AllSongsViewController.swift */; };
 		573F6D7D2A3A2025002990D8 /* PopularAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */; };
 		573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */; };
 		573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7C2A3A2025002990D8 /* NewSongsView.swift */; };
@@ -28,23 +29,31 @@
 		573F6DA82A3A20B7002990D8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 573F6DA72A3A20B7002990D8 /* Kingfisher */; };
 		573F6DF42A3B0B61002990D8 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6DF32A3B0B61002990D8 /* MusicPlayer.swift */; };
 		573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6DF52A3B21AE002990D8 /* ModelsForIRSS.swift */; };
+		57D2DF4D2A4184150055D9B2 /* MusicSingltone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */; };
+		57E13DEC2A3C666C00AA60DC /* MiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */; };
 		7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED182072A39ADB000FC24EC /* SongPageViewController.swift */; };
-		7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */; };
-		7ED7C5E82A3AF9780014EB83 /* metallica_-_nothing-else-matters.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E52A3AF9770014EB83 /* metallica_-_nothing-else-matters.mp3 */; };
-		7ED7C5E92A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E62A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 */; };
-		7ED7C5EA2A3AF9780014EB83 /* Rammstein Feuer frei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E72A3AF9780014EB83 /* Rammstein Feuer frei.mp3 */; };
-		7ED7C5EE2A3B2E200014EB83 /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED7C5ED2A3B2E200014EB83 /* AudioPlayerProtocol.swift */; };
 		7EDADCF62A385679004E560F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7EDADCF52A385679004E560F /* SnapKit */; };
 		7EDADCF92A3856AB004E560F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCF82A3856AB004E560F /* SongView.swift */; };
 		7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */; };
 		7EDADCFF2A38BD6C004E560F /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADCFE2A38BD6C004E560F /* AlbumViewController.swift */; };
 		7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD002A38BD73004E560F /* AlbumView.swift */; };
 		7EDADD062A38E7E7004E560F /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD052A38E7E7004E560F /* AlbumTableViewCell.swift */; };
-		864F5DD72A3F498400D3DB7E /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DD62A3F498400D3DB7E /* TopicView.swift */; };
 		864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */; };
 		864F5DDC2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */; };
 		864F5DDD2A3F499600D3DB7E /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */; };
 		864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DFA2A40B7C300D3DB7E /* ExploreDetailViewController.swift */; };
+		864F5DE72A409A5200D3DB7E /* CustomCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE02A409A5200D3DB7E /* CustomCellModel.swift */; };
+		864F5DE82A409A5200D3DB7E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE12A409A5200D3DB7E /* Categories.swift */; };
+		864F5DE92A409A5200D3DB7E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE32A409A5200D3DB7E /* SearchViewController.swift */; };
+		864F5DEA2A409A5200D3DB7E /* ResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE52A409A5200D3DB7E /* ResultViewCell.swift */; };
+		864F5DEB2A409A5200D3DB7E /* CategoriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE62A409A5200D3DB7E /* CategoriesViewCell.swift */; };
+		864F5DED2A409A6E00D3DB7E /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DEC2A409A6E00D3DB7E /* TopicView.swift */; };
+		864F5DF52A409A9600D3DB7E /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DEF2A409A9600D3DB7E /* AudioPlayer.swift */; };
+		864F5DF62A409A9600D3DB7E /* Murray One night in Bangkoc.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 864F5DF02A409A9600D3DB7E /* Murray One night in Bangkoc.mp3 */; };
+		864F5DF72A409A9600D3DB7E /* metallica_-_nothing-else-matters.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 864F5DF12A409A9600D3DB7E /* metallica_-_nothing-else-matters.mp3 */; };
+		864F5DF82A409A9600D3DB7E /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DF32A409A9600D3DB7E /* AudioPlayerProtocol.swift */; };
+		864F5DF92A409A9600D3DB7E /* Rammstein Feuer frei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 864F5DF42A409A9600D3DB7E /* Rammstein Feuer frei.mp3 */; };
+
 		866D442F2A3367CC00A64A2D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 866D442E2A3367CC00A64A2D /* Realm */; };
 		866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 866D44302A3367CC00A64A2D /* RealmSwift */; };
 		867CFF2B2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */; };
@@ -58,9 +67,14 @@
 		86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A292A38A89A00663854 /* UILabel+App.swift */; };
 		86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A2B2A38BD3800663854 /* RecentlyView.swift */; };
 		86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A302A39D61A00663854 /* TopTrendingView.swift */; };
+		CE22E45E2A3B9950002B8925 /* SignUpPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */; };
+		CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */; };
+		CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */; };
+		CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		572BFA912A41C5F10001D805 /* AllSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsViewController.swift; sourceTree = "<group>"; };
 		573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularAlbumView.swift; sourceTree = "<group>"; };
 		573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyMusicTableView.swift; sourceTree = "<group>"; };
 		573F6D7C2A3A2025002990D8 /* NewSongsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSongsView.swift; sourceTree = "<group>"; };
@@ -81,22 +95,29 @@
 		573F6D982A3A208D002990D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		573F6DF32A3B0B61002990D8 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		573F6DF52A3B21AE002990D8 /* ModelsForIRSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsForIRSS.swift; sourceTree = "<group>"; };
+		57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSingltone.swift; sourceTree = "<group>"; };
+		57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayer.swift; sourceTree = "<group>"; };
 		7ED182072A39ADB000FC24EC /* SongPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPageViewController.swift; sourceTree = "<group>"; };
-		7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		7ED7C5E52A3AF9770014EB83 /* metallica_-_nothing-else-matters.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "metallica_-_nothing-else-matters.mp3"; sourceTree = "<group>"; };
-		7ED7C5E62A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Murray One night in Bangkoc.mp3"; sourceTree = "<group>"; };
-		7ED7C5E72A3AF9780014EB83 /* Rammstein Feuer frei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rammstein Feuer frei.mp3"; sourceTree = "<group>"; };
-		7ED7C5ED2A3B2E200014EB83 /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
 		7EDADCF82A3856AB004E560F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		7EDADCFC2A3856C7004E560F /* SongViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewControllers.swift; sourceTree = "<group>"; };
 		7EDADCFE2A38BD6C004E560F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		7EDADD002A38BD73004E560F /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		7EDADD052A38E7E7004E560F /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
-		864F5DD62A3F498400D3DB7E /* TopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
 		864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDetails.swift; sourceTree = "<group>"; };
-		864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentlyCollectionViewCell.swift; path = ../../../../../../../Explore/Views/Cell/RecentlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		864F5DFA2A40B7C300D3DB7E /* ExploreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDetailViewController.swift; sourceTree = "<group>"; };
+		864F5DE02A409A5200D3DB7E /* CustomCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellModel.swift; sourceTree = "<group>"; };
+		864F5DE12A409A5200D3DB7E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		864F5DE32A409A5200D3DB7E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		864F5DE52A409A5200D3DB7E /* ResultViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewCell.swift; sourceTree = "<group>"; };
+		864F5DE62A409A5200D3DB7E /* CategoriesViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewCell.swift; sourceTree = "<group>"; };
+		864F5DEC2A409A6E00D3DB7E /* TopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
+		864F5DEF2A409A9600D3DB7E /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		864F5DF02A409A9600D3DB7E /* Murray One night in Bangkoc.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Murray One night in Bangkoc.mp3"; sourceTree = "<group>"; };
+		864F5DF12A409A9600D3DB7E /* metallica_-_nothing-else-matters.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "metallica_-_nothing-else-matters.mp3"; sourceTree = "<group>"; };
+		864F5DF32A409A9600D3DB7E /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
+		864F5DF42A409A9600D3DB7E /* Rammstein Feuer frei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rammstein Feuer frei.mp3"; sourceTree = "<group>"; };
 		866D44162A3366D200A64A2D /* MyMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866D44272A3366D300A64A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -110,6 +131,10 @@
 		86CE7A292A38A89A00663854 /* UILabel+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+App.swift"; sourceTree = "<group>"; };
 		86CE7A2B2A38BD3800663854 /* RecentlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyView.swift; sourceTree = "<group>"; };
 		86CE7A302A39D61A00663854 /* TopTrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingView.swift; sourceTree = "<group>"; };
+		CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageView.swift; sourceTree = "<group>"; };
+		CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPageView.swift; sourceTree = "<group>"; };
+		CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConfirmationView.swift; sourceTree = "<group>"; };
+		CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,26 +195,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		7ED7C5E42A3AF2DC0014EB83 /* AudioPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				7ED7C5EC2A3B2E0E0014EB83 /* Protocols */,
-				7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */,
-				7ED7C5E52A3AF9770014EB83 /* metallica_-_nothing-else-matters.mp3 */,
-				7ED7C5E62A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 */,
-				7ED7C5E72A3AF9780014EB83 /* Rammstein Feuer frei.mp3 */,
-			);
-			path = AudioPlayer;
-			sourceTree = "<group>";
-		};
-		7ED7C5EC2A3B2E0E0014EB83 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				7ED7C5ED2A3B2E200014EB83 /* AudioPlayerProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		7EDADCF02A3854DD004E560F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,21 +207,6 @@
 			children = (
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		7EDADCF22A3854FB004E560F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				7EDADCF32A385502004E560F /* Managers */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		7EDADCF32A385502004E560F /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		7EDADCF72A385680004E560F /* Song */ = {
@@ -248,50 +238,60 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7EDADD072A38EFCF004E560F /* Welcome */ = {
+		864F5DDE2A409A5200D3DB7E /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADD082A38EFE2004E560F /* Views */,
-				7EDADD092A38EFEB004E560F /* Controllers */,
+				864F5DDF2A409A5200D3DB7E /* Models */,
+				864F5DE22A409A5200D3DB7E /* Controllers */,
+				864F5DE42A409A5200D3DB7E /* Views */,
 			);
-			path = Welcome;
+			path = Search;
 			sourceTree = "<group>";
 		};
-		7EDADD082A38EFE2004E560F /* Views */ = {
+		864F5DDF2A409A5200D3DB7E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				864F5DE02A409A5200D3DB7E /* CustomCellModel.swift */,
+				864F5DE12A409A5200D3DB7E /* Categories.swift */,
 			);
-			path = Views;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		7EDADD092A38EFEB004E560F /* Controllers */ = {
+		864F5DE22A409A5200D3DB7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				864F5DE32A409A5200D3DB7E /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7EDADD0A2A38F001004E560F /* AuthPage */ = {
+		864F5DE42A409A5200D3DB7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADD0B2A38F00C004E560F /* Views */,
-				7EDADD0C2A38F010004E560F /* Controllers */,
-			);
-			path = AuthPage;
-			sourceTree = "<group>";
-		};
-		7EDADD0B2A38F00C004E560F /* Views */ = {
-			isa = PBXGroup;
-			children = (
+				864F5DE52A409A5200D3DB7E /* ResultViewCell.swift */,
+				864F5DE62A409A5200D3DB7E /* CategoriesViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7EDADD0C2A38F010004E560F /* Controllers */ = {
+		864F5DEE2A409A9600D3DB7E /* AudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				864F5DEF2A409A9600D3DB7E /* AudioPlayer.swift */,
+				864F5DF02A409A9600D3DB7E /* Murray One night in Bangkoc.mp3 */,
+				864F5DF12A409A9600D3DB7E /* metallica_-_nothing-else-matters.mp3 */,
+				864F5DF22A409A9600D3DB7E /* Protocols */,
+				864F5DF42A409A9600D3DB7E /* Rammstein Feuer frei.mp3 */,
 			);
-			path = Controllers;
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		864F5DF22A409A9600D3DB7E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				864F5DF32A409A9600D3DB7E /* AudioPlayerProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		866D440D2A3366D200A64A2D = {
@@ -313,7 +313,7 @@
 		866D44182A3366D200A64A2D /* MyMusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADCF22A3854FB004E560F /* Common */,
+				CE6AD3F52A3B6366008FFC72 /* Common */,
 				86CE79FA2A371A3600663854 /* Modules */,
 				866D44342A3368AC00A64A2D /* UIConstants */,
 				866D44352A3368CC00A64A2D /* Service */,
@@ -335,10 +335,10 @@
 		866D44352A3368CC00A64A2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				864F5DEE2A409A9600D3DB7E /* AudioPlayer */,
 				573F6D972A3A208D002990D8 /* API */,
 				573F6D882A3A208D002990D8 /* Applecation */,
 				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
-				7ED7C5E42A3AF2DC0014EB83 /* AudioPlayer */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -346,13 +346,14 @@
 		86CE79FA2A371A3600663854 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADD072A38EFCF004E560F /* Welcome */,
-				7EDADD0A2A38F001004E560F /* AuthPage */,
+				CE6AD3FA2A3B63A5008FFC72 /* AuthPage */,
+				CE6AD3F72A3B6383008FFC72 /* Welcome */,
 				86CE7A082A371BD400663854 /* HomePage */,
 				86CE7A212A38A6B700663854 /* Explore */,
 				86CE7A1A2A375F4200663854 /* Favorites */,
 				7EDADCF72A385680004E560F /* Song */,
 				86CE7A0F2A374DB500663854 /* Profile */,
+				864F5DDE2A409A5200D3DB7E /* Search */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -371,6 +372,7 @@
 				573F6D7C2A3A2025002990D8 /* NewSongsView.swift */,
 				573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */,
 				573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */,
+				572BFA912A41C5F10001D805 /* AllSongsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +384,8 @@
 				573F6DF32A3B0B61002990D8 /* MusicPlayer.swift */,
 				573F6D822A3A202D002990D8 /* RecentlyMusicCell.swift */,
 				573F6D832A3A202D002990D8 /* SongCell.swift */,
+				57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */,
+				57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -454,7 +458,7 @@
 			children = (
 				86CE7A2D2A38C29300663854 /* Cell */,
 				86CE7A2B2A38BD3800663854 /* RecentlyView.swift */,
-				864F5DD62A3F498400D3DB7E /* TopicView.swift */,
+				864F5DEC2A409A6E00D3DB7E /* TopicView.swift */,
 				864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */,
 				86CE7A302A39D61A00663854 /* TopTrendingView.swift */,
 			);
@@ -484,6 +488,71 @@
 				867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CE6AD3F52A3B6366008FFC72 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3F62A3B6373008FFC72 /* Managers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CE6AD3F62A3B6373008FFC72 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE6AD3F72A3B6383008FFC72 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3F92A3B6392008FFC72 /* Controllers */,
+				CE6AD3F82A3B638C008FFC72 /* Views */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		CE6AD3F82A3B638C008FFC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE6AD3F92A3B6392008FFC72 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE6AD3FA2A3B63A5008FFC72 /* AuthPage */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3FC2A3B63CF008FFC72 /* Controllers */,
+				CE6AD3FB2A3B63C8008FFC72 /* Views */,
+			);
+			path = AuthPage;
+			sourceTree = "<group>";
+		};
+		CE6AD3FB2A3B63C8008FFC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */,
+				CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */,
+				CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */,
+				CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE6AD3FC2A3B63CF008FFC72 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,15 +624,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ED7C5EA2A3AF9780014EB83 /* Rammstein Feuer frei.mp3 in Resources */,
 				573F6DA02A3A208D002990D8 /* Roboto-Medium.ttf in Resources */,
 				573F6DA12A3A208D002990D8 /* Roboto-Regular.ttf in Resources */,
+				864F5DF92A409A9600D3DB7E /* Rammstein Feuer frei.mp3 in Resources */,
 				573F6DA22A3A208D002990D8 /* Roboto-Bold.ttf in Resources */,
-				7ED7C5E82A3AF9780014EB83 /* metallica_-_nothing-else-matters.mp3 in Resources */,
 				573F6D9C2A3A208D002990D8 /* LaunchScreen.storyboard in Resources */,
-				7ED7C5E92A3AF9780014EB83 /* Murray One night in Bangkoc.mp3 in Resources */,
 				573F6D9B2A3A208D002990D8 /* Assets.xcassets in Resources */,
 				573F6D9D2A3A208D002990D8 /* Main.storyboard in Resources */,
+				864F5DF62A409A9600D3DB7E /* Murray One night in Bangkoc.mp3 in Resources */,
+				864F5DF72A409A9600D3DB7E /* metallica_-_nothing-else-matters.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,14 +645,18 @@
 			files = (
 				573F6D7D2A3A2025002990D8 /* PopularAlbumView.swift in Sources */,
 				864F5DDD2A3F499600D3DB7E /* TopicCollectionViewCell.swift in Sources */,
+				864F5DE72A409A5200D3DB7E /* CustomCellModel.swift in Sources */,
 				7EDADCFF2A38BD6C004E560F /* AlbumViewController.swift in Sources */,
 				7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */,
 				573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */,
 				573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
-				7ED7C5EE2A3B2E200014EB83 /* AudioPlayerProtocol.swift in Sources */,
+				CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */,
+				572BFA922A41C5F10001D805 /* AllSongsViewController.swift in Sources */,
 				573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */,
+				864F5DE92A409A5200D3DB7E /* SearchViewController.swift in Sources */,
 				86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */,
+				864F5DF82A409A9600D3DB7E /* AudioPlayerProtocol.swift in Sources */,
 				573F6D852A3A202D002990D8 /* MusicModel.swift in Sources */,
 				86CE7A262A38A6FA00663854 /* ExploreViewController.swift in Sources */,
 				864F5DDC2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift in Sources */,
@@ -596,22 +669,30 @@
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
 				7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
+				57E13DEC2A3C666C00AA60DC /* MiniPlayer.swift in Sources */,
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
+				CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */,
+				864F5DED2A409A6E00D3DB7E /* TopicView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */,
 				864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
-				7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */,
-				864F5DD72A3F498400D3DB7E /* TopicView.swift in Sources */,
+				864F5DEA2A409A5200D3DB7E /* ResultViewCell.swift in Sources */,
+				CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */,
 				573F6D9F2A3A208D002990D8 /* AppDelegate.swift in Sources */,
 				573F6DA32A3A208D002990D8 /* SceneDelegate.swift in Sources */,
+				864F5DF52A409A9600D3DB7E /* AudioPlayer.swift in Sources */,
 				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,
 				86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */,
+				57D2DF4D2A4184150055D9B2 /* MusicSingltone.swift in Sources */,
 				573F6D872A3A202D002990D8 /* SongCell.swift in Sources */,
 				867CFF2B2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift in Sources */,
+				CE22E45E2A3B9950002B8925 /* SignUpPageView.swift in Sources */,
 				86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */,
 				7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */,
+				864F5DEB2A409A5200D3DB7E /* CategoriesViewCell.swift in Sources */,
+				864F5DE82A409A5200D3DB7E /* Categories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
