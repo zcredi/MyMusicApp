@@ -33,7 +33,6 @@ class HomepageViewController: UIViewController {
     fetchPopularAlbum()
     SearchMusic()
     newSongsView.delegate = self
-    recentlyMusicTableView.delegate = self
     miniPlayerVC.delegate = self
     musicPlayer.delegate = self
   }
@@ -176,7 +175,10 @@ class HomepageViewController: UIViewController {
   }
 
   @objc func seeAllPressed(sender: UIButton) {
-
+      let allSongsVC = AllSongsViewController()
+      let navController = UINavigationController(rootViewController: allSongsVC)
+    navController.modalPresentationStyle = .popover
+      present(navController, animated: true, completion: nil)
   }
 
   //MARK: - Constraints
@@ -240,27 +242,9 @@ extension HomepageViewController: NewSongsViewDelegate {
   }
 }
 
-extension HomepageViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if tableView == recentlyMusicTableView {
-      let selectedSong = recentlyMusicTableView.songs[indexPath.row]
-      if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
-        if musicPlayer.isPlayingMusic(from: audioURL) {
-          musicPlayer.stopMusic()
-        } else {
-          musicPlayer.playMusic(from: audioURL)
-        }
-      } else {
-        print("Error: No audio URL available")
-      }
-    }
-  }
-}
-
 extension HomepageViewController: MiniPlayerViewDelegate {
   func forwardButtonTapped() {
     musicPlayer.playNextSong()
-    
   }
 
   func backwardButtonTapped() {
@@ -282,7 +266,6 @@ extension HomepageViewController: MusicPlayerDelegate {
       miniPlayerVC.updateSongImage(nil)
       return
     }
-    musicPlayer.playMusic(from: url)
     miniPlayerVC.updateSongTitle(musicResult.name.label)
     if let imageUrlString = musicResult.images.first?.label,
        let imageUrl = URL(string: imageUrlString) {
