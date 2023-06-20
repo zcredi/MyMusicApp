@@ -66,6 +66,7 @@
 		CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */; };
 		CE22E4642A40A74E002B8925 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE22E4632A40A74E002B8925 /* GoogleService-Info.plist */; };
 		CE22E4662A40ABF6002B8925 /* RecentlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E4652A40ABF6002B8925 /* RecentlyCollectionViewCell.swift */; };
+		CE2FFE152A41FE2400510E6B /* WelcomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FFE142A41FE2400510E6B /* WelcomePageView.swift */; };
 		CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,7 @@
 		CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConfirmationView.swift; sourceTree = "<group>"; };
 		CE22E4632A40A74E002B8925 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE22E4652A40ABF6002B8925 /* RecentlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE2FFE142A41FE2400510E6B /* WelcomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomePageView.swift; path = MyMusicApp/Modules/Explore/Views/Cell/WelcomePageView.swift; sourceTree = SOURCE_ROOT; };
 		CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -506,27 +508,28 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CE6AD3F72A3B6383008FFC72 /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				CE6AD3F92A3B6392008FFC72 /* Controllers */,
-				CE6AD3F82A3B638C008FFC72 /* Views */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
-		CE6AD3F82A3B638C008FFC72 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		CE6AD3F92A3B6392008FFC72 /* Controllers */ = {
+		CE2FFE122A41FDFA00510E6B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE2FFE132A41FE0800510E6B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2FFE142A41FE2400510E6B /* WelcomePageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE6AD3F72A3B6383008FFC72 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				CE2FFE132A41FE0800510E6B /* Views */,
+				CE2FFE122A41FDFA00510E6B /* Controllers */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		CE6AD3FA2A3B63A5008FFC72 /* AuthPage */ = {
@@ -727,6 +730,7 @@
 				CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */,
 				864F5DED2A409A6E00D3DB7E /* TopicView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
+				CE2FFE152A41FE2400510E6B /* WelcomePageView.swift in Sources */,
 				864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
