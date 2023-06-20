@@ -28,6 +28,7 @@
 		573F6DA82A3A20B7002990D8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 573F6DA72A3A20B7002990D8 /* Kingfisher */; };
 		573F6DF42A3B0B61002990D8 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6DF32A3B0B61002990D8 /* MusicPlayer.swift */; };
 		573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6DF52A3B21AE002990D8 /* ModelsForIRSS.swift */; };
+		57D2DF4D2A4184150055D9B2 /* MusicSingltone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */; };
 		57E13DEC2A3C666C00AA60DC /* MiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */; };
 		7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED182072A39ADB000FC24EC /* SongPageViewController.swift */; };
 		7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */; };
@@ -77,6 +78,7 @@
 		573F6D982A3A208D002990D8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		573F6DF32A3B0B61002990D8 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		573F6DF52A3B21AE002990D8 /* ModelsForIRSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsForIRSS.swift; sourceTree = "<group>"; };
+		57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSingltone.swift; sourceTree = "<group>"; };
 		57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayer.swift; sourceTree = "<group>"; };
 		7ED182072A39ADB000FC24EC /* SongPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPageViewController.swift; sourceTree = "<group>"; };
 		7ED7C5E22A3AF2D80014EB83 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				86CE7A182A375F2E00663854 /* HomepageViewController.swift */,
+				57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */,
 				57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */,
 			);
 			path = Controllers;
@@ -593,6 +596,7 @@
 				573F6DA32A3A208D002990D8 /* SceneDelegate.swift in Sources */,
 				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,
 				86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */,
+				57D2DF4D2A4184150055D9B2 /* MusicSingltone.swift in Sources */,
 				573F6D872A3A202D002990D8 /* SongCell.swift in Sources */,
 				86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */,
 				7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */,

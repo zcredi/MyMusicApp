@@ -21,10 +21,7 @@ class HomepageViewController: UIViewController {
   private let recentlyMusicLabel = UILabel()
   private let recentlyMusicTableView = RecentlyMusicTableView()
 
-  var musicResults: [Entry] = []
-  var musicSearch: [MusicResult] = []
-  var albumResults: [AlbumEntry] = []
-  let musicPlayer = MusicPlayer()
+  private let musicPlayer = MusicPlayer()
   private let miniPlayerVC = MiniPlayerVC()
 
   override func viewDidLoad() {
@@ -38,6 +35,7 @@ class HomepageViewController: UIViewController {
     newSongsView.delegate = self
     recentlyMusicTableView.delegate = self
     miniPlayerVC.delegate = self
+    musicPlayer.delegate = self
   }
   
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,15 +43,15 @@ class HomepageViewController: UIViewController {
   }
 
   func showMiniPlayer() {
-        miniPlayerVC.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(miniPlayerVC)
-        NSLayoutConstraint.activate([
-            miniPlayerVC.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            miniPlayerVC.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            miniPlayerVC.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
-            miniPlayerVC.heightAnchor.constraint(equalToConstant: 70)
-        ])
-    }
+    miniPlayerVC.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(miniPlayerVC)
+    NSLayoutConstraint.activate([
+      miniPlayerVC.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      miniPlayerVC.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      miniPlayerVC.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+      miniPlayerVC.heightAnchor.constraint(equalToConstant: 70)
+    ])
+  }
 
 
   //MARK: - Network requests
@@ -64,9 +62,10 @@ class HomepageViewController: UIViewController {
       switch result {
       case .success(let musicResponse):
         DispatchQueue.main.async {
-          self.musicResults = musicResponse.feed.entry
-          self.newSongsView.update(with: self.musicResults)
-          self.recentlyMusicTableView.update(with: self.musicResults)
+          Music.shared.musicResults = musicResponse.feed.entry
+          self.newSongsView.update(with: Music.shared.musicResults)
+          self.recentlyMusicTableView.update(with: Music.shared.musicResults)
+          self.musicPlayer.updateMusicResults(Music.shared.musicResults)
         }
       case .failure(let error):
         print("Error fetching music data: \(error)")
@@ -81,8 +80,8 @@ class HomepageViewController: UIViewController {
       switch result {
       case .success(let albumResponse):
         DispatchQueue.main.async {
-          self.albumResults = albumResponse.feed.entry
-          self.albumsView.update(with: self.albumResults)
+          Music.shared.albumResults = albumResponse.feed.entry
+          self.albumsView.update(with: Music.shared.albumResults)
         }
       case .failure(let error):
         print("Error fetching popular albums:", error)
@@ -95,7 +94,7 @@ class HomepageViewController: UIViewController {
     networkService.fetchMusic(keyword: "") { result in
       switch result {
       case .success(let musicResults):
-        self.musicSearch = musicResults
+        Music.shared.musicSearch = musicResults
         DispatchQueue.main.async {
           //          self.newSongsView.update(with: musicResults)
           //          self.albumsView.update(with: musicResults)
@@ -241,26 +240,27 @@ extension HomepageViewController: NewSongsViewDelegate {
   }
 }
 
-  extension HomepageViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      if tableView == recentlyMusicTableView {
-        let selectedSong = recentlyMusicTableView.songs[indexPath.row]
-        if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
-          if musicPlayer.isPlayingMusic(from: audioURL) {
-            musicPlayer.stopMusic()
-          } else {
-            musicPlayer.playMusic(from: audioURL)
-          }
+extension HomepageViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if tableView == recentlyMusicTableView {
+      let selectedSong = recentlyMusicTableView.songs[indexPath.row]
+      if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
+        if musicPlayer.isPlayingMusic(from: audioURL) {
+          musicPlayer.stopMusic()
         } else {
-          print("Error: No audio URL available")
+          musicPlayer.playMusic(from: audioURL)
         }
+      } else {
+        print("Error: No audio URL available")
       }
     }
   }
+}
 
 extension HomepageViewController: MiniPlayerViewDelegate {
   func forwardButtonTapped() {
     musicPlayer.playNextSong()
+    
   }
 
   func backwardButtonTapped() {
@@ -268,16 +268,53 @@ extension HomepageViewController: MiniPlayerViewDelegate {
   }
 
   func playButtonTapped() {
-      guard let currentURL = musicPlayer.currentURL else {
-          print("Invalid music URL")
-          return
-      }
-
-      if musicPlayer.isPlayingMusic(from: currentURL) {
-          musicPlayer.stopMusic()
-      } else {
-          musicPlayer.playMusic(from: currentURL)
-      }
+    musicPlayer.pauseMusic()
   }
 
 }
+
+extension HomepageViewController: MusicPlayerDelegate {
+
+  func updateCurrentURL(_ url: String) {
+    guard let musicResult = getMusicResultFromURL(url)
+    else {
+      miniPlayerVC.updateSongTitle("")
+      miniPlayerVC.updateSongImage(nil)
+      return
+    }
+    musicPlayer.playMusic(from: url)
+    miniPlayerVC.updateSongTitle(musicResult.name.label)
+    if let imageUrlString = musicResult.images.first?.label,
+       let imageUrl = URL(string: imageUrlString) {
+      URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+        DispatchQueue.main.async {
+          if let imageData = data, let image = UIImage(data: imageData) {
+            self.miniPlayerVC.updateSongImage(image)
+          } else {
+            self.miniPlayerVC.updateSongImage(nil)
+          }
+        }
+      }.resume()
+    } else {
+      miniPlayerVC.updateSongImage(nil)
+    }
+  }
+
+  private func getMusicResultFromURL(_ url: String) -> Entry? {
+    let entry = Music.shared.musicResults.first { $0.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href  == url }
+    return entry
+  }
+
+  func updatePlayButtonState(isPlaying: Bool) {
+
+    if isPlaying {
+      miniPlayerVC.playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
+      miniPlayerVC.playButton.tintColor = .brandBlack
+    } else {
+      miniPlayerVC.playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+      miniPlayerVC.playButton.tintColor = .brandBlack
+    }
+  }
+}
+
+
