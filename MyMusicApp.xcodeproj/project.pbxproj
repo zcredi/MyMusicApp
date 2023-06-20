@@ -44,8 +44,10 @@
 		864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */; };
 		864F5DDC2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */; };
 		864F5DDD2A3F499600D3DB7E /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */; };
+		864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DFA2A40B7C300D3DB7E /* ExploreDetailViewController.swift */; };
 		866D442F2A3367CC00A64A2D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 866D442E2A3367CC00A64A2D /* Realm */; };
 		866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 866D44302A3367CC00A64A2D /* RealmSwift */; };
+		867CFF2B2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */; };
 		86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE79FE2A371AD900663854 /* UIColor+App.swift */; };
 		86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A002A371AE300663854 /* UIFont+App.swift */; };
 		86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A022A371AF300663854 /* MainTabBarController.swift */; };
@@ -94,8 +96,10 @@
 		864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDetails.swift; sourceTree = "<group>"; };
 		864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentlyCollectionViewCell.swift; path = ../../../../../../../Explore/Views/Cell/RecentlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
+		864F5DFA2A40B7C300D3DB7E /* ExploreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDetailViewController.swift; sourceTree = "<group>"; };
 		866D44162A3366D200A64A2D /* MyMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866D44272A3366D300A64A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		86CE79FE2A371AD900663854 /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		86CE7A002A371AE300663854 /* UIFont+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+App.swift"; sourceTree = "<group>"; };
 		86CE7A022A371AF300663854 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				86CE7A252A38A6FA00663854 /* ExploreViewController.swift */,
+				864F5DFA2A40B7C300D3DB7E /* ExploreDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 			children = (
 				864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */,
 				864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */,
+				867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */,
+				864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
 				7ED7C5E32A3AF2D80014EB83 /* AudioPlayer.swift in Sources */,
@@ -602,6 +609,7 @@
 				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,
 				86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */,
 				573F6D872A3A202D002990D8 /* SongCell.swift in Sources */,
+				867CFF2B2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift in Sources */,
 				86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */,
 				7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */,
 			);
