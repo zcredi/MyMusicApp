@@ -101,7 +101,9 @@ class ExploreViewController: UIViewController {
     
     @objc
     private func recentlyButtonTapped(_ sender: UIButton) {
-        print("recentlyButtonTapped")
+        let exploreDetailViewController = ExploreDetailViewController()
+        exploreDetailViewController.modalPresentationStyle = .fullScreen
+        present(exploreDetailViewController, animated: true)
     }
     
     @objc
