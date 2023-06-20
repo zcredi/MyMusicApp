@@ -27,7 +27,7 @@ class FavoritesViewCell: UITableViewCell {
         return image
     }()
     
-    private let titleLabel: UILabel = {
+    private let songLabel: UILabel = {
         let label = UILabel()
         label.text = "titleLabel"
         label.textColor = .neutralWhite
@@ -37,7 +37,7 @@ class FavoritesViewCell: UITableViewCell {
         return label
     }()
     
-    private let subtitleLabel: UILabel = {
+    private let artistLabel: UILabel = {
        let label = UILabel()
         label.text = "subtitleLabel"
         label.textColor = .neutralGray
@@ -75,8 +75,8 @@ class FavoritesViewCell: UITableViewCell {
     // MARK: - Public Methods
     func configureCell(model: CustomCellModel) {
         avatarImageView.image = UIImage(systemName: model.avatarImageString)
-        titleLabel.text = model.title
-        subtitleLabel.text = model.subtitle
+        songLabel.text = model.title
+        artistLabel.text = model.subtitle
     }
 }
 
@@ -86,8 +86,8 @@ extension FavoritesViewCell {
     private func setViews() {
         backgroundColor = .clear
         addSubview(avatarImageView)
-        addSubview(titleLabel)
-        addSubview(subtitleLabel)
+        addSubview(songLabel)
+        addSubview(artistLabel)
         addSubview(favoritesButton)
     }
     
@@ -98,13 +98,13 @@ extension FavoritesViewCell {
             make.height.width.equalTo(40)
         }
         
-        titleLabel.snp.makeConstraints { make in
+        songLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15.5)
             make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
         }
         
-        subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+        artistLabel.snp.makeConstraints { make in
+            make.top.equalTo(songLabel.snp.bottom).offset(8)
             make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
         }
         
