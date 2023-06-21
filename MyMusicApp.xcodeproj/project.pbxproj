@@ -63,6 +63,9 @@
 		866D442F2A3367CC00A64A2D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 866D442E2A3367CC00A64A2D /* Realm */; };
 		866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 866D44302A3367CC00A64A2D /* RealmSwift */; };
 		867CFF2B2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */; };
+		867CFF2D2A41F26800BD3D53 /* AlbumTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2C2A41F26800BD3D53 /* AlbumTopicViewController.swift */; };
+		867CFF2F2A41F58800BD3D53 /* AlbumCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2E2A41F58800BD3D53 /* AlbumCollectionView.swift */; };
+		867CFF312A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF302A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift */; };
 		86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE79FE2A371AD900663854 /* UIColor+App.swift */; };
 		86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A002A371AE300663854 /* UIFont+App.swift */; };
 		86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A022A371AF300663854 /* MainTabBarController.swift */; };
@@ -134,6 +137,9 @@
 		866D44162A3366D200A64A2D /* MyMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866D44272A3366D300A64A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		867CFF2C2A41F26800BD3D53 /* AlbumTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTopicViewController.swift; sourceTree = "<group>"; };
+		867CFF2E2A41F58800BD3D53 /* AlbumCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionView.swift; sourceTree = "<group>"; };
+		867CFF302A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		86CE79FE2A371AD900663854 /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		86CE7A002A371AE300663854 /* UIFont+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+App.swift"; sourceTree = "<group>"; };
 		86CE7A022A371AF300663854 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -469,6 +475,7 @@
 			children = (
 				86CE7A252A38A6FA00663854 /* ExploreViewController.swift */,
 				864F5DFA2A40B7C300D3DB7E /* ExploreDetailViewController.swift */,
+				867CFF2C2A41F26800BD3D53 /* AlbumTopicViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -481,6 +488,7 @@
 				864F5DEC2A409A6E00D3DB7E /* TopicView.swift */,
 				864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */,
 				86CE7A302A39D61A00663854 /* TopTrendingView.swift */,
+				867CFF2E2A41F58800BD3D53 /* AlbumCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,6 +514,7 @@
 				864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */,
 				864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */,
 				867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */,
+				867CFF302A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -669,6 +678,7 @@
 				7EDADCFF2A38BD6C004E560F /* AlbumViewController.swift in Sources */,
 				7EDADCFD2A3856C7004E560F /* SongViewControllers.swift in Sources */,
 				573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */,
+				867CFF2F2A41F58800BD3D53 /* AlbumCollectionView.swift in Sources */,
 				573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */,
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
 				CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */,
@@ -697,9 +707,11 @@
 				57E13DEC2A3C666C00AA60DC /* MiniPlayer.swift in Sources */,
 				86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */,
 				CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */,
+				867CFF2D2A41F26800BD3D53 /* AlbumTopicViewController.swift in Sources */,
 				864F5DED2A409A6E00D3DB7E /* TopicView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
 				864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */,
+				867CFF312A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift in Sources */,
 				864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
