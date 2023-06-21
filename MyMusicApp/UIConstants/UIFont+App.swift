@@ -26,16 +26,8 @@ extension UIFont {
         return UIFont.init(name: "Roboto-Regular", size: 14)
     }
     
-    static func montserrat12() -> UIFont? {
-        return UIFont.init(name: "Montserrat", size: 12)
-    }
-    
-    static func montserrat14() -> UIFont? {
-        return UIFont.init(name: "Montserrat", size: 14)
-    }
-    
     static func robotoRegular16() -> UIFont? {
-        return UIFont.init(name: "IRoboto-Regular", size: 16)
+        return UIFont.init(name: "Roboto-Regular", size: 16)
     }
     
     static func robotoRegular18() -> UIFont? {
@@ -60,6 +52,10 @@ extension UIFont {
     
     static func robotoRegular28() -> UIFont? {
         return UIFont.init(name: "Roboto-Regular", size: 28)
+    }
+    
+    static func robotoRegular48() -> UIFont? {
+        return UIFont.init(name: "Roboto-Regular", size: 48)
     }
     
     //Medium
@@ -122,5 +118,14 @@ extension UIFont {
     
     static func robotoBold48() -> UIFont? {
         return UIFont.init(name: "Roboto-Bold", size: 48)
+    }
+    
+    //Montserrat
+    static func montserrat12() -> UIFont? {
+        return UIFont.init(name: "Montserrat", size: 12)
+    }
+    
+    static func montserrat14() -> UIFont? {
+        return UIFont.init(name: "Montserrat", size: 14)
     }
 }
