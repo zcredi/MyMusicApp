@@ -17,7 +17,6 @@ class SearchViewController: UIViewController {
     }()
     
     private let topSearchingLabel = UILabel()
-    
     private let categoriesCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -28,8 +27,10 @@ class SearchViewController: UIViewController {
     
     private let resultsTableView = UITableView()
     
-    private let customArray = CustomCellModel.getCustomArray()
+    private var customArray = CustomCellModel.getCustomArray()
     private let categories: [Categories] = [.all, .artist, .album, .song, .playlist]
+    private var selectedCategory: Categories = .all
+
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -105,14 +106,40 @@ extension SearchViewController {
     }
 }
 
-
 // MARK: - UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
 
+  func updateSearchResults(for searchController: UISearchController) {
+    guard let keyword = searchController.searchBar.text else {
+      return
     }
- }
+
+    let networkService = NetworkService()
+    networkService.fetchMusic(keyword: keyword) { [weak self] result in
+      switch result {
+      case .success(let musicResults):
+        Music.shared.musicSearch = musicResults
+        DispatchQueue.main.async {
+          var updatedCustomArray: [CustomCellModel] = []
+          for musicResult in musicResults {
+            let updatedModel = CustomCellModel(
+              avatarImageString: musicResult.artworkUrl100,
+              title: musicResult.trackName ?? "",
+              subtitle: musicResult.artistName,
+              album: musicResult.collectionName ?? ""
+            )
+            updatedCustomArray.append(updatedModel)
+          }
+          self?.customArray = updatedCustomArray
+          self?.resultsTableView.reloadData()
+        }
+
+      case .failure(let error):
+        print("Ошибка загрузки новых релизов:", error)
+      }
+    }
+  }
+}
 
 // MARK: - UICollectionViewDataSource
 extension SearchViewController: UICollectionViewDataSource {
@@ -190,4 +217,35 @@ extension SearchViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
+}
+// MARK: - UICollectionViewDelegate
+extension SearchViewController: UICollectionViewDelegate {
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    selectedCategory = categories[indexPath.row]
+    
+    if let keyword = searchVC.searchBar.text {
+      performSearch(with: keyword)
+    }
+  }
+  
+  private func performSearch(with keyword: String) {
+    var filteredResults: [CustomCellModel] = customArray // Используйте текущие данные из customArray
+    
+    switch selectedCategory {
+    case .all:
+      break // Нет необходимости фильтровать, оставляем текущие данные
+    case .artist:
+      filteredResults = customArray.filter { $0.subtitle.contains(keyword) }
+    case .album:
+      filteredResults = customArray.filter { $0.album.contains(keyword) }
+    case .song:
+      filteredResults = customArray.filter { $0.title.contains(keyword) }
+    case .playlist:
+      filteredResults = customArray.filter { $0.subtitle.contains(keyword) }
+    }
+    
+    customArray = filteredResults
+    resultsTableView.reloadData()
+  }
 }

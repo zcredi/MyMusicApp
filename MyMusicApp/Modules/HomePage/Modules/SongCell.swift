@@ -71,7 +71,6 @@ class SongCell: UICollectionViewCell {
     }
   }
   
-  
   private func setupViews() {
     contentView.addSubview(songImageView)
     contentView.addSubview(nameLabel)
