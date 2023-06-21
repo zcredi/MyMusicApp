@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		431A19C32A4209CA0035D974 /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431A19C22A4209CA0035D974 /* FavoritesViewCell.swift */; };
+		43F5409A2A4313660084C6B6 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540962A4313650084C6B6 /* DownloadView.swift */; };
+		43F5409B2A4313660084C6B6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540972A4313650084C6B6 /* ProfileView.swift */; };
+		43F5409C2A4313660084C6B6 /* MyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540982A4313660084C6B6 /* MyPlaylistView.swift */; };
+		43F5409D2A4313660084C6B6 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540992A4313660084C6B6 /* NotificationView.swift */; };
 		572BFA922A41C5F10001D805 /* AllSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BFA912A41C5F10001D805 /* AllSongsViewController.swift */; };
 		573F6D7D2A3A2025002990D8 /* PopularAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */; };
 		573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */; };
@@ -75,6 +79,10 @@
 
 /* Begin PBXFileReference section */
 		431A19C22A4209CA0035D974 /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
+		43F540962A4313650084C6B6 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		43F540972A4313650084C6B6 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		43F540982A4313660084C6B6 /* MyPlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlaylistView.swift; sourceTree = "<group>"; };
+		43F540992A4313660084C6B6 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		572BFA912A41C5F10001D805 /* AllSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsViewController.swift; sourceTree = "<group>"; };
 		573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularAlbumView.swift; sourceTree = "<group>"; };
 		573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyMusicTableView.swift; sourceTree = "<group>"; };
@@ -161,6 +169,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		43F540952A4313520084C6B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43F540962A4313650084C6B6 /* DownloadView.swift */,
+				43F540982A4313660084C6B6 /* MyPlaylistView.swift */,
+				43F540992A4313660084C6B6 /* NotificationView.swift */,
+				43F540972A4313650084C6B6 /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		573F6D882A3A208D002990D8 /* Applecation */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,13 +221,6 @@
 				573F6D982A3A208D002990D8 /* NetworkManager.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		7EDADCF02A3854DD004E560F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		7EDADCF72A385680004E560F /* Song */ = {
@@ -405,7 +417,7 @@
 		86CE7A0F2A374DB500663854 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				7EDADCF02A3854DD004E560F /* Views */,
+				43F540952A4313520084C6B6 /* Views */,
 				86CE7A102A374DC000663854 /* Controllers */,
 			);
 			path = Profile;
@@ -655,9 +667,11 @@
 				86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */,
 				CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */,
 				572BFA922A41C5F10001D805 /* AllSongsViewController.swift in Sources */,
+				43F5409B2A4313660084C6B6 /* ProfileView.swift in Sources */,
 				573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */,
 				431A19C32A4209CA0035D974 /* FavoritesViewCell.swift in Sources */,
 				864F5DE92A409A5200D3DB7E /* SearchViewController.swift in Sources */,
+				43F5409D2A4313660084C6B6 /* NotificationView.swift in Sources */,
 				86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */,
 				864F5DF82A409A9600D3DB7E /* AudioPlayerProtocol.swift in Sources */,
 				573F6D852A3A202D002990D8 /* MusicModel.swift in Sources */,
@@ -681,10 +695,12 @@
 				864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */,
 				573F6D862A3A202D002990D8 /* RecentlyMusicCell.swift in Sources */,
 				573F6D9A2A3A208D002990D8 /* ViewController.swift in Sources */,
+				43F5409A2A4313660084C6B6 /* DownloadView.swift in Sources */,
 				864F5DEA2A409A5200D3DB7E /* ResultViewCell.swift in Sources */,
 				CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */,
 				573F6D9F2A3A208D002990D8 /* AppDelegate.swift in Sources */,
 				573F6DA32A3A208D002990D8 /* SceneDelegate.swift in Sources */,
+				43F5409C2A4313660084C6B6 /* MyPlaylistView.swift in Sources */,
 				864F5DF52A409A9600D3DB7E /* AudioPlayer.swift in Sources */,
 				7EDADCF92A3856AB004E560F /* SongView.swift in Sources */,
 				86CE7A2A2A38A89A00663854 /* UILabel+App.swift in Sources */,
