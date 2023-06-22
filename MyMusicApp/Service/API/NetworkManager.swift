@@ -42,7 +42,17 @@ final class NetworkService {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let musicModel = try decoder.decode(MusicModel.self, from: data)
-                completion(.success(musicModel.results))
+
+                let modifiedResults = musicModel.results.map { result in
+                    var modifiedResult = result
+                    modifiedResult.artworkUrl100 = modifiedResult.artworkUrl100.replacingOccurrences(
+                        of: "/100x100bb.jpg",
+                        with: "/600x600bb.jpg"
+                    )
+                    return modifiedResult
+                }
+
+                completion(.success(modifiedResults))
             } catch {
                 completion(.failure(error))
             }
@@ -50,55 +60,81 @@ final class NetworkService {
         task.resume()
     }
 
-  func fetchMusicDataFromAPI(urlString: String, completion: @escaping (Result<MusicResponse, Error>) -> Void) {
-    guard let url = URL(string: urlString) else {
-      completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
-      return
+    func fetchMusicDataFromAPI(urlString: String, completion: @escaping (Result<MusicResponse, Error>) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
+                return
+            }
+
+            do {
+                let decodedData = try JSONDecoder().decode(MusicResponse.self, from: data)
+
+                let modifiedEntries = decodedData.feed.entry.map { entry in
+                    var modifiedEntry = entry
+                    modifiedEntry.images = modifiedEntry.images.map { image in
+                        var modifiedImage = image
+                        modifiedImage.label = modifiedImage.label.replacingOccurrences(of: "/170x170bb", with: "/600x600bb")
+                        return modifiedImage
+                    }
+                    return modifiedEntry
+                }
+
+                let modifiedResponse = MusicResponse(feed: Feed(entry: modifiedEntries))
+
+                completion(.success(modifiedResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
     }
 
-    URLSession.shared.dataTask(with: url) { (data, response, error) in
-      if let error = error {
-        completion(.failure(error))
-        return
-      }
-      
-      guard let data = data else {
-        completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
-        return
-      }
+    func fetchAlbumDataFromAPI(urlString: String, completion: @escaping (Result<AlbumResponse, Error>) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
 
-      do {
-        let decodedData = try JSONDecoder().decode(MusicResponse.self, from: data)
-        completion(.success(decodedData))
-      } catch {
-        completion(.failure(error))
-      }
-    }.resume()
-  }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
 
-  func fetchAlbumDataFromAPI(urlString: String, completion: @escaping (Result<AlbumResponse, Error>) -> Void) {
-      guard let url = URL(string: urlString) else {
-          completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
-          return
-      }
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
+                return
+            }
 
-      URLSession.shared.dataTask(with: url) { (data, response, error) in
-          if let error = error {
-              completion(.failure(error))
-              return
-          }
+            do {
+                let decodedData = try JSONDecoder().decode(AlbumResponse.self, from: data)
 
-          guard let data = data else {
-              completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
-              return
-          }
+                let modifiedEntries = decodedData.feed.entry.map { entry in
+                    var modifiedEntry = entry
+                    modifiedEntry.images = modifiedEntry.images.map { image in
+                        var modifiedImage = image
+                        modifiedImage.label = modifiedImage.label.replacingOccurrences(of: "/170x170bb", with: "/600x600bb")
+                        return modifiedImage
+                    }
+                    return modifiedEntry
+                }
 
-          do {
-              let decodedData = try JSONDecoder().decode(AlbumResponse.self, from: data)
-              completion(.success(decodedData))
-          } catch {
-              completion(.failure(error))
-          }
-      }.resume()
-  }
+                let modifiedResponse = AlbumResponse(feed: AlbumFeed(entry: modifiedEntries))
+
+                completion(.success(modifiedResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }

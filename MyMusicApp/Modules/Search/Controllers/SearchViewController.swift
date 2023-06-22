@@ -9,13 +9,13 @@ import UIKit
 import SnapKit
 
 class SearchViewController: UIViewController {
-    
+
     private var searchVC: UISearchController = {
         let searchVC = UISearchController()
         searchVC.searchBar.searchBarStyle = .minimal
         return searchVC
     }()
-    
+
     private let topSearchingLabel = UILabel()
     private let categoriesCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -24,14 +24,17 @@ class SearchViewController: UIViewController {
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
-    
+
     private let resultsTableView = UITableView()
-    
+
     private var customArray = CustomCellModel.getCustomArray()
+    private var filteredArray: [CustomCellModel] = []
     private let categories: [Categories] = [.all, .artist, .album, .song, .playlist]
     private var selectedCategory: Categories = .all
+  private var isSearching: Bool = false
 
-    
+
+
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,42 +44,42 @@ class SearchViewController: UIViewController {
         configureCategoriesCollectionView()
         configureResultsTableView()
         setupConstraints()
+
+        filteredArray = customArray
+        selectDefaultCategory()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
     }
-}
 
-// MARK: - Configure Views
-extension SearchViewController {
-    
+    // MARK: - Configure Views
     private func configureVC() {
         view.backgroundColor = .brandBlack
         navigationItem.title = "Search music"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.neutralWhite]
     }
-    
+
     private func configureSearchBar() {
         searchVC.searchResultsUpdater = self
         navigationItem.searchController = searchVC
-        
+
         if let textfield = searchVC.searchBar.value(forKey: "searchField") as? UITextField {
             textfield.backgroundColor = .neutralBlack
             textfield.placeholder = "Search"
             textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "",
                                                                  attributes: [NSAttributedString.Key.foregroundColor : UIColor.neutralGray])
             textfield.textColor = .neutralWhite
-            
+
             if let leftView = textfield.leftView as? UIImageView {
                 leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
                 leftView.tintColor = .neutralWhite
             }
-            
+
             searchVC.searchBar.tintColor = .brandGreen
         }
     }
-    
+
     private func configureTopSearchingLabel() {
         view.addSubview(topSearchingLabel)
         topSearchingLabel.font = .robotoBold18()
@@ -84,7 +87,7 @@ extension SearchViewController {
         topSearchingLabel.text = "Top searching"
         topSearchingLabel.textAlignment = .left
     }
-    
+
     private func  configureCategoriesCollectionView() {
         view.addSubview(categoriesCollectionView)
         categoriesCollectionView.backgroundColor = .clear
@@ -92,62 +95,123 @@ extension SearchViewController {
         categoriesCollectionView.delegate = self
         categoriesCollectionView.register(CategoriesViewCell.self, forCellWithReuseIdentifier: CategoriesViewCell.cellId)
     }
-    
+
     private func configureResultsTableView() {
         view.addSubview(resultsTableView)
         resultsTableView.backgroundColor = .clear
         resultsTableView.separatorInset.left = 80
         resultsTableView.separatorColor = .neutralGray
         resultsTableView.indicatorStyle = .white
-        
+
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         resultsTableView.register(ResultViewCell.self, forCellReuseIdentifier: ResultViewCell.cellId)
     }
+
+    // MARK: - Setup Constraints
+    private func setupConstraints() {
+        categoriesCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(73)
+        }
+
+        topSearchingLabel.snp.makeConstraints { make in
+            make.top.equalTo(categoriesCollectionView.snp.bottom).offset(8)
+            make.leading.equalToSuperview().inset(23)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(21)
+        }
+
+        resultsTableView.snp.makeConstraints { make in
+            make.top.equalTo(topSearchingLabel.snp.bottom).offset(8)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+
+    // MARK: - Helper Methods
+    private func selectDefaultCategory() {
+        let indexPath = IndexPath(item: 0, section: 0)
+        categoriesCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
+        collectionView(categoriesCollectionView, didSelectItemAt: indexPath)
+    }
+
+  private func performSearch(with keyword: String) {
+      switch selectedCategory {
+      case .all:
+          filteredArray = customArray.filter { $0.title.contains(keyword) || $0.subtitle.contains(keyword) || $0.album.contains(keyword) }
+      case .artist:
+          filteredArray = customArray.compactMap { $0.subtitle.contains(keyword) ? CustomCellModel(avatarImageString: $0.avatarImageString, title: $0.subtitle, subtitle: "", album: "") : nil }
+          filteredArray = removeDuplicateArtists(from: filteredArray)
+      case .album:
+          filteredArray = customArray.filter { $0.album.contains(keyword) }
+      case .song:
+          filteredArray = customArray.filter { $0.title.contains(keyword) }
+      case .playlist:
+          filteredArray = customArray.filter { $0.subtitle.contains(keyword) }
+      }
+
+      resultsTableView.reloadData()
+  }
+
+
+    private func removeDuplicateArtists(from results: [CustomCellModel]) -> [CustomCellModel] {
+        var uniqueArtists: [String: CustomCellModel] = [:]
+
+        for result in results {
+            if uniqueArtists[result.subtitle] == nil {
+                uniqueArtists[result.subtitle] = result
+            }
+        }
+
+        return Array(uniqueArtists.values)
+    }
 }
 
 // MARK: - UISearchResultsUpdating
+// MARK: - UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating {
 
-  func updateSearchResults(for searchController: UISearchController) {
-    guard let keyword = searchController.searchBar.text else {
-      return
-    }
-
-    let networkService = NetworkService()
-    networkService.fetchMusic(keyword: keyword) { [weak self] result in
-      switch result {
-      case .success(let musicResults):
-        Music.shared.musicSearch = musicResults
-        DispatchQueue.main.async {
-          var updatedCustomArray: [CustomCellModel] = []
-          for musicResult in musicResults {
-            let updatedModel = CustomCellModel(
-              avatarImageString: musicResult.artworkUrl100,
-              title: musicResult.trackName ?? "",
-              subtitle: musicResult.artistName,
-              album: musicResult.collectionName ?? ""
-            )
-            updatedCustomArray.append(updatedModel)
-          }
-          self?.customArray = updatedCustomArray
-          self?.resultsTableView.reloadData()
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let keyword = searchController.searchBar.text else {
+            return
         }
 
-      case .failure(let error):
-        print("Ошибка загрузки новых релизов:", error)
-      }
+        let networkService = NetworkService()
+        networkService.fetchMusic(keyword: keyword) { [weak self] result in
+            switch result {
+            case .success(let musicResults):
+                Music.shared.musicSearch = musicResults
+                DispatchQueue.main.async {
+                    var updatedCustomArray: [CustomCellModel] = []
+                    for musicResult in musicResults {
+                        let updatedModel = CustomCellModel(
+                            avatarImageString: musicResult.artworkUrl100,
+                            title: musicResult.trackName ?? "",
+                            subtitle: musicResult.artistName,
+                            album: musicResult.collectionName ?? ""
+                        )
+                        updatedCustomArray.append(updatedModel)
+                    }
+                    self?.customArray = updatedCustomArray
+                    self?.performSearch(with: keyword) // Добавленная строка
+                }
+
+            case .failure(let error):
+                print("Ошибка загрузки новых релизов:", error)
+            }
+        }
     }
-  }
 }
+
 
 // MARK: - UICollectionViewDataSource
 extension SearchViewController: UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        categories.count
+        return categories.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesViewCell.cellId, for: indexPath) as? CategoriesViewCell else {
             fatalError()
@@ -159,7 +223,7 @@ extension SearchViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 70, height: 73)
     }
@@ -167,85 +231,41 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return customArray.count
+        return filteredArray.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultViewCell.cellId, for: indexPath) as? ResultViewCell else {
             fatalError()
         }
-        
-        cell.configureCell(model: customArray[indexPath.row])
+
+        cell.configureCell(model: filteredArray[indexPath.row])
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 73
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-// MARK: - Setup Constraints
-extension SearchViewController {
-    
-    private func setupConstraints() {
-        
-        categoriesCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(73)
-        }
-        
-        topSearchingLabel.snp.makeConstraints { make in
-            make.top.equalTo(categoriesCollectionView.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(23)
-            make.trailing.equalToSuperview()
-            make.height.equalTo(21)
-        }
-        
-        resultsTableView.snp.makeConstraints { make in
-            make.top.equalTo(topSearchingLabel.snp.bottom).offset(8)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-}
 // MARK: - UICollectionViewDelegate
 extension SearchViewController: UICollectionViewDelegate {
-  
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    selectedCategory = categories[indexPath.row]
-    
-    if let keyword = searchVC.searchBar.text {
-      performSearch(with: keyword)
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCategory = categories[indexPath.row]
+
+        if let keyword = searchVC.searchBar.text {
+            performSearch(with: keyword)
+        }
     }
-  }
-  
-  private func performSearch(with keyword: String) {
-    var filteredResults: [CustomCellModel] = customArray // Используйте текущие данные из customArray
-    
-    switch selectedCategory {
-    case .all:
-      break // Нет необходимости фильтровать, оставляем текущие данные
-    case .artist:
-      filteredResults = customArray.filter { $0.subtitle.contains(keyword) }
-    case .album:
-      filteredResults = customArray.filter { $0.album.contains(keyword) }
-    case .song:
-      filteredResults = customArray.filter { $0.title.contains(keyword) }
-    case .playlist:
-      filteredResults = customArray.filter { $0.subtitle.contains(keyword) }
-    }
-    
-    customArray = filteredResults
-    resultsTableView.reloadData()
-  }
 }

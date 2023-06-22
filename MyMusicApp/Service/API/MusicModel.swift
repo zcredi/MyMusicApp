@@ -14,6 +14,6 @@ struct MusicResult: Codable {
     let collectionName: String?
     let trackName: String?
     let previewUrl: String?
-    let artworkUrl100: String
+    var artworkUrl100: String
 }
 
