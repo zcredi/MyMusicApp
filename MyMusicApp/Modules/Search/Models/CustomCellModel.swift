@@ -12,6 +12,7 @@ struct CustomCellModel {
     let title: String
     let subtitle: String
     let album: String
+    let url: String
 }
 
 extension CustomCellModel {
@@ -25,7 +26,8 @@ extension CustomCellModel {
             avatarImageString: musicResults.artworkUrl100,
             title: musicResults.trackName ?? "",
             subtitle: musicResults.artistName,
-            album: musicResults.collectionName ?? ""
+            album: musicResults.collectionName ?? "",
+            url: musicResults.previewUrl ?? ""
         )
     }
 }

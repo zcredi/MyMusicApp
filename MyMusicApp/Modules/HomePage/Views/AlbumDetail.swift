@@ -20,7 +20,7 @@ class AlbumDetailViewController: UIViewController {
   private var player: AVPlayer?
   private var currentItem: AVPlayerItem?
   private var initialTouchPoint: CGPoint = CGPoint.zero
-  private let musicPlayer = MusicPlayerS()
+  private let musicPlayer = MusicPlayer.instance
   private let miniPlayerVC = MiniPlayerVC()
 
   private lazy var tableView: UITableView = {
@@ -43,6 +43,12 @@ class AlbumDetailViewController: UIViewController {
     view.addGestureRecognizer(panGestureRecognizer)
   }
 
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    miniPlayerVC.removeFromSuperview()
+    miniPlayerVC.isUserInteractionEnabled = false
+  }
+  
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
@@ -76,16 +82,18 @@ class AlbumDetailViewController: UIViewController {
 
   func update(with musicResults: [MusicResult]) {
     songs = musicResults
+    Music.shared.musicSearch = songs
   }
 
   private func playMusic(url: URL) {
-    player?.pause()
-
-    let playerItem = AVPlayerItem(url: url)
-    currentItem = playerItem
-    player = AVPlayer(playerItem: playerItem)
-    player?.play()
+      player?.pause()
+      let playerItem = AVPlayerItem(url: url)
+      currentItem = playerItem
+      player = AVPlayer(playerItem: playerItem)
+      player?.play()
+      updatePlayButtonState(isPlaying: true)
   }
+
 
   @objc private func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
       let touchPoint = gestureRecognizer.location(in: self.view?.window)
@@ -136,28 +144,44 @@ extension AlbumDetailViewController: UITableViewDelegate, UITableViewDataSource 
       }
       showMiniPlayer()
       updateCurrentURL(musicUrlString)
-
     if musicPlayer.isPlayingMusic(from: musicUrlString) {
-      musicPlayer.pauseMusic()
+        musicPlayer.pauseMusic()
+         updatePlayButtonState(isPlaying: false)
+
     } else {
-      musicPlayer.playMusic(from: musicUrlString)
+        musicPlayer.playMusicWithURL(musicUrlString, playerType: .musicSearch)
+      updatePlayButtonState(isPlaying: true)
     }
+
   }
 }
 
 extension AlbumDetailViewController: MiniPlayerViewDelegate {
   func forwardButtonTapped() {
-    musicPlayer.playNextSong()
-  }
+     musicPlayer.playNextSongForMusicSearch()
+     updateCurrentURLForCurrentSong()
+   }
 
-  func backwardButtonTapped() {
-    musicPlayer.playPreviousSong()
-  }
+   func backwardButtonTapped() {
+     musicPlayer.playPreviousSongForMusicSearch()
+     updateCurrentURLForCurrentSong()
+   }
+
+   private func updateCurrentURLForCurrentSong() {
+     if let currentSongUrlString = musicPlayer.currentURL {
+       updateCurrentURL(currentSongUrlString)
+     }
+   }
 
   func playButtonTapped() {
-    musicPlayer.pauseMusic()
+      if musicPlayer.isPlayerPerforming() {
+          musicPlayer.pauseMusic()
+        updatePlayButtonState(isPlaying: false)
+      } else {
+          musicPlayer.playMusic()
+        updatePlayButtonState(isPlaying: true)
+      }
   }
-
 }
 
 extension AlbumDetailViewController: MusicPlayerDelegate {
@@ -166,9 +190,12 @@ extension AlbumDetailViewController: MusicPlayerDelegate {
     guard let musicResult = getMusicResultFromURL(url) else {
       miniPlayerVC.updateSongTitle("")
       miniPlayerVC.updateSongImage(nil)
+      miniPlayerVC.updateSongArtist("")
       return
     }
+
     miniPlayerVC.updateSongTitle(musicResult.trackName ?? "")
+    miniPlayerVC.updateSongArtist(musicResult.artistName)
     if let imageUrl = URL(string: musicResult.artworkUrl100), !url.isEmpty {
       URLSession.shared.dataTask(with: imageUrl) { data, response, error in
         DispatchQueue.main.async {
@@ -190,12 +217,13 @@ extension AlbumDetailViewController: MusicPlayerDelegate {
   }
 
   func updatePlayButtonState(isPlaying: Bool) {
-    if isPlaying {
-      miniPlayerVC.playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
-      miniPlayerVC.playButton.tintColor = .brandBlack
-    } else {
-      miniPlayerVC.playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
-      miniPlayerVC.playButton.tintColor = .brandBlack
+        DispatchQueue.main.async {
+            if isPlaying {
+              self.miniPlayerVC.playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
+            } else {
+              self.miniPlayerVC.playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+            }
+          self.miniPlayerVC.playButton.tintColor = .brandBlack
+        }
     }
-  }
 }

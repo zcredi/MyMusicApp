@@ -11,6 +11,8 @@ class PopularAlbumView: UIView {
   
   var collectionView: UICollectionView!
   var selectedAlbumName: String?
+  private let miniPlayerVC = MiniPlayerVC()
+  private let musicPlayer = MusicPlayer.instance
   var songs: [AlbumEntry] = [] {
     didSet {
       DispatchQueue.main.async {
@@ -115,6 +117,8 @@ extension PopularAlbumView: UICollectionViewDelegate, UICollectionViewDataSource
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    miniPlayerVC.closeMiniPlayer()
+    musicPlayer.stopMusic()
     let selectedAlbum = songs[indexPath.row]
         let albumName = selectedAlbum.name.label
         selectedAlbumName = albumName

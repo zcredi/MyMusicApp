@@ -99,8 +99,6 @@ class TopicView: UIView {
               DispatchQueue.main.async {
                   Music.shared.musicResults = musicResponse.feed.entry
                   self.update(with: Music.shared.musicResults)
-                  print(self.genreNames)
-                  print(genre)
               }
           case .failure(let error):
               print("Error fetching music data: \(error)")
