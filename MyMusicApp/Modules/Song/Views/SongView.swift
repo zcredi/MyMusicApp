@@ -8,6 +8,14 @@
 import UIKit
 
 final class SongView {
+    lazy var backHomeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "arrow_back"), for: .normal)
+        button.tintColor = .neutralWhite
+        
+        return button
+    }()
+    
     lazy var songPageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.layer.cornerRadius = 1.5
@@ -31,6 +39,7 @@ final class SongView {
     
     lazy var songNameLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.numberOfLines = 1
         label.text = "Robot Rock"
         label.font = .robotoBold36()
@@ -50,7 +59,8 @@ final class SongView {
     
     lazy var describingSongLabel: UILabel = {
         let label = UILabel()
-        label.text = "ADA France,Distributed by Warner Music France"
+        label.text = "Your favorite musical player!"
+        label.backgroundColor = .systemGray.withAlphaComponent(0.3)
         label.font = .robotoRegular14()
         label.textColor = .brandGreen
         
