@@ -10,8 +10,10 @@ struct MusicModel: Codable {
 }
 
 struct MusicResult: Codable {
-    let artistName, collectionName: String
+    let artistName: String
+    let collectionName: String?
     let trackName: String?
     let previewUrl: String?
     let artworkUrl100: String
 }
+

@@ -31,7 +31,6 @@ class HomepageViewController: UIViewController {
     setupConstraints()
     fetchPopularMusic()
     fetchPopularAlbum()
-    SearchMusic()
     newSongsView.delegate = self
     miniPlayerVC.delegate = self
     musicPlayer.delegate = self
@@ -84,24 +83,6 @@ class HomepageViewController: UIViewController {
         }
       case .failure(let error):
         print("Error fetching popular albums:", error)
-      }
-    }
-  }
-
-  private func SearchMusic() {
-    let networkService = NetworkService()
-    networkService.fetchMusic(keyword: "") { result in
-      switch result {
-      case .success(let musicResults):
-        Music.shared.musicSearch = musicResults
-        DispatchQueue.main.async {
-          //          self.newSongsView.update(with: musicResults)
-          //          self.albumsView.update(with: musicResults)
-          //          self.recentlyMusicTableView.update(with: musicResults)
-        }
-
-      case .failure(let error):
-        print("Ошибка загрузки новых релизов:", error)
       }
     }
   }
@@ -161,7 +142,7 @@ class HomepageViewController: UIViewController {
     view.addSubview(searchButton)
     searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
     searchButton.tintColor = .white
-    searchButton.addTarget(self, action: #selector(seeAllPressed), for: .touchUpInside)
+    searchButton.addTarget(self, action: #selector(searchPressed), for: .touchUpInside)
     searchButton.translatesAutoresizingMaskIntoConstraints = false
   }
 
@@ -173,6 +154,11 @@ class HomepageViewController: UIViewController {
     viewAllButton.addTarget(self, action: #selector(seeAllPressed), for: .touchUpInside)
     viewAllButton.translatesAutoresizingMaskIntoConstraints = false
   }
+
+  @objc private func searchPressed() {
+          let searchViewController = SearchViewController()
+          navigationController?.pushViewController(searchViewController, animated: true)
+      }
 
   @objc func seeAllPressed(sender: UIButton) {
       let allSongsVC = AllSongsViewController()

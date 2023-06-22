@@ -23,7 +23,7 @@ class ExploreViewController: UIViewController {
         static let topTrendingLabelTopSpacing: CGFloat = 40.0
         static let topTrendingLabelLeadingSpacing: CGFloat = 24.0
     }
-    
+
     //MARK: - Create UI
     
     private lazy var scrollView: UIScrollView = {
@@ -90,7 +90,7 @@ class ExploreViewController: UIViewController {
         searchButton.layer.shadowOpacity = 0.3
         searchButton.addTarget(self, action: #selector(showSearchBar(_:)), for: .touchUpInside)
     }
-    
+
     @objc
     private func showSearchBar(_ sender: UIButton) {
         let searchController = UISearchController(searchResultsController: nil) // Создание контроллера поиска

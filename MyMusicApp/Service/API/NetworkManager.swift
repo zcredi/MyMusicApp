@@ -14,41 +14,41 @@ enum NetworkError: Error {
 }
 
 final class NetworkService {
-  func fetchMusic(keyword: String, completion: @escaping (Result<[MusicResult], Error>) -> Void) {
-    guard let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-      completion(.failure(NetworkError.invalidKeyword))
-      return
+    func fetchMusic(keyword: String, completion: @escaping (Result<[MusicResult], Error>) -> Void) {
+        guard let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            completion(.failure(NetworkError.invalidKeyword))
+            return
+        }
+
+        let urlString = "https://itunes.apple.com/search?term=\(encodedKeyword)"
+
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let musicModel = try decoder.decode(MusicModel.self, from: data)
+                completion(.success(musicModel.results))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
     }
-    
-    let urlString = "https://itunes.apple.com/search?term=\(encodedKeyword)"
-    
-    guard let url = URL(string: urlString) else {
-      completion(.failure(NetworkError.invalidURL))
-      return
-    }
-    
-    let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
-      if let error = error {
-        completion(.failure(error))
-        return
-      }
-      
-      guard let data = data else {
-        completion(.failure(NetworkError.noData))
-        return
-      }
-      
-      do {
-        let decoder = JSONDecoder()
-        let musicModel = try decoder.decode(MusicModel.self, from: data)
-        completion(.success(musicModel.results))
-      } catch {
-        completion(.failure(error))
-        
-      }
-    }
-    task.resume()
-  }
 
   func fetchMusicDataFromAPI(urlString: String, completion: @escaping (Result<MusicResponse, Error>) -> Void) {
     guard let url = URL(string: urlString) else {
@@ -101,6 +101,4 @@ final class NetworkService {
           }
       }.resume()
   }
-
-
 }

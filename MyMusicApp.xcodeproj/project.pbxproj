@@ -13,6 +13,8 @@
 		43F5409C2A4313660084C6B6 /* MyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540982A4313660084C6B6 /* MyPlaylistView.swift */; };
 		43F5409D2A4313660084C6B6 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540992A4313660084C6B6 /* NotificationView.swift */; };
 		572BFA922A41C5F10001D805 /* AllSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BFA912A41C5F10001D805 /* AllSongsViewController.swift */; };
+		572BFA942A42E08D0001D805 /* AlbumDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BFA932A42E08D0001D805 /* AlbumDetail.swift */; };
+		572BFA962A43258E0001D805 /* AlbumDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BFA952A43258E0001D805 /* AlbumDetailCell.swift */; };
 		573F6D7D2A3A2025002990D8 /* PopularAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */; };
 		573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */; };
 		573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573F6D7C2A3A2025002990D8 /* NewSongsView.swift */; };
@@ -84,6 +86,8 @@
 		43F540982A4313660084C6B6 /* MyPlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlaylistView.swift; sourceTree = "<group>"; };
 		43F540992A4313660084C6B6 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		572BFA912A41C5F10001D805 /* AllSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsViewController.swift; sourceTree = "<group>"; };
+		572BFA932A42E08D0001D805 /* AlbumDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetail.swift; sourceTree = "<group>"; };
+		572BFA952A43258E0001D805 /* AlbumDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCell.swift; sourceTree = "<group>"; };
 		573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularAlbumView.swift; sourceTree = "<group>"; };
 		573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyMusicTableView.swift; sourceTree = "<group>"; };
 		573F6D7C2A3A2025002990D8 /* NewSongsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSongsView.swift; sourceTree = "<group>"; };
@@ -387,6 +391,7 @@
 				573F6D7A2A3A2025002990D8 /* PopularAlbumView.swift */,
 				573F6D7B2A3A2025002990D8 /* RecentlyMusicTableView.swift */,
 				572BFA912A41C5F10001D805 /* AllSongsViewController.swift */,
+				572BFA932A42E08D0001D805 /* AlbumDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				573F6D802A3A202D002990D8 /* AlbumCell.swift */,
 				573F6DF32A3B0B61002990D8 /* MusicPlayer.swift */,
 				573F6D822A3A202D002990D8 /* RecentlyMusicCell.swift */,
+				572BFA952A43258E0001D805 /* AlbumDetailCell.swift */,
 				573F6D832A3A202D002990D8 /* SongCell.swift */,
 				57D2DF4C2A4184150055D9B2 /* MusicSingltone.swift */,
 				57E13DEB2A3C666C00AA60DC /* MiniPlayer.swift */,
@@ -676,7 +682,9 @@
 				864F5DF82A409A9600D3DB7E /* AudioPlayerProtocol.swift in Sources */,
 				573F6D852A3A202D002990D8 /* MusicModel.swift in Sources */,
 				86CE7A262A38A6FA00663854 /* ExploreViewController.swift in Sources */,
+				572BFA962A43258E0001D805 /* AlbumDetailCell.swift in Sources */,
 				864F5DDC2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift in Sources */,
+				572BFA942A42E08D0001D805 /* AlbumDetail.swift in Sources */,
 				86CE7A1E2A375F7800663854 /* FavoritesViewController.swift in Sources */,
 				7EDADD062A38E7E7004E560F /* AlbumTableViewCell.swift in Sources */,
 				573F6D842A3A202D002990D8 /* AlbumCell.swift in Sources */,

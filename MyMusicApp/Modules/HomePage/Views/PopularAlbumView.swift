@@ -8,9 +8,9 @@
 import UIKit
 
 class PopularAlbumView: UIView {
-
+  
   var collectionView: UICollectionView!
-
+  var selectedAlbumName: String?
   var songs: [AlbumEntry] = [] {
     didSet {
       DispatchQueue.main.async {
@@ -25,11 +25,11 @@ class PopularAlbumView: UIView {
     addSubview(collectionView)
     setupConstraints()
   }
-
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   func configureCollection() {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
@@ -41,18 +41,56 @@ class PopularAlbumView: UIView {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
-
+  
   private func setupConstraints() {
     collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
     collectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     collectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
   }
-
+  
   func update(with musicResults: [AlbumEntry]) {
     songs = musicResults
   }
-}
+  
+  private func searchMusic() {
+          if let albumName = selectedAlbumName {
+              let networkService = NetworkService()
+              networkService.fetchMusic(keyword: albumName) { result in
+                  switch result {
+                  case .success(let albums):
+                      DispatchQueue.main.async {
+                          let filteredAlbums = albums.filter { $0.collectionName == albumName }
+                          self.showSearchResultsAlert(with: filteredAlbums)
+                      }
+                  case .failure(let error):
+                      print("Ошибка загрузки новых релизов:", error)
+                  }
+              }
+          }
+      }
+
+  private func showSearchResultsAlert(with albumResults: [MusicResult]) {
+      guard let scene = UIApplication.shared.connectedScenes.first,
+            let windowScene = scene as? UIWindowScene,
+            let rootViewController = windowScene.windows.first?.rootViewController else {
+          return
+      }
+
+      let albumDetailViewController = AlbumDetailViewController()
+      albumDetailViewController.update(with: albumResults)
+      albumDetailViewController.modalPresentationStyle = .fullScreen
+
+      rootViewController.present(albumDetailViewController, animated: true, completion: nil)
+  }
+
+  private func didSelectAlbum(at index: Int) {
+          let selectedAlbum = songs[index]
+          selectedAlbumName = selectedAlbum.name.label
+          searchMusic()
+      }
+  }
+
 
 // MARK: - Extensions
 extension PopularAlbumView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -65,7 +103,6 @@ extension PopularAlbumView: UICollectionViewDelegate, UICollectionViewDataSource
       return UICollectionViewCell()
     }
     let selectedSong = songs[indexPath.row]
-    // Configure the cell with the song data
     cell.configureCell(with: selectedSong)
     return cell
   }
@@ -78,6 +115,10 @@ extension PopularAlbumView: UICollectionViewDelegate, UICollectionViewDataSource
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    // Handle song selection
-  }
+    let selectedAlbum = songs[indexPath.row]
+        let albumName = selectedAlbum.name.label
+        selectedAlbumName = albumName
+        searchMusic()
+        didSelectAlbum(at: indexPath.row)
+    }
 }

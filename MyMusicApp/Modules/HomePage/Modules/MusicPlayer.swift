@@ -62,7 +62,6 @@ class MusicPlayer {
       let nextIndex = (currentIndex + 1) % Music.shared.musicResults.count
       if let nextURL = Music.shared.musicResults[nextIndex].links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
         playMusic(from: nextURL)
-        print(nextURL)
       }
     }
   }
@@ -78,13 +77,86 @@ class MusicPlayer {
       let previousIndex = (currentIndex - 1 + Music.shared.musicResults.count) % Music.shared.musicResults.count
       if let previousURL = Music.shared.musicResults[previousIndex].links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
         playMusic(from: previousURL)
-        print(previousURL)
       }
     }
   }
   
   func updateMusicResults(_ results: [Entry]) {
     Music.shared.musicResults = results
+    currentSongIndex = 0
+  }
+}
+
+class MusicPlayerS {
+  weak var delegate: MusicPlayerDelegate?
+  private var player: AVPlayer?
+  private var playerItem: AVPlayerItem?
+  var currentURL: String?
+  private var currentSongIndex: Int = 0
+
+  func playMusic(from url: String) {
+    guard let musicURL = URL(string: url) else {
+      print("Invalid music URL")
+      return
+    }
+
+    playerItem = AVPlayerItem(url: musicURL)
+    player = AVPlayer(playerItem: playerItem)
+    player?.play()
+    currentURL = url
+    delegate?.updatePlayButtonState(isPlaying: true)
+    delegate?.updateCurrentURL(url)
+  }
+
+  func pauseMusic() {
+    player?.pause()
+    delegate?.updatePlayButtonState(isPlaying: false)
+  }
+
+  func stopMusic() {
+    player?.pause()
+    player = nil
+    currentURL = nil
+    delegate?.updatePlayButtonState(isPlaying: false)
+    delegate?.updateCurrentURL("")
+  }
+
+  func isPlayingMusic(from url: String) -> Bool {
+    return currentURL == url && player?.rate != 0 && player?.error == nil
+  }
+
+  func playNextSong() {
+      currentSongIndex += 1
+
+      if currentSongIndex >= Music.shared.musicSearch.count {
+          currentSongIndex = 0
+      }
+
+      if let currentIndex = Music.shared.musicSearch.firstIndex(where: { $0.previewUrl == currentURL }) {
+          let nextIndex = (currentIndex + 1) % Music.shared.musicSearch.count
+          if let nextURL = Music.shared.musicSearch[nextIndex].previewUrl {
+              playMusic(from: nextURL)
+          }
+      }
+  }
+
+  func playPreviousSong() {
+    currentSongIndex -= 1
+
+    if currentSongIndex < 0 {
+      currentSongIndex = Music.shared.musicSearch.count - 1
+    }
+
+    if let currentIndex = Music.shared.musicSearch.firstIndex(where: { $0.previewUrl == currentURL }) {
+        let previousIndex = (currentIndex - 1 + Music.shared.musicSearch.count) % Music.shared.musicSearch.count
+        if let previousURL = Music.shared.musicSearch[previousIndex].previewUrl {
+            playMusic(from: previousURL)
+        }
+    }
+  }
+
+  func updateMusicResults(_ results: [MusicResult]) {
+    Music.shared.musicSearch = results
     currentSongIndex = 0
   }
 }

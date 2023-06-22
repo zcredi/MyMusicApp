@@ -20,12 +20,14 @@ struct Entry: Decodable {
   let artist: Artist
   let images: [Image]
   let links: [Link]
+  let category: Category
   
   private enum CodingKeys: String, CodingKey {
     case name = "im:name"
     case images = "im:image"
     case links = "link"
     case artist = "im:artist"
+    case category
   }
   
   private enum LinkCodingKeys: String, CodingKey {
@@ -56,6 +58,7 @@ struct Entry: Decodable {
     } else {
       links = []
     }
+    category = try container.decode(Category.self, forKey: .category)
   }
 }
 
@@ -83,8 +86,15 @@ struct Label: Decodable {
 
 struct Image: Decodable {
   let label: String
+} 
+struct Category: Decodable {
+    let attributes: CategoryAttributes
 }
 
+struct CategoryAttributes: Decodable {
+    let term: String
+    let label: String
+}
 struct AlbumResponse: Decodable {
   let feed: AlbumFeed
 }

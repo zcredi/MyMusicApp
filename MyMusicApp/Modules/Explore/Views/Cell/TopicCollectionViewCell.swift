@@ -12,7 +12,7 @@ class TopicCollectionViewCell: UICollectionViewCell {
         static let genreMusicImageSideSpacing: CGFloat = 0.0
         static let genreMusicImageHeightSpacing: CGFloat = 60.0
     }
-    
+  
     //MARK: - Create UI
     
     private lazy var genreMusicImage: UIImageView = {
@@ -22,7 +22,7 @@ class TopicCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    private lazy var genreMusicLabel = UILabel(text: "Hip-Hop", font: .robotoBold14(), textColor: .neutralWhite)
+    lazy var genreMusicLabel = UILabel(text: "Hip-Hop", font: .robotoBold14(), textColor: .neutralWhite)
     
     
     //MARK: - Lifecycle
