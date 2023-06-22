@@ -9,7 +9,7 @@ import UIKit
 
 class AllSongsViewController: UIViewController {
   private let newSongsView = NewSongsView()
-  private let musicPlayer = MusicPlayer.instance
+  private let musicPlayer = MusicPlayer()
   private let miniPlayerVC = MiniPlayerVC()
 
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ extension AllSongsViewController: NewSongsViewDelegate {
       if musicPlayer.isPlayingMusic(from: audioURL) {
         musicPlayer.pauseMusic()
       } else {
-        musicPlayer.loadPlayer(from: audioURL)
+        musicPlayer.playMusic(from: audioURL)
       }
     } else {
       print("Error: No audio URL available")

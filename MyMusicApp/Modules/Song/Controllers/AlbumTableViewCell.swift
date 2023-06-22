@@ -45,9 +45,8 @@ final class AlbumTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = 8
-        layer.masksToBounds = true
-        backgroundColor = .systemGray.withAlphaComponent(0.4)
+        self.backgroundColor = .clear
+        
         setViews()
         setConstraints()
     }
