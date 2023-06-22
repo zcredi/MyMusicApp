@@ -8,6 +8,14 @@
 import UIKit
 
 final class SongView {
+    lazy var backHomeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "arrow_back"), for: .normal)
+        button.tintColor = .neutralWhite
+        
+        return button
+    }()
+    
     lazy var songPageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.layer.cornerRadius = 1.5
@@ -24,7 +32,6 @@ final class SongView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 104
         imageView.layer.masksToBounds = true
-        imageView.image = UIImage(named: "SongImage1")
         
         return imageView
     }()
@@ -32,7 +39,7 @@ final class SongView {
     lazy var songNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.text = "Robot Rock"
+        label.textAlignment = .center
         label.font = .robotoBold36()
         label.textColor = .neutralWhite
         
@@ -41,7 +48,6 @@ final class SongView {
     
     lazy var performerNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Daft Punk"
         label.font = .robotoRegular18()
         label.textColor = .neutralWhite
         
@@ -50,7 +56,8 @@ final class SongView {
     
     lazy var describingSongLabel: UILabel = {
         let label = UILabel()
-        label.text = "ADA France,Distributed by Warner Music France"
+        label.text = "Your favorite musical player!"
+        label.backgroundColor = .systemGray.withAlphaComponent(0.3)
         label.font = .robotoRegular14()
         label.textColor = .brandGreen
         

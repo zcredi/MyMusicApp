@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import SwiftUI
 
 struct Songs {
     var songName: String
@@ -39,6 +38,12 @@ final class AlbumViewController: UIViewController {
         
         setViews()
         setConstraints()
+    }
+    
+    func configurateView(model: Entry, image: UIImage) {
+        albumView.backgroundImageView.image = image
+        albumView.songNameLabel.text = model.name.label
+        albumView.performerNameLabel.text = model.artist.label
     }
 }
 
@@ -102,19 +107,21 @@ extension AlbumViewController {
 
         albumView.songNameLabel.snp.makeConstraints { make in
             make.top.equalTo(albumView.albumPageControl).inset(193)
-            make.leading.equalToSuperview().inset(24)
+            make.leading.equalToSuperview().inset(25)
+            make.trailing.lessThanOrEqualToSuperview().inset(25)
         }
 
         albumView.performerNameLabel.snp.makeConstraints { make in
             make.top.equalTo(albumView.songNameLabel.snp.bottom).inset(-4)
-            make.leading.equalToSuperview().inset(24)
+            make.leading.equalToSuperview().inset(25)
+            make.trailing.lessThanOrEqualToSuperview().inset(25)
         }
 
         albumView.describingSongLabel.snp.makeConstraints { make in
             make.height.equalTo(72)
             make.top.equalTo(albumView.performerNameLabel.snp.bottom).inset(-28)
-            make.leading.equalToSuperview().inset(24)
-            make.trailing.equalToSuperview().inset(65)
+            make.leading.equalToSuperview().inset(25)
+            make.trailing.lessThanOrEqualToSuperview().inset(25)
         }
         
         albumView.tableView.snp.makeConstraints { make in
@@ -131,24 +138,5 @@ extension AlbumViewController {
             make.top.equalTo(albumView.describingSongLabel.snp.bottom).inset(-36)
             make.leading.trailing.equalToSuperview().inset(25)
         }
-    }
-}
-
-struct ContentViewController: UIViewControllerRepresentable {
-
-    typealias UIViewControllerType = AlbumViewController
-
-    func makeUIViewController(context: Context) -> UIViewControllerType {
-        return AlbumViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: AlbumViewController, context: Context) {}
-}
-
-struct ContentViewController_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentViewController()
-            .edgesIgnoringSafeArea(.all)
-            .colorScheme(.light) // or .dark
     }
 }

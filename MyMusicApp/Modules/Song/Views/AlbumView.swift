@@ -30,6 +30,9 @@ final class AlbumView {
     
     lazy var songNameLabel: UILabel = {
         let label = UILabel()
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.backgroundColor = .systemGray.withAlphaComponent(0.4)
         label.numberOfLines = 1
         label.text = "Come to me"
         label.font = .robotoBold36()
@@ -40,6 +43,9 @@ final class AlbumView {
     
     lazy var performerNameLabel: UILabel = {
         let label = UILabel()
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.backgroundColor = .systemGray.withAlphaComponent(0.4)
         label.text = "One Republic"
         label.font = .robotoRegular18()
         label.textColor = .neutralWhite
@@ -49,8 +55,11 @@ final class AlbumView {
     
     lazy var describingSongLabel: UILabel = {
         let label = UILabel()
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
         label.numberOfLines = 0
-        
+        label.backgroundColor = .systemGray.withAlphaComponent(0.4)
+
         DispatchQueue.main.async {
             label.addTrailing(with: "...",
                               moreText: "Show more ∨",
@@ -72,8 +81,8 @@ final class AlbumView {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .clear
         tableView.allowsSelection = false
+        tableView.backgroundColor = .clear
         
         return tableView
     }()

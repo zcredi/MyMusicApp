@@ -19,7 +19,7 @@ class ExploreDetailViewController: UIViewController {
         static let lineViewHeightSpacing: CGFloat = 1.0
     }
     
-    private let audioPlayer = AudioPlayer.instance
+    private let audioPlayer = MusicPlayer.instance
     
     //MARK: - Create UI
     

@@ -7,13 +7,27 @@
 
 import UIKit
 
+struct SongInfo {
+    var model: Entry
+    var image: UIImage
+}
+
 final class SongPageViewController: UIPageViewController {
+    
+    var songInfo: SongInfo? {
+        didSet {
+            if let songInfo = songInfo {
+                songVC.configurateView(model: songInfo.model, image: songInfo.image)
+                albumVC.configurateView(model: songInfo.model, image: songInfo.image)
+            }
+        }
+    }
+    
+    let songVC = SongViewController()
+    let albumVC = AlbumViewController()
     
     lazy var controllers: [UIViewController] = {
         var controllers = [UIViewController]()
-        
-        let songVC = SongViewControllers()
-        let albumVC = AlbumViewController()
         
         controllers.append(songVC)
         controllers.append(albumVC)
@@ -25,6 +39,7 @@ final class SongPageViewController: UIPageViewController {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation)
         setViewControllers([controllers[0]], direction: .forward, animated: true)
         dataSource = self
+        delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -52,5 +67,11 @@ extension SongPageViewController: UIPageViewControllerDataSource {
         }
         
         return nil
+    }
+}
+
+extension SongPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
     }
 }

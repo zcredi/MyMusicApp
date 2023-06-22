@@ -11,7 +11,7 @@ import Kingfisher
 class AlbumCell: UICollectionViewCell {
   
   static let identifier = "AlbumCell"
-  let musicPlayer = MusicPlayer()
+  let musicPlayer = MusicPlayer.instance
   
   let songImageView: UIImageView = {
     let imageView = UIImageView()
