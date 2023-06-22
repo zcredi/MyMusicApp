@@ -100,7 +100,7 @@ class TopTrendingView: UIView, UIScrollViewDelegate {
             let likeButton = UIButton(type: .system)
             likeButton.setImage(UIImage(named: "like"), for: .normal)
             imageView.addSubview(likeButton)
-
+            
             likeButton.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 likeButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -Constants.likeButtonBottomSpacing),
