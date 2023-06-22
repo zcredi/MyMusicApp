@@ -1,46 +1,46 @@
 //
-//  ProfileViewController.swift
+//  ProfileSettingsViewController.swift
 //  MyMusicApp
 //
-//  Created by Владислав on 12.06.2023.
+//  Created by Ilyas Tyumenev on 21.06.2023.
 //
 
 import UIKit
 import SnapKit
 
-class ProfileViewController: UIViewController {
+class ProfileSettingsViewController: UIViewController {
     
     // MARK: - Private Properties
-    private let profileView = ProfileView()
+    private let profileSettingsView = ProfileSettingsView()
     
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileView.delegate = self
+        profileSettingsView.delegate = self
         configureVC()
         setViews()
         setupConstraints()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
     }
 }
-
+   
 // MARK: - Set Views and Setup Constraints
-extension ProfileViewController {
+extension ProfileSettingsViewController {
     
     private func configureVC() {
         view.backgroundColor = .brandBlack
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.neutralWhite]
     }
-    
+
     private func setViews() {
-        view.addSubview(profileView)
+        view.addSubview(profileSettingsView)
     }
     
     private func setupConstraints() {
-        profileView.snp.makeConstraints { make in
+        profileSettingsView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
@@ -48,18 +48,19 @@ extension ProfileViewController {
 }
 
 // MARK: - ProfileViewDelegate
-extension ProfileViewController: ProfileViewDelegate {
+extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
     
-    func profileView(_ view: ProfileView,  settingsButtonPressed button: UIButton) {
-        let profileSettingsVC = ProfileSettingsViewController()
-        profileSettingsVC.modalPresentationStyle = .fullScreen
-        profileSettingsVC.modalTransitionStyle = .crossDissolve
-        self.present(profileSettingsVC, animated: true)
+    func profileSettingsView(_ view: ProfileSettingsView, backButtonPressed button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func profileView(_ view: ProfileView, signOutButtonPressed button: UIButton) {
-        let alertController = UIAlertController(title: "Sign out",
-                                                message: "Are you sure you want to sign out of your profile?",
+    func profileSettingsView(_ view: ProfileSettingsView, cameraButtonPressed button: UIButton) {
+        print("cameraButtonPressed")
+    }
+    
+    func profileSettingsView(_ view: ProfileSettingsView, changePasswordButtonPressed button: UIButton) {
+        let alertController = UIAlertController(title: "Change password",
+                                                message: "Are you sure you want to change password?",
                                                 preferredStyle: .alert)
 
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -68,18 +69,19 @@ extension ProfileViewController: ProfileViewDelegate {
         
         let okAction = UIAlertAction(title: "Yes",
                                      style: .default) { (_) in
-            self.signOut()
+            self.changePassword()
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
     
-    func signOut() {
+    func changePassword() {
 //        let onboardingVC = HomepageViewController()
 //        onboardingVC.modalPresentationStyle = .fullScreen
 //        onboardingVC.modalTransitionStyle = .crossDissolve
 //        self.present(onboardingVC, animated: true)
     }
+
 }
 

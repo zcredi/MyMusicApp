@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		431A19C32A4209CA0035D974 /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431A19C22A4209CA0035D974 /* FavoritesViewCell.swift */; };
+		435909752A4485F600CE10EC /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435909742A4485F600CE10EC /* ProfileSettingsViewController.swift */; };
+		435909772A44864A00CE10EC /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435909762A44864A00CE10EC /* ProfileSettingsView.swift */; };
+		435909792A44C45700CE10EC /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435909782A44C45700CE10EC /* UsernameView.swift */; };
+		4359097B2A44C5D800CE10EC /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4359097A2A44C5D800CE10EC /* EmailView.swift */; };
+		4359097D2A44C65400CE10EC /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4359097C2A44C65400CE10EC /* GenderView.swift */; };
+		4359097F2A44C6CE00CE10EC /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4359097E2A44C6CE00CE10EC /* DateView.swift */; };
 		43F5409A2A4313660084C6B6 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540962A4313650084C6B6 /* DownloadView.swift */; };
 		43F5409B2A4313660084C6B6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540972A4313650084C6B6 /* ProfileView.swift */; };
 		43F5409C2A4313660084C6B6 /* MyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F540982A4313660084C6B6 /* MyPlaylistView.swift */; };
@@ -77,6 +83,12 @@
 
 /* Begin PBXFileReference section */
 		431A19C22A4209CA0035D974 /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
+		435909742A4485F600CE10EC /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
+		435909762A44864A00CE10EC /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		435909782A44C45700CE10EC /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
+		4359097A2A44C5D800CE10EC /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		4359097C2A44C65400CE10EC /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
+		4359097E2A44C6CE00CE10EC /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		43F540962A4313650084C6B6 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		43F540972A4313650084C6B6 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		43F540982A4313660084C6B6 /* MyPlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlaylistView.swift; sourceTree = "<group>"; };
@@ -172,6 +184,11 @@
 				43F540982A4313660084C6B6 /* MyPlaylistView.swift */,
 				43F540992A4313660084C6B6 /* NotificationView.swift */,
 				43F540972A4313650084C6B6 /* ProfileView.swift */,
+				435909782A44C45700CE10EC /* UsernameView.swift */,
+				4359097A2A44C5D800CE10EC /* EmailView.swift */,
+				4359097C2A44C65400CE10EC /* GenderView.swift */,
+				4359097E2A44C6CE00CE10EC /* DateView.swift */,
+				435909762A44864A00CE10EC /* ProfileSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -405,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				86CE7A1F2A375F9500663854 /* ProfileViewController.swift */,
+				435909742A4485F600CE10EC /* ProfileSettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -636,6 +654,7 @@
 				864F5DDD2A3F499600D3DB7E /* TopicCollectionViewCell.swift in Sources */,
 				864F5DE72A409A5200D3DB7E /* CustomCellModel.swift in Sources */,
 				7EDADCFF2A38BD6C004E560F /* AlbumViewController.swift in Sources */,
+				435909792A44C45700CE10EC /* UsernameView.swift in Sources */,
 				7EDADCFD2A3856C7004E560F /* SongViewController.swift in Sources */,
 				573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */,
 				573F6D7F2A3A2025002990D8 /* NewSongsView.swift in Sources */,
@@ -643,7 +662,9 @@
 				CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */,
 				572BFA922A41C5F10001D805 /* AllSongsViewController.swift in Sources */,
 				43F5409B2A4313660084C6B6 /* ProfileView.swift in Sources */,
+				4359097F2A44C6CE00CE10EC /* DateView.swift in Sources */,
 				573F6D7E2A3A2025002990D8 /* RecentlyMusicTableView.swift in Sources */,
+				4359097D2A44C65400CE10EC /* GenderView.swift in Sources */,
 				431A19C32A4209CA0035D974 /* FavoritesViewCell.swift in Sources */,
 				864F5DE92A409A5200D3DB7E /* SearchViewController.swift in Sources */,
 				43F5409D2A4313660084C6B6 /* NotificationView.swift in Sources */,
@@ -660,6 +681,7 @@
 				573F6DA42A3A208D002990D8 /* NetworkManager.swift in Sources */,
 				573F6DF42A3B0B61002990D8 /* MusicPlayer.swift in Sources */,
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
+				4359097B2A44C5D800CE10EC /* EmailView.swift in Sources */,
 				7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
 				57E13DEC2A3C666C00AA60DC /* MiniPlayer.swift in Sources */,
@@ -675,6 +697,7 @@
 				864F5DEA2A409A5200D3DB7E /* ResultViewCell.swift in Sources */,
 				CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */,
 				573F6D9F2A3A208D002990D8 /* AppDelegate.swift in Sources */,
+				435909772A44864A00CE10EC /* ProfileSettingsView.swift in Sources */,
 				7E14C1C82A4458BA0000587D /* SongViewControllerProtocol.swift in Sources */,
 				573F6DA32A3A208D002990D8 /* SceneDelegate.swift in Sources */,
 				43F5409C2A4313660084C6B6 /* MyPlaylistView.swift in Sources */,
@@ -687,6 +710,7 @@
 				86CE7A2C2A38BD3800663854 /* RecentlyView.swift in Sources */,
 				7ED182082A39ADB000FC24EC /* SongPageViewController.swift in Sources */,
 				864F5DEB2A409A5200D3DB7E /* CategoriesViewCell.swift in Sources */,
+				435909752A4485F600CE10EC /* ProfileSettingsViewController.swift in Sources */,
 				864F5DE82A409A5200D3DB7E /* Categories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

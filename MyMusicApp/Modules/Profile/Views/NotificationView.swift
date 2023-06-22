@@ -16,14 +16,14 @@ class NotificationView: UIView {
     
     weak var delegate: NotificationViewDelegate?
     
-    let notificationImage: UIImageView = {
+    private let notificationImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "notification")
         image.contentMode = .scaleAspectFit
         return image
     }()
     
-    let notificationLabel: UILabel = {
+    private let notificationLabel: UILabel = {
         let label = UILabel()
         label.text = "Notification"
         label.textColor = .neutralWhite
@@ -33,7 +33,7 @@ class NotificationView: UIView {
         return label
     }()
     
-    let notificationSwitch: UISwitch = {
+    private let notificationSwitch: UISwitch = {
         let mySwitch = UISwitch()
         mySwitch.set(width: 32, height: 17)
         mySwitch.tintColor = .neutralGray
@@ -44,7 +44,7 @@ class NotificationView: UIView {
         return mySwitch
     }()
     
-    let dividerImage: UIImageView = {
+    private let dividerImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "divider")
         image.contentMode = .scaleAspectFit
