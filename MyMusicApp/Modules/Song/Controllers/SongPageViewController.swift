@@ -7,13 +7,28 @@
 
 import UIKit
 
+struct SongInfo {
+    var model: Entry
+    var image: UIImage
+}
+
 final class SongPageViewController: UIPageViewController {
+    
+    var songInfo: SongInfo? {
+        didSet {
+            if let songInfo = songInfo {
+                songVC.configurateView(model: songInfo.model, image: songInfo.image)
+                albumVC.configurateView(model: songInfo.model, image: songInfo.image)
+            }
+        }
+    }
+    
+    let songVC = SongViewController()
+    let albumVC = AlbumViewController()
+    
     
     lazy var controllers: [UIViewController] = {
         var controllers = [UIViewController]()
-        
-        let songVC = SongViewControllers()
-        let albumVC = AlbumViewController()
         
         controllers.append(songVC)
         controllers.append(albumVC)
