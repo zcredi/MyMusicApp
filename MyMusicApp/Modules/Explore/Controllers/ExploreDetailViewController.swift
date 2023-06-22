@@ -18,10 +18,8 @@ class ExploreDetailViewController: UIViewController {
         static let lineViewSideSpacing: CGFloat = 23.0
         static let lineViewHeightSpacing: CGFloat = 1.0
     }
-    
-    private let audioPlayer = MusicPlayer.instance
-    
-    //MARK: - Create UI
+
+  //MARK: - Create UI
     
     private lazy var backView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "backImage"))
@@ -43,7 +41,7 @@ class ExploreDetailViewController: UIViewController {
         return button
     }()
     
-    private lazy var nameAlbum = UILabel(text: "Rap Soul", font: .robotoBold36(), textColor: .neutralWhite)
+    var nameAlbum = UILabel(text: "Rap Soul", font: .robotoBold36(), textColor: .neutralWhite)
     private lazy var descriptionAlbumd = UILabel(text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it", font: .robotoRegular14(), textColor: .neutralWhite)
     
     private lazy var lineView: UIView = {
@@ -51,9 +49,23 @@ class ExploreDetailViewController: UIViewController {
         view.backgroundColor = .neutralWhite
         return view
     }()
-    
-    private lazy var exploreDetailsView = ExploreDetails()
-    
+
+
+  private let audioPlayer = MusicPlayer.instance
+    let genreID: Int
+    let genre: String
+      init(genre: String, genreID: Int) {
+          self.genreID = genreID
+          self.genre = genre
+          self.nameAlbum = UILabel(text: genre, font: .robotoBold36(), textColor: .neutralWhite)
+          super.init(nibName: nil, bundle: nil)
+      }
+  private lazy var exploreDetailsView = ExploreDetails(genreID: genreID)
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
     //MARK: - Lifecycle
     
     override func viewDidLoad() {

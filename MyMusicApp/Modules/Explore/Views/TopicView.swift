@@ -8,6 +8,7 @@
 import UIKit
 
 class TopicView: UIView {
+
   enum Constants {
     static let idTopicCell: String = "idTopicCell"
     static let collectionViewSizeSpacing: CGFloat = 0.0
@@ -22,7 +23,6 @@ class TopicView: UIView {
     }
   }
 
-  private var currentGenre: Int = 6
   private var genreNames: [Int: String] = [6: "Country",
                                            7: "Electronic",
                                            11: "Jazz",
@@ -72,39 +72,7 @@ class TopicView: UIView {
     addSubview(collectionView)
   }
 
-  func update(with musicResults: [Entry]) {
-    songs = musicResults
-    DispatchQueue.main.async {
-      self.collectionView.reloadData()
-    }
-  }
-
-
-  private func fetchMusicForAllGenres(currentIndex: Int) {
-    guard let genre = genreNames[currentIndex] else {
-      return
-    }
-
-    print("Selected genre: \(genre)")
-    currentGenre = currentIndex
-    fetchPopularMusic(forGenre: currentIndex)
-  }
-
-  private func fetchPopularMusic(forGenre genre: Int) {
-      let urlString = "https://itunes.apple.com/us/rss/topsongs/genre=\(genre)/limit=25/json"
-      let networkService = NetworkService()
-      networkService.fetchMusicDataFromAPI(urlString: urlString) { result in
-          switch result {
-          case .success(let musicResponse):
-              DispatchQueue.main.async {
-                  Music.shared.musicResults = musicResponse.feed.entry
-                  self.update(with: Music.shared.musicResults)
-              }
-          case .failure(let error):
-              print("Error fetching music data: \(error)")
-          }
-      }
-  }
+//
   }
 
 extension TopicView {
@@ -132,7 +100,6 @@ extension TopicView: UICollectionViewDataSource {
     let genreIndex = indexPath.item
     let genre = Array(genreNames.values)[genreIndex]
     cell.genreMusicLabel.text = genre
-    print(genre)
     return cell
   }
 }
@@ -150,9 +117,26 @@ extension TopicView: UICollectionViewDelegateFlowLayout {
 }
 
 extension TopicView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let genreIndex = indexPath.item
-      
-        fetchMusicForAllGenres(currentIndex: genreIndex)
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      let genreIndex = indexPath.item
+      let genreID = Array(genreNames.keys)[genreIndex]
+      let selectedGenre = genreNames[genreID] ?? ""
+
+      let exploreDetailViewController = ExploreDetailViewController(genre: selectedGenre, genreID: genreID)
+
+      if let viewController = self.getViewController() {
+          viewController.navigationController?.pushViewController(exploreDetailViewController, animated: true)
+      }
+  }
+
+    private func getViewController() -> UIViewController? {
+        var responder: UIResponder? = self
+        while let nextResponder = responder?.next {
+            if let viewController = nextResponder as? UIViewController {
+                return viewController
+            }
+            responder = nextResponder
+        }
+        return nil
     }
 }
