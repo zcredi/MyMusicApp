@@ -80,7 +80,7 @@ class RecommendedCell: UITableViewCell {
   }
   
   private func setupViews() {
-    contentView.backgroundColor = .black
+    backgroundColor = .clear
     contentView.addSubview(songNumberLabel)
     contentView.addSubview(songImageView)
     contentView.addSubview(nameLabel)

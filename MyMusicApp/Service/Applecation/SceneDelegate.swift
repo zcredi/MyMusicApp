@@ -13,18 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            guard let windowScene = (scene as? UIWindowScene) else { return }
-            window = UIWindow(windowScene: windowScene)
-            let viewController = MainTabBarController()
-            let navigationController = UINavigationController(rootViewController: viewController)
-            UINavigationBar.appearance().backIndicatorImage = UIImage(named: "arrow_back")
-            UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "arrow_back")
-            UINavigationBar.appearance().tintColor = UIColor.neutralWhite
-            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for: .default)
-            window?.rootViewController = navigationController
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        let viewController = MainTabBarController()
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+                appearance.configureWithOpaqueBackground()
+                appearance.backgroundColor = .systemBackground
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            window?.rootViewController = viewController
             window?.makeKeyAndVisible()
             window?.overrideUserInterfaceStyle = .unspecified
         }
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
