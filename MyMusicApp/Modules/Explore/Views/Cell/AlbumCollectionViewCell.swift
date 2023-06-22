@@ -25,13 +25,13 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     private lazy var genreMusicLabel = UILabel(text: "Rap Gangz", font: .robotoBold14(), textColor: .neutralWhite)
     
     private lazy var playImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "playWhite"))
+        let imageView = UIImageView(image: UIImage(named: "playWhiteS"))
         return imageView
     }()
     
     private lazy var playButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "ellipse"), for: .normal)
+        button.setImage(UIImage(named: "ellipseS"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(playerButtonTapped), for: .touchUpInside)
         return button
@@ -77,13 +77,14 @@ extension AlbumCollectionViewCell {
         ])
         playButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playButton.trailingAnchor.constraint(equalTo: genreMusicImage.trailingAnchor, constant: -12),
-            playButton.bottomAnchor.constraint(equalTo: genreMusicImage.bottomAnchor, constant: -12)
+            playButton.trailingAnchor.constraint(equalTo: genreMusicImage.trailingAnchor, constant: -10),
+            playButton.bottomAnchor.constraint(equalTo: genreMusicImage.bottomAnchor, constant: -10)
         ])
         playImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playImage.centerXAnchor.constraint(equalTo: playButton.centerXAnchor),
-            playImage.centerYAnchor.constraint(equalTo: playButton.centerYAnchor)
+            playImage.topAnchor.constraint(equalTo: playButton.topAnchor, constant: 6),
+            playImage.leadingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: 9),
+            playImage.heightAnchor.constraint(equalToConstant: 12)
         ])
     }
 }

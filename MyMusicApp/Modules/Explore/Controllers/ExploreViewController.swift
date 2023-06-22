@@ -108,7 +108,9 @@ class ExploreViewController: UIViewController {
     
     @objc
     private func topikButtonTapped(_ sender: UIButton) {
-        print("topikButtonTapped")
+        let albumTopicViewController = AlbumTopicViewController()
+        albumTopicViewController.modalPresentationStyle = .fullScreen
+        present(albumTopicViewController, animated: true)
     }
     
     private func setupViews() {

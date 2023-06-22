@@ -19,7 +19,7 @@ class AlbumCollectionView: UIView {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -68,7 +68,7 @@ extension AlbumCollectionView {
 
 extension AlbumCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         6
+         10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,8 +82,8 @@ extension AlbumCollectionView: UICollectionViewDataSource {
 
 extension AlbumCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 3.2
-            let height = collectionView.frame.height / 2
+        let width = collectionView.frame.width / 2
+        let height = collectionView.frame.height / 4.2
             return CGSize(width: width, height: height)
         }
     
