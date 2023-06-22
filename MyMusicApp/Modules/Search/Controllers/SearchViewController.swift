@@ -10,6 +10,10 @@ import SnapKit
 
 class SearchViewController: UIViewController {
 
+  private let songPageViewController = SongPageViewController()
+  private let musicPlayer = MusicPlayer.instance
+  private let miniPlayerVC = MiniPlayerVC()
+
     private var searchVC: UISearchController = {
         let searchVC = UISearchController()
         searchVC.searchBar.searchBarStyle = .minimal
@@ -47,11 +51,33 @@ class SearchViewController: UIViewController {
 
         filteredArray = customArray
         selectDefaultCategory()
+
+      miniPlayerVC.setupCurrentViewController(controller: self)
+      miniPlayerVC.setupTargetController(controller: songPageViewController)
+      miniPlayerVC.delegate = self
+      musicPlayer.delegate = self
     }
 
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    miniPlayerVC.removeFromSuperview()
+    miniPlayerVC.isUserInteractionEnabled = false
+  }
+  
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
     }
+
+  func showMiniPlayer() {
+      miniPlayerVC.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(miniPlayerVC)
+      NSLayoutConstraint.activate([
+          miniPlayerVC.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+          miniPlayerVC.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+          miniPlayerVC.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+          miniPlayerVC.heightAnchor.constraint(equalToConstant: 70)
+      ])
+  }
 
     // MARK: - Configure Views
     private func configureVC() {
@@ -141,7 +167,7 @@ class SearchViewController: UIViewController {
       case .all:
           filteredArray = customArray.filter { $0.title.contains(keyword) || $0.subtitle.contains(keyword) || $0.album.contains(keyword) }
       case .artist:
-          filteredArray = customArray.compactMap { $0.subtitle.contains(keyword) ? CustomCellModel(avatarImageString: $0.avatarImageString, title: $0.subtitle, subtitle: "", album: "") : nil }
+        filteredArray = customArray.compactMap { $0.subtitle.contains(keyword) ? CustomCellModel(avatarImageString: $0.avatarImageString, title: $0.subtitle, subtitle: "", album: "", url: $0.url) : nil }
           filteredArray = removeDuplicateArtists(from: filteredArray)
       case .album:
           filteredArray = customArray.filter { $0.album.contains(keyword) }
@@ -169,7 +195,6 @@ class SearchViewController: UIViewController {
 }
 
 // MARK: - UISearchResultsUpdating
-// MARK: - UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -189,12 +214,13 @@ extension SearchViewController: UISearchResultsUpdating {
                             avatarImageString: musicResult.artworkUrl100,
                             title: musicResult.trackName ?? "",
                             subtitle: musicResult.artistName,
-                            album: musicResult.collectionName ?? ""
+                            album: musicResult.collectionName ?? "",
+                            url: musicResult.previewUrl ?? ""
                         )
                         updatedCustomArray.append(updatedModel)
                     }
                     self?.customArray = updatedCustomArray
-                    self?.performSearch(with: keyword) // Добавленная строка
+                    self?.performSearch(with: keyword)
                 }
 
             case .failure(let error):
@@ -254,8 +280,11 @@ extension SearchViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
+          let selectedSong = filteredArray[indexPath.row]
+          let musicURL = selectedSong.url
+          musicPlayer.loadPlayer(from: musicURL, playerType: .musicSearch)
+          showMiniPlayer()
+      }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -266,6 +295,64 @@ extension SearchViewController: UICollectionViewDelegate {
 
         if let keyword = searchVC.searchBar.text {
             performSearch(with: keyword)
+        }
+    }
+}
+
+extension SearchViewController: MiniPlayerViewDelegate {
+    func forwardButtonTapped() {
+        musicPlayer.playNextSong()
+    }
+
+    func backwardButtonTapped() {
+        musicPlayer.playPreviousSong()
+    }
+
+    func playButtonTapped() {
+        musicPlayer.isPlayerPerforming() ? musicPlayer.pauseMusic() :  musicPlayer.playMusic()
+    }
+}
+
+extension SearchViewController: MusicPlayerDelegate {
+
+  func updateCurrentURL(_ url: String) {
+    guard let musicResult = getMusicResultFromURL(url) else {
+      miniPlayerVC.updateSongTitle("")
+      miniPlayerVC.updateSongImage(nil)
+      miniPlayerVC.updateSongArtist("")
+      return
+    }
+
+    miniPlayerVC.updateSongTitle(musicResult.title)
+    miniPlayerVC.updateSongArtist(musicResult.subtitle)
+    if let imageUrl = URL(string: musicResult.avatarImageString), !url.isEmpty {
+      URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+        DispatchQueue.main.async {
+          if let imageData = data, let image = UIImage(data: imageData) {
+            self.miniPlayerVC.updateSongImage(image)
+          } else {
+            self.miniPlayerVC.updateSongImage(nil)
+          }
+        }
+      }.resume()
+    } else {
+      miniPlayerVC.updateSongImage(nil)
+    }
+  }
+
+  private func getMusicResultFromURL(_ url: String) -> CustomCellModel? {
+      let musicResult = filteredArray.first { $0.url == url }
+      return musicResult
+  }
+
+  func updatePlayButtonState(isPlaying: Bool) {
+        DispatchQueue.main.async {
+            if isPlaying {
+              self.miniPlayerVC.playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
+            } else {
+              self.miniPlayerVC.playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+            }
+          self.miniPlayerVC.playButton.tintColor = .brandBlack
         }
     }
 }

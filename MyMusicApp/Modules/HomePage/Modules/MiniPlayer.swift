@@ -20,6 +20,7 @@ class MiniPlayerVC: UIView {
     private let backgroundView = UIView()
     private let songImageView = UIImageView()
     let songTitleLabel = UILabel()
+    let songArtist = UILabel()
     private let backButton = UIButton(type: .system)
     let playButton = UIButton(type: .system)
     private let forwardButton = UIButton(type: .system)
@@ -29,7 +30,6 @@ class MiniPlayerVC: UIView {
     init() {
         super.init(frame: .zero)
         backgroundView.backgroundColor = .brandGreen
-        
         setupViews()
         setupConstraints()
         addGestureToBackgroundView()
@@ -43,6 +43,7 @@ class MiniPlayerVC: UIView {
         addSubview(backgroundView)
         backgroundView.addSubview(songImageView)
         backgroundView.addSubview(songTitleLabel)
+        backgroundView.addSubview(songArtist)
         backgroundView.addSubview(backButton)
         backButton.setImage(UIImage(systemName: "backward.end"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
@@ -64,6 +65,7 @@ class MiniPlayerVC: UIView {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         songImageView.translatesAutoresizingMaskIntoConstraints = false
         songTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        songArtist.translatesAutoresizingMaskIntoConstraints = false
         backButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.translatesAutoresizingMaskIntoConstraints = false
         forwardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -80,8 +82,13 @@ class MiniPlayerVC: UIView {
             songImageView.heightAnchor.constraint(equalToConstant: 40),
             
             songTitleLabel.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 8),
-            songTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
+            songTitleLabel.topAnchor.constraint(equalTo: songImageView.topAnchor, constant: -2),
+            songTitleLabel.widthAnchor.constraint(equalToConstant: 180),
+
+            songArtist.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 8),
+            songArtist.bottomAnchor.constraint(equalTo: songImageView.bottomAnchor, constant: -2),
+            songArtist.widthAnchor.constraint(equalToConstant: 180),
+
             backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -30),
             backButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             
@@ -96,7 +103,11 @@ class MiniPlayerVC: UIView {
     func updateSongTitle(_ title: String) {
         songTitleLabel.text = title
     }
-    
+
+    func updateSongArtist(_ title: String) {
+        songArtist.text = title
+    }
+
     func updateSongImage(_ image: UIImage?) {
         songImageView.image = image
     }
@@ -136,4 +147,10 @@ class MiniPlayerVC: UIView {
     @objc private func forwardButtonTapped() {
         delegate?.forwardButtonTapped()
     }
+
+    func closeMiniPlayer() {
+      self.removeFromSuperview()
+    
+  }
+
 }
