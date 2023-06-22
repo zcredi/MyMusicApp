@@ -154,6 +154,7 @@ extension TopicView: UICollectionViewDelegateFlowLayout {
 extension TopicView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let genreIndex = indexPath.item
+      
         fetchMusicForAllGenres(currentIndex: genreIndex)
     }
 }

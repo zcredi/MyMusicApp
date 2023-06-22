@@ -18,7 +18,7 @@ struct Feed: Decodable {
 struct Entry: Decodable {
   let name: Name
   let artist: Artist
-  let images: [Image]
+  var images: [Image]
   let links: [Link]
   let category: Category
   
@@ -85,7 +85,7 @@ struct Label: Decodable {
 }
 
 struct Image: Decodable {
-  let label: String
+  var label: String
 } 
 struct Category: Decodable {
     let attributes: CategoryAttributes
@@ -106,7 +106,7 @@ struct AlbumFeed: Decodable {
 struct AlbumEntry: Decodable {
   let name: Name
   let artist: Artist
-  let images: [Image]
+  var images: [Image]
   let links: [Link]
   
   private enum CodingKeys: String, CodingKey {
