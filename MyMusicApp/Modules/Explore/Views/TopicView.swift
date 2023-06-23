@@ -23,23 +23,25 @@ class TopicView: UIView {
     }
   }
 
-  private var genreNames: [Int: String] = [6: "Country",
-                                           7: "Electronic",
-                                           11: "Jazz",
-                                           12: "Latin",
-                                           13: "New Age",
-                                           14: "Pop",
-                                           15: "R&B/Soul",
-                                           16: "Soundtrack",
-                                           17: "Dance",
-                                           18: "Hip Hop/Rap",
-                                           21: "Hard Rock"]
+  private var genreNames: [Int: (name: String, imageName: String)] = [
+      6: ("Country", "countryImage"),
+      7: ("Electronic", "electronicImage"),
+      11: ("Jazz", "jazzImage"),
+      12: ("Latin", "latinImage"),
+      13: ("New Age", "newAgeImage"),
+      14: ("Pop", "popImage"),
+      15: ("R&B/Soul", "rnbSoulImage"),
+      16: ("Soundtrack", "soundtrackImage"),
+      17: ("Dance", "danceImage"),
+      18: ("Hip Hop/Rap", "hipHopRapImage"),
+      21: ("Hard Rock", "hardRockImage")
+  ]
 
   //MARK: - Create UI
 
   private lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
+    layout.scrollDirection = .vertical
     layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .clear
@@ -99,36 +101,34 @@ extension TopicView: UICollectionViewDataSource {
     
     let genreIndex = indexPath.item
     let genre = Array(genreNames.values)[genreIndex]
-    cell.genreMusicLabel.text = genre
+    cell.genreMusicLabel.text = genre.name
+    cell.genreMusicImage.image = UIImage(named: genre.imageName)
     return cell
   }
 }
 
 extension TopicView: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = collectionView.frame.width / 3.2
-    let height = collectionView.frame.height / 2
+    let width = collectionView.bounds.width / 3.2
+    let height = collectionView.bounds.height / 2.0
     return CGSize(width: width, height: height)
-  }
-
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
   }
 }
 
 extension TopicView: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      let genreIndex = indexPath.item
-      let genreID = Array(genreNames.keys)[genreIndex]
-      let selectedGenre = genreNames[genreID] ?? ""
-
-      let exploreDetailViewController = ExploreDetailViewController(genre: selectedGenre, genreID: genreID)
-
+    let genreIndex = indexPath.item
+    let genreID = Array(genreNames.keys)[genreIndex]
+    let selectedGenre = genreNames[genreID]
+    
+    if let genreImageName = selectedGenre?.imageName {
+      let exploreDetailViewController = ExploreDetailViewController(genre: selectedGenre?.name ?? "", genreID: genreID, genreImageName: genreImageName)
+      
       if let viewController = self.getViewController() {
-          viewController.navigationController?.pushViewController(exploreDetailViewController, animated: true)
+        viewController.navigationController?.pushViewController(exploreDetailViewController, animated: true)
       }
+    }
   }
-
     private func getViewController() -> UIViewController? {
         var responder: UIResponder? = self
         while let nextResponder = responder?.next {

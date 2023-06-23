@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ExploreDetailsDelegate: AnyObject {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+}
+
 class ExploreDetails: UIView {
     enum Constants {
         static let idExploreDetailsCell: String = "idExploreDetailsCell"
@@ -15,6 +19,7 @@ class ExploreDetails: UIView {
         static let collectionViewTrailingSpacing: CGFloat = 16.0
     }
 
+  weak var delegate: ExploreDetailsDelegate?
   var genreID: Int
   var songs: [Entry] = [] {
     didSet {
@@ -51,7 +56,6 @@ class ExploreDetails: UIView {
       setConstraints()
       setDelegates()
       fetchPopularMusic(genre: genreID)
-      print(genreID)
   }
     
     required init?(coder: NSCoder) {

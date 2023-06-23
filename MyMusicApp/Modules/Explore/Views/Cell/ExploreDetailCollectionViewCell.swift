@@ -105,7 +105,7 @@ extension ExploreDetailCollectionViewCell {
           NSLayoutConstraint.activate([
               authorMusicLabel.topAnchor.constraint(equalTo: nameMusicLabel.bottomAnchor, constant: Constants.authorMusicLabelTopSpacing),
               authorMusicLabel.leadingAnchor.constraint(equalTo: musicImage.trailingAnchor, constant: Constants.authorMusicLabelLeadingSpacing),
-              authorMusicLabel.widthAnchor.constraint(equalToConstant: 190)
+              nameMusicLabel.widthAnchor.constraint(equalToConstant: 190)
           ])
           settingsButton.translatesAutoresizingMaskIntoConstraints = false
           NSLayoutConstraint.activate([

@@ -15,10 +15,13 @@ class TopicCollectionViewCell: UICollectionViewCell {
   
     //MARK: - Create UI
     
-    private lazy var genreMusicImage: UIImageView = {
+     lazy var genreMusicImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "hiphop")
         image.layer.cornerRadius = 4
+        image.contentMode = .scaleAspectFill
+        image.layer.masksToBounds = true
+
         return image
     }()
     
@@ -44,17 +47,18 @@ class TopicCollectionViewCell: UICollectionViewCell {
 }
 
 extension TopicCollectionViewCell {
-    private func setConstraints() {
-        genreMusicImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            genreMusicImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            genreMusicImage.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-        genreMusicLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            genreMusicLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            genreMusicLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-    }
-}
+  private func setConstraints() {
+      genreMusicImage.translatesAutoresizingMaskIntoConstraints = false
+      genreMusicLabel.translatesAutoresizingMaskIntoConstraints = false
 
+      NSLayoutConstraint.activate([
+          genreMusicImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+          genreMusicImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+          genreMusicImage.widthAnchor.constraint(equalToConstant: 105),
+          genreMusicImage.heightAnchor.constraint(equalToConstant: 70),
+
+          genreMusicLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+          genreMusicLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+      ])
+  }
+}
