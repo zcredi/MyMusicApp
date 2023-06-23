@@ -67,17 +67,33 @@ class RecommendedCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func configureCell(with musicResult: Entry, songNumber: Int) {
-    nameLabel.text = musicResult.name.label
-    authorLabel.text = musicResult.artist.label
-    songNumberLabel.text = songNumber.description
-    if let imageUrlString = musicResult.images.first?.label,
-       let imageUrl = URL(string: imageUrlString) {
-      songImageView.kf.setImage(with: imageUrl)
-    } else {
-      songImageView.image = nil
+    public func configure(model: RecentlyModel, songNumber: Int) {
+        nameLabel.text = model.songName
+        authorLabel.text = model.songAuthor
+        
+        if model.songStatus {
+            playButton.setImage(UIImage(systemName: "stop"), for: .normal)
+        } else {
+            playButton.setImage(UIImage(systemName: "play"), for: .normal)
+        }
+        
+        guard let imageData = model.songImage,
+              let image = UIImage(data: imageData) else { return }
+        songImageView.image = image
     }
-  }
+    
+    
+//  func configureCell(with musicResult: Entry, songNumber: Int) {
+//    nameLabel.text = musicResult.name.label
+//    authorLabel.text = musicResult.artist.label
+//    songNumberLabel.text = songNumber.description
+//    if let imageUrlString = musicResult.images.first?.label,
+//       let imageUrl = URL(string: imageUrlString) {
+//      songImageView.kf.setImage(with: imageUrl)
+//    } else {
+//      songImageView.image = nil
+//    }
+//  }
   
   private func setupViews() {
     backgroundColor = .clear
