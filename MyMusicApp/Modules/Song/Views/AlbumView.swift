@@ -32,7 +32,7 @@ final class AlbumView {
         let label = UILabel()
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.backgroundColor = .systemGray.withAlphaComponent(0.4)
+        label.backgroundColor = .systemGray.withAlphaComponent(0.5)
         label.numberOfLines = 1
         label.text = "Come to me"
         label.font = .robotoBold36()
@@ -45,7 +45,7 @@ final class AlbumView {
         let label = UILabel()
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.backgroundColor = .systemGray.withAlphaComponent(0.4)
+        label.backgroundColor = .systemGray.withAlphaComponent(0.5)
         label.text = "One Republic"
         label.font = .robotoRegular18()
         label.textColor = .neutralWhite
@@ -58,7 +58,7 @@ final class AlbumView {
         label.numberOfLines = 0
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.backgroundColor = .systemGray.withAlphaComponent(0.4)
+        label.backgroundColor = .systemGray.withAlphaComponent(0.5)
         
         DispatchQueue.main.async {
             label.addTrailing(with: "...",

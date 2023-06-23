@@ -50,8 +50,8 @@ class FavoritesViewCell: UITableViewCell {
     let favoritesButton: UIButton = {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        button.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
-        button.tintColor = .neutralWhite
+        button.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        button.tintColor = .brandGreen
         button.addTarget(self, action: #selector(favoritesButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -74,7 +74,12 @@ class FavoritesViewCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configureCell(model: CustomCellModel) {
-        avatarImageView.image = UIImage(systemName: model.avatarImageString)
+        if let imageUrl = URL(string: model.avatarImageString) {
+         avatarImageView.kf.setImage(with: imageUrl)
+        } else {
+            avatarImageView.image = nil
+        }
+        
         songLabel.text = model.title
         artistLabel.text = model.subtitle
     }
@@ -85,10 +90,10 @@ extension FavoritesViewCell {
     
     private func setViews() {
         backgroundColor = .clear
-        addSubview(avatarImageView)
-        addSubview(songLabel)
-        addSubview(artistLabel)
-        addSubview(favoritesButton)
+        contentView.addSubview(avatarImageView)
+        contentView.addSubview(songLabel)
+        contentView.addSubview(artistLabel)
+        contentView.addSubview(favoritesButton)
     }
     
     private func setupConstraints() {

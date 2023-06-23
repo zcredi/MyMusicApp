@@ -41,10 +41,16 @@ final class AlbumViewController: UIViewController {
         setConstraints()
     }
     
-    func configurateView(model: Entry, image: UIImage) {
-        albumView.backgroundImageView.image = image
-        albumView.songNameLabel.text = model.name.label
-        albumView.performerNameLabel.text = model.artist.label
+    func configureCell(with musicResult: Entry) {
+        albumView.songNameLabel.text = musicResult.name.label
+        albumView.performerNameLabel.text = musicResult.artist.label
+      
+      if let imageUrlString = musicResult.images.first?.label,
+         let imageUrl = URL(string: imageUrlString) {
+          albumView.backgroundImageView.kf.setImage(with: imageUrl)
+      } else {
+          albumView.backgroundImageView.image = nil
+      }
     }
     
 }

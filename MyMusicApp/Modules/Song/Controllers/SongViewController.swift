@@ -9,10 +9,13 @@ import UIKit
 import SnapKit
 import SwiftUI
 
-final class SongViewController: UIViewController {
+final class SongViewController: UIViewController, SongViewControllerProtocol {
+    
+    weak var favoriteVC: FavoritesViewControllerProtocol?
     
     private var songView = SongView()
     private let musicPlayer = MusicPlayer.instance
+    private var currentTrackModel: Entry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,28 @@ final class SongViewController: UIViewController {
         setConstraints()
         setTargets()
         updateButtonImage(isPlay: false)
+    }
+    
+    func configureCell(with musicResult: Entry) {
+        currentTrackModel = musicResult
+        
+        songView.songNameLabel.text = musicResult.name.label
+        songView.performerNameLabel.text = musicResult.artist.label
+        
+        if let imageUrlString = musicResult.images.first?.label,
+           let imageUrl = URL(string: imageUrlString) {
+            songView.songImageView.kf.setImage(with: imageUrl)
+        } else {
+            songView.songImageView.image = nil
+        }
+        
+        guard let favoriteVC = favoriteVC, let currentTrackModel = currentTrackModel else { return }
+        
+        if favoriteVC.isCurrentSongFavorite(selectedSong: currentTrackModel) {
+            songView.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            songView.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
     
     private func setTargets() {
@@ -42,15 +67,31 @@ final class SongViewController: UIViewController {
         return Float(minute + (seconds / 100))
     }
     
+    private func addToFavoriteMusic() {
+        guard let currentTrackModel = currentTrackModel else { return }
+        favoriteVC?.appendFavoriteSong(currentTrackModel)
+    }
+    
+    private func removeFromFavoriteMusic() {
+        guard let currentTrackModel = currentTrackModel, let favoriteVC = favoriteVC else { return }
+        
+        if favoriteVC.isCurrentSongFavorite(selectedSong: currentTrackModel) {
+            favoriteVC.removeSongFromFavorites(selectedSong: currentTrackModel)
+        }
+    }
+    
     @objc private func backHome() {
         dismiss(animated: true)
     }
     
     @objc func changeStatusLikeButton() {
+        favoriteVC?.songViewController = self
         if songView.likeButton.imageView?.image == UIImage(systemName: "heart") {
+            addToFavoriteMusic()
             songView.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             songView.likeButton.tintColor = .brandGreen
         } else {
+            removeFromFavoriteMusic()
             songView.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             songView.likeButton.tintColor = .neutralWhite
         }
@@ -80,13 +121,13 @@ final class SongViewController: UIViewController {
         songView.rightSliderLabel.text = "\(convertSecondsToMinutes(Float(duration)))"
         songView.sliderView.maximumValue = Float(duration)
     }
-}
-
-extension SongViewController: SongViewControllerProtocol {
-    func configurateView(model: Entry, image: UIImage) {
-        songView.songImageView.image = image
-        songView.songNameLabel.text = model.name.label
-        songView.performerNameLabel.text = model.artist.label
+    
+    func reloadLikeButton() {
+        guard let favoriteVC = favoriteVC, let currentTrackModel = currentTrackModel else { return }
+        
+        if !favoriteVC.isCurrentSongFavorite(selectedSong: currentTrackModel) {
+            songView.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
     
     func setDurationTime() {

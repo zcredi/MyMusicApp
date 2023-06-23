@@ -9,10 +9,12 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
+    var songViewController: SongViewControllerProtocol?
+    
     private let label = UILabel()
     private let tableView = UITableView()
     
-    private let customArray = CustomCellModel.getCustomArray()
+    private var customArray = CustomCellModel.getCustomArray()
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -21,10 +23,40 @@ class FavoritesViewController: UIViewController {
         configureLabel()
         configureTableView()
         setupConstraints()
+        songViewController?.favoriteVC = self
     }
-    
+ 
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
+    }
+}
+
+extension FavoritesViewController: FavoritesViewControllerProtocol {
+    func appendFavoriteSong(_ model: Entry) {
+        let urlString = model.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href
+        customArray.append(CustomCellModel(avatarImageString: model.images.first?.label ?? "",
+                                           title: model.name.label,
+                                           subtitle: model.artist.label,
+                                           album: "",
+                                           url: urlString ?? ""))
+        tableView.reloadData()
+    }
+    
+    func removeSongFromFavorites(selectedSong: Entry) {
+        guard let foundedURLString = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href else { return }
+        
+        guard let index = customArray.firstIndex(where: { $0.url == foundedURLString }) else { return }
+        
+        customArray.remove(at: index)
+        tableView.reloadData()
+    }
+    
+    func isCurrentSongFavorite(selectedSong: Entry) -> Bool {
+        guard let foundedURLString = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href else { return false }
+        
+        return customArray.contains { song in
+            song.url == foundedURLString
+        }
     }
 }
 
@@ -43,7 +75,7 @@ extension FavoritesViewController {
         label.text = "Favorites"
         label.textAlignment = .left
     }
-        
+    
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.backgroundColor = .clear
@@ -70,6 +102,7 @@ extension FavoritesViewController: UITableViewDataSource {
         }
         
         cell.configureCell(model: customArray[indexPath.row])
+        cell.delegate = self
         return cell
     }
 }
@@ -90,7 +123,7 @@ extension FavoritesViewController: UITableViewDelegate {
 extension FavoritesViewController {
     
     private func setupConstraints() {
-                
+        
         label.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.leading.equalToSuperview().inset(23)
@@ -113,9 +146,11 @@ extension FavoritesViewController: CellDelegate {
         let alertController = UIAlertController(title: "Delete frome Favorites?", message: "", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.customArray.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.songViewController?.reloadLikeButton()
         }
-       
+        
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)

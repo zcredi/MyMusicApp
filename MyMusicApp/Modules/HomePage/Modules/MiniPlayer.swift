@@ -17,6 +17,8 @@ class MiniPlayerVC: UIView {
     
     weak var delegate: MiniPlayerViewDelegate?
     
+    private let musicPlayer = MusicPlayer.instance
+    
     private let backgroundView = UIView()
     private let songImageView = UIImageView()
     let songTitleLabel = UILabel()
@@ -84,11 +86,11 @@ class MiniPlayerVC: UIView {
             songTitleLabel.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 8),
             songTitleLabel.topAnchor.constraint(equalTo: songImageView.topAnchor, constant: -2),
             songTitleLabel.widthAnchor.constraint(equalToConstant: 180),
-
+            
             songArtist.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 8),
             songArtist.bottomAnchor.constraint(equalTo: songImageView.bottomAnchor, constant: -2),
             songArtist.widthAnchor.constraint(equalToConstant: 180),
-
+            
             backButton.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -30),
             backButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             
@@ -103,11 +105,11 @@ class MiniPlayerVC: UIView {
     func updateSongTitle(_ title: String) {
         songTitleLabel.text = title
     }
-
+    
     func updateSongArtist(_ title: String) {
         songArtist.text = title
     }
-
+    
     func updateSongImage(_ image: UIImage?) {
         songImageView.image = image
     }
@@ -122,9 +124,11 @@ class MiniPlayerVC: UIView {
     
     private func addGestureToBackgroundView() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(switchToSongPageViewController))
+        let removeGesture = UISwipeGestureRecognizer(target: self, action: #selector(removeMiniPlayerFromParentView))
         
         backgroundView.isUserInteractionEnabled = true
         backgroundView.addGestureRecognizer(gesture)
+        backgroundView.addGestureRecognizer(removeGesture)
     }
     
     @objc private func switchToSongPageViewController() {
@@ -147,10 +151,19 @@ class MiniPlayerVC: UIView {
     @objc private func forwardButtonTapped() {
         delegate?.forwardButtonTapped()
     }
-
-    func closeMiniPlayer() {
-      self.removeFromSuperview()
     
-  }
-
+    @objc func removeMiniPlayerFromParentView() {
+        UIView.animate(withDuration: 1) {
+            self.alpha = 0
+        } completion: { [weak self] _ in
+            guard let self = self else { return }
+            self.closeMiniPlayer()
+            self.alpha = 1
+        }
+    }
+    
+    func closeMiniPlayer() {
+        self.removeFromSuperview()
+        musicPlayer.pauseMusic()
+    }
 }

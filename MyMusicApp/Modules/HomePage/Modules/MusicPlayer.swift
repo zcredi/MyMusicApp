@@ -28,13 +28,6 @@ class MusicPlayer {
   private var playerItem: AVPlayerItem?
   var currentURL: String?
   private var currentSongIndex: Int = 0
-  var musicModel: SongInfo? {
-    didSet {
-      if let musicModel = musicModel {
-        songController?.configurateView(model: musicModel.model, image: musicModel.image)
-      }
-    }
-  }
 
   private var currentPlayerType: PlayerType = .musicResults
 
