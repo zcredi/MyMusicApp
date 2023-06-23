@@ -36,7 +36,9 @@ class MainTabBarController: UITabBarController {
         let favorites = FavoritesViewController()
         let profile = ProfileViewController()
         
-
+        homepage.bindFavoriteViewController(controller: favorites)
+        
+        
         setViewControllers([homepage, explore, favorites, profile], animated: true)
         
         guard let items = tabBar.items else { return }

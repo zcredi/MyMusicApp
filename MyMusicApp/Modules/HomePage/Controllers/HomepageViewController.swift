@@ -36,9 +36,9 @@ class HomepageViewController: UIViewController {
     private let recentlyMusicLabel = UILabel()
     private let recentlyMusicTableView = RecentlyMusicTableView()
     
-    private let songPageViewController = SongPageViewController()
     private let musicPlayer = MusicPlayer.instance
     private let miniPlayerVC = MiniPlayerVC()
+    private let songPageViewController = SongPageViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,14 +55,12 @@ class HomepageViewController: UIViewController {
         musicPlayer.delegate = self
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        miniPlayerVC.removeFromSuperview()
-        miniPlayerVC.isUserInteractionEnabled = false
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func bindFavoriteViewController(controller: FavoritesViewControllerProtocol) {
+        songPageViewController.setFavoriteViewController(controller: controller)
     }
     
     func showMiniPlayer() {
@@ -299,8 +297,7 @@ extension HomepageViewController: MusicPlayerDelegate {
                 DispatchQueue.main.async {
                     if let imageData = data, let image = UIImage(data: imageData) {
                         self.miniPlayerVC.updateSongImage(image)
-                        self.songPageViewController.songInfo = SongInfo(model: musicResult, image: image)
-                        self.musicPlayer.musicModel = SongInfo(model: musicResult, image: image)
+                        self.songPageViewController.trackInfo = musicResult
                     } else {
                         self.miniPlayerVC.updateSongImage(nil)
                     }
