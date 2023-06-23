@@ -17,7 +17,7 @@ class ProfileView: UIView {
     
     weak var delegate: ProfileViewDelegate?
     
-    let accountLabel: UILabel = {
+    private let accountLabel: UILabel = {
         let label = UILabel()
         label.text = "Account"
         label.textColor = .neutralWhite
@@ -27,22 +27,21 @@ class ProfileView: UIView {
         return label
     }()
     
-    let settingsButton: UIButton = {
+    private let settingsButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "settings"), for: .normal)
         button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
         return button
     }()
     
-    let profileImage: UIImageView = {
+    private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.image = UIImage(systemName: "person")
-        image.clipsToBounds = true
+        image.image = UIImage(named: "profileMock")
         return image
     }()
     
-    let libraryLabel: UILabel = {
+    private let libraryLabel: UILabel = {
         let label = UILabel()
         label.text = "Library"
         label.textColor = .neutralWhite
@@ -52,9 +51,9 @@ class ProfileView: UIView {
         return label
     }()
     
-    let myPlaylistView = MyPlaylistView()
-    let notificationView = NotificationView()
-    let downloadView = DownloadView()
+    private let myPlaylistView = MyPlaylistView()
+    private let notificationView = NotificationView()
+    private let downloadView = DownloadView()
     
     private let signOutButton: UIButton = {
         let button = UIButton(type: .system)
@@ -104,7 +103,7 @@ extension ProfileView {
         }
         
         settingsButton.snp.makeConstraints { make in
-            make.centerY.equalTo(accountLabel.snp.centerY)
+            make.top.equalToSuperview().inset(86)
             make.trailing.equalToSuperview().inset(26)
             make.width.height.equalTo(20)
         }
@@ -151,12 +150,10 @@ extension ProfileView {
 private extension ProfileView {
     
     @objc func settingsButtonPressed(_ button: UIButton) {
-//        delegate?.profileView(self, settingsButtonPressed: button)
-        print("settingsButtonPressed")
+        delegate?.profileView(self, settingsButtonPressed: button)
     }
     
     @objc func signOutButtonPressed(_ button: UIButton) {
-//        delegate?.profileView(self, signOutButtonPressed: button)
-        print("signOutButtonPressed")
+        delegate?.profileView(self, signOutButtonPressed: button)
     }
 }

@@ -16,14 +16,14 @@ class MyPlaylistView: UIView {
     
     weak var delegate: MyPlaylistViewDelegate?
     
-    let myPlaylistImage: UIImageView = {
+    private let myPlaylistImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "playlist")
         image.contentMode = .scaleAspectFit
         return image
     }()
     
-    let myPlaylistLabel: UILabel = {
+    private let myPlaylistLabel: UILabel = {
         let label = UILabel()
         label.text = "My playlist"
         label.textColor = .neutralWhite
@@ -33,14 +33,14 @@ class MyPlaylistView: UIView {
         return label
     }()
     
-    let myPlaylistButton: UIButton = {
+    private let myPlaylistButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "vector"), for: .normal)
         button.addTarget(self, action: #selector(myPlaylistButtonPressed), for: .touchUpInside)
         return button
     }()
     
-    let dividerImage: UIImageView = {
+    private let dividerImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "divider")
         image.contentMode = .scaleAspectFit

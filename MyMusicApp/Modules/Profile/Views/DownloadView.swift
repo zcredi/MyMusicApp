@@ -16,14 +16,14 @@ class DownloadView: UIView {
     
     weak var delegate: DownloadViewDelegate?
     
-    let downloadImage: UIImageView = {
+    private let downloadImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "downloadIcon")
         image.contentMode = .scaleAspectFit
         return image
     }()
     
-    let downloadLabel: UILabel = {
+    private let downloadLabel: UILabel = {
         let label = UILabel()
         label.text = "Download"
         label.textColor = .neutralWhite
@@ -33,14 +33,14 @@ class DownloadView: UIView {
         return label
     }()
     
-    let downloadButton: UIButton = {
+    private let downloadButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "vector"), for: .normal)
         button.addTarget(self, action: #selector(downloadButtonPressed), for: .touchUpInside)
         return button
     }()
     
-    let dividerImage: UIImageView = {
+    private let dividerImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "divider")
         image.contentMode = .scaleAspectFit
