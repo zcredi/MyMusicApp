@@ -54,6 +54,7 @@
 		7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD002A38BD73004E560F /* AlbumView.swift */; };
 		7EDADD062A38E7E7004E560F /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDADD052A38E7E7004E560F /* AlbumTableViewCell.swift */; };
 		864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DD82A3F498F00D3DB7E /* ExploreDetails.swift */; };
+		864F5DDC2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */; };
 		864F5DDD2A3F499600D3DB7E /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */; };
 		864F5DE72A409A5200D3DB7E /* CustomCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE02A409A5200D3DB7E /* CustomCellModel.swift */; };
 		864F5DE82A409A5200D3DB7E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F5DE12A409A5200D3DB7E /* Categories.swift */; };
@@ -81,9 +82,6 @@
 		CE22E45E2A3B9950002B8925 /* SignUpPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */; };
 		CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */; };
 		CE22E4622A3CCC2F002B8925 /* PasswordConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */; };
-		CE22E4642A40A74E002B8925 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE22E4632A40A74E002B8925 /* GoogleService-Info.plist */; };
-		CE22E4662A40ABF6002B8925 /* RecentlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22E4652A40ABF6002B8925 /* RecentlyCollectionViewCell.swift */; };
-		CE2FFE152A41FE2400510E6B /* WelcomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FFE142A41FE2400510E6B /* WelcomePageView.swift */; };
 		CE6AD4022A3B66AB008FFC72 /* AuthPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -161,9 +159,6 @@
 		CE22E45D2A3B9950002B8925 /* SignUpPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageView.swift; sourceTree = "<group>"; };
 		CE22E45F2A3CB912002B8925 /* ForgotPasswordPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPageView.swift; sourceTree = "<group>"; };
 		CE22E4612A3CCC2F002B8925 /* PasswordConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConfirmationView.swift; sourceTree = "<group>"; };
-		CE22E4632A40A74E002B8925 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CE22E4652A40ABF6002B8925 /* RecentlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE2FFE142A41FE2400510E6B /* WelcomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomePageView.swift; path = MyMusicApp/Modules/Explore/Views/Cell/WelcomePageView.swift; sourceTree = SOURCE_ROOT; };
 		CE6AD4012A3B66AA008FFC72 /* AuthPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,7 +171,6 @@
 				7EDADCF62A385679004E560F /* SnapKit in Frameworks */,
 				866D44312A3367CC00A64A2D /* RealmSwift in Frameworks */,
 				866D442F2A3367CC00A64A2D /* Realm in Frameworks */,
-				4FC6A35E28F692198E88CF50 /* Pods_MyMusicApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,8 +323,6 @@
 			children = (
 				866D44182A3366D200A64A2D /* MyMusicApp */,
 				866D44172A3366D200A64A2D /* Products */,
-				FA67203F7494DE204F55407F /* Pods */,
-				D9E65D23E9035F393D2FEC2F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -345,12 +337,11 @@
 		866D44182A3366D200A64A2D /* MyMusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE2FFE0D2A40CFD500510E6B /* Common */,
+				CE6AD3F52A3B6366008FFC72 /* Common */,
 				86CE79FA2A371A3600663854 /* Modules */,
 				866D44342A3368AC00A64A2D /* UIConstants */,
 				866D44352A3368CC00A64A2D /* Service */,
 				866D44272A3366D300A64A2D /* Info.plist */,
-				CE22E4632A40A74E002B8925 /* GoogleService-Info.plist */,
 			);
 			path = MyMusicApp;
 			sourceTree = "<group>";
@@ -473,7 +464,7 @@
 		86CE7A212A38A6B700663854 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				CE2FFE0F2A40CFEE00510E6B /* Models */,
+				86CE7A242A38A6E100663854 /* Models */,
 				86CE7A232A38A6DC00663854 /* Views */,
 				86CE7A222A38A6CC00663854 /* Controllers */,
 			);
@@ -503,6 +494,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		86CE7A242A38A6E100663854 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		86CE7A282A38A87F00663854 /* UIKIt */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +512,7 @@
 		86CE7A2D2A38C29300663854 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				864F5DDA2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift */,
 				864F5DDB2A3F499600D3DB7E /* TopicCollectionViewCell.swift */,
 				867CFF2A2A41E89100BD3D53 /* ExploreDetailCollectionViewCell.swift */,
 				867CFF302A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift */,
@@ -521,63 +520,48 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		CE2FFE0C2A40CFB800510E6B /* Controllers */ = {
+		CE6AD3F52A3B6366008FFC72 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		CE2FFE0D2A40CFD500510E6B /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				CE2FFE0E2A40CFDF00510E6B /* Managers */,
+				CE6AD3F62A3B6373008FFC72 /* Managers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		CE2FFE0E2A40CFDF00510E6B /* Managers */ = {
+		CE6AD3F62A3B6373008FFC72 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		CE2FFE0F2A40CFEE00510E6B /* Models */ = {
+		CE6AD3F72A3B6383008FFC72 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				CE6AD3F92A3B6392008FFC72 /* Controllers */,
+				CE6AD3F82A3B638C008FFC72 /* Views */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		CE6AD3F82A3B638C008FFC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Models;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		CE2FFE122A41FDFA00510E6B /* Controllers */ = {
+		CE6AD3F92A3B6392008FFC72 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		CE2FFE132A41FE0800510E6B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				CE2FFE142A41FE2400510E6B /* WelcomePageView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		CE6AD3F72A3B6383008FFC72 /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				CE2FFE132A41FE0800510E6B /* Views */,
-				CE2FFE122A41FDFA00510E6B /* Controllers */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
 		CE6AD3FA2A3B63A5008FFC72 /* AuthPage */ = {
 			isa = PBXGroup;
 			children = (
-				CE2FFE0C2A40CFB800510E6B /* Controllers */,
+				CE6AD3FC2A3B63CF008FFC72 /* Controllers */,
 				CE6AD3FB2A3B63C8008FFC72 /* Views */,
 			);
 			path = AuthPage;
@@ -594,21 +578,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D9E65D23E9035F393D2FEC2F /* Frameworks */ = {
+		CE6AD3FC2A3B63CF008FFC72 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				38B0186A46032D4AD7E9F0E1 /* Pods_MyMusicApp.framework */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FA67203F7494DE204F55407F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0A80301972C1496163CD83E7 /* Pods-MyMusicApp.debug.xcconfig */,
-				77DBB1EC3FFC76DE07FD40BB /* Pods-MyMusicApp.release.xcconfig */,
-			);
-			path = Pods;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,11 +592,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 866D442A2A3366D300A64A2D /* Build configuration list for PBXNativeTarget "MyMusicApp" */;
 			buildPhases = (
-				EBE4ECC1C4FAEEBB8D9E88C6 /* [CP] Check Pods Manifest.lock */,
 				866D44122A3366D200A64A2D /* Sources */,
 				866D44132A3366D200A64A2D /* Frameworks */,
 				866D44142A3366D200A64A2D /* Resources */,
-				59D90182F24A97866CBA6B1C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -693,48 +665,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		59D90182F24A97866CBA6B1C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyMusicApp/Pods-MyMusicApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyMusicApp/Pods-MyMusicApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyMusicApp/Pods-MyMusicApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EBE4ECC1C4FAEEBB8D9E88C6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MyMusicApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		866D44122A3366D200A64A2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -781,7 +711,6 @@
 				867CFF2D2A41F26800BD3D53 /* AlbumTopicViewController.swift in Sources */,
 				864F5DED2A409A6E00D3DB7E /* TopicView.swift in Sources */,
 				86CE7A202A375F9500663854 /* ProfileViewController.swift in Sources */,
-				CE2FFE152A41FE2400510E6B /* WelcomePageView.swift in Sources */,
 				864F5DD92A3F498F00D3DB7E /* ExploreDetails.swift in Sources */,
 				867CFF312A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift in Sources */,
 				864F5DFB2A40B7C300D3DB7E /* ExploreDetailViewController.swift in Sources */,
@@ -790,7 +719,6 @@
 				43F5409A2A4313660084C6B6 /* DownloadView.swift in Sources */,
 				864F5DEA2A409A5200D3DB7E /* ResultViewCell.swift in Sources */,
 				CE22E4602A3CB912002B8925 /* ForgotPasswordPageView.swift in Sources */,
-				CE22E4662A40ABF6002B8925 /* RecentlyCollectionViewCell.swift in Sources */,
 				573F6D9F2A3A208D002990D8 /* AppDelegate.swift in Sources */,
 				435909772A44864A00CE10EC /* ProfileSettingsView.swift in Sources */,
 				7E14C1C82A4458BA0000587D /* SongViewControllerProtocol.swift in Sources */,
@@ -949,7 +877,6 @@
 		};
 		866D442B2A3366D300A64A2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A80301972C1496163CD83E7 /* Pods-MyMusicApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -982,7 +909,6 @@
 		};
 		866D442C2A3366D300A64A2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77DBB1EC3FFC76DE07FD40BB /* Pods-MyMusicApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class AuthPageView: UIViewController {
     
@@ -34,7 +33,7 @@ class AuthPageView: UIViewController {
         return label
     }()
         
-    let emailInput: UITextField = {
+    private let emailInput: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "E-mail",
@@ -64,7 +63,7 @@ class AuthPageView: UIViewController {
 
     }()
     
-    let passwordInput: UITextField = {
+    private let passwordInput: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "Password",
@@ -112,7 +111,7 @@ class AuthPageView: UIViewController {
         button.layer.cornerRadius = 4
         button.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(signInPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToHomePage), for: .touchUpInside)
         return button
     }()
     
@@ -182,38 +181,20 @@ class AuthPageView: UIViewController {
     @objc func togglePasswordVisibility() {
         passwordInput.isSecureTextEntry.toggle()
     }
-
+    
     @objc func goToForgotPasswordPage() {
         let forgotPasswordVC = ForgotPasswordPageView()
         navigationController?.pushViewController(forgotPasswordVC, animated: true)
     }
-
+    
     @objc func goToSignUpPage() {
         let signUpVC = SignUpPageView()
         navigationController?.pushViewController(signUpVC, animated: true)
     }
-
-    @objc func signInPressed() {
-
-        if let email = emailInput.text, let password = passwordInput.text {
-
-            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-
-                if let e = error {
-                    let ac = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
-                    self.present(ac, animated: true, completion: nil)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    ac.addAction(okAction)
-                    return
-                } else {
-                    let homePageVC = HomepageViewController()
-                    self.navigationController?.pushViewController(homePageVC, animated: true)
-                }
-
-            }
-
-        }
-
+    
+    @objc func goToHomePage() {
+        let homePageVC = HomepageViewController()
+        navigationController?.pushViewController(homePageVC, animated: true)
     }
 
     

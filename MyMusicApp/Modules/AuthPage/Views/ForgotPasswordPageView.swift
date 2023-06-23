@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Firebase
-import Network
 
 class ForgotPasswordPageView: UIViewController {
     
@@ -72,7 +70,7 @@ class ForgotPasswordPageView: UIViewController {
         button.layer.cornerRadius = 4
         button.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToPasswordConfirmationPage), for: .touchUpInside)
         return button
     }()
 
@@ -99,27 +97,9 @@ class ForgotPasswordPageView: UIViewController {
         navigationController?.pushViewController(signInVC, animated: true)
     }
     
-    @objc func sendPressed() {
-        
-        if let email = emailInput.text {
-        
-            Auth.auth().sendPasswordReset(withEmail: email) { error in
-                
-                if let e = error {
-                    let ac = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    self.present(ac, animated: true, completion: nil)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    ac.addAction(okAction)
-                    return
-                } else {
-                    let passwordConfirmationVC = PasswordConfirmationView()
-                    self.navigationController?.pushViewController(passwordConfirmationVC, animated: true)
-                }
-            
-            }
-        
-        }
-
+    @objc func goToPasswordConfirmationPage() {
+        let passwordConfirmationVC = PasswordConfirmationView()
+        navigationController?.pushViewController(passwordConfirmationVC, animated: true)
     }
 
     
