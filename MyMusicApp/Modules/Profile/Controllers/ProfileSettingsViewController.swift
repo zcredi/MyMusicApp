@@ -13,13 +13,10 @@ class ProfileSettingsViewController: UIViewController {
     // MARK: - Private Properties
     private let profileSettingsView = ProfileSettingsView()
     
-    private let imagePicker = UIImagePickerController()
-    
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         profileSettingsView.delegate = self
-        imagePicker.delegate = self
         configureVC()
         setViews()
         setupConstraints()
@@ -58,9 +55,7 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
     }
     
     func profileSettingsView(_ view: ProfileSettingsView, cameraButtonPressed button: UIButton) {
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.mediaTypes = ["public.image"]
-        present(imagePicker, animated: true, completion: nil)
+        print("cameraButtonPressed")
     }
     
     func profileSettingsView(_ view: ProfileSettingsView, changePasswordButtonPressed button: UIButton) {
@@ -76,13 +71,8 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
                                      style: .default) { (_) in
             self.changePassword()
         }
-        
-        cancelAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
-        okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
-        
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
-        alertController.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
         present(alertController, animated: true, completion: nil)
     }
     
@@ -95,17 +85,3 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
 
 }
 
-// MARK: - UINavigationControllerDelegate, UIImagePickerControllerDelegate
-extension ProfileSettingsViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.originalImage] as! UIImage
-        profileSettingsView.profileImage.image = image
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-}

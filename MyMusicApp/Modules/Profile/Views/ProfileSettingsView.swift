@@ -10,7 +10,9 @@ import SnapKit
 
 protocol ProfileSettingsViewDelegate: AnyObject {
     func profileSettingsView(_ view: ProfileSettingsView, backButtonPressed button: UIButton)
-    func profileSettingsView(_ view: ProfileSettingsView, cameraButtonPressed button: UIButton)    
+    
+    func profileSettingsView(_ view: ProfileSettingsView, cameraButtonPressed button: UIButton)
+    
     func profileSettingsView(_ view: ProfileSettingsView, changePasswordButtonPressed button: UIButton)
 }
 
@@ -35,7 +37,7 @@ class ProfileSettingsView: UIView {
         return label
     }()
     
-    let profileImage: UIImageView = {
+    private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.image = UIImage(named: "profileMock")
