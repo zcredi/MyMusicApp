@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PasswordConfirmationView: UIViewController {
         
@@ -119,7 +120,7 @@ class PasswordConfirmationView: UIViewController {
         button.layer.cornerRadius = 4
         button.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(goToSignInPage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(changePasswordPressed), for: .touchUpInside)
         return button
     }()
 
@@ -154,9 +155,26 @@ class PasswordConfirmationView: UIViewController {
         confirmPasswordInput.isSecureTextEntry.toggle()
     }
     
-    @objc func goToSignInPage() {
-        let signInVC = AuthPageView()
-        navigationController?.pushViewController(signInVC, animated: true)
+    @objc func changePasswordPressed() {
+        
+        if let password = passwordInput.text, let confirmedPassword = confirmPasswordInput.text {
+        
+            Auth.auth().currentUser?.updatePassword(to: password) { error in
+
+                    if password != confirmedPassword {
+                        let ac = UIAlertController(title: "Error", message: "Passwords are not equal!", preferredStyle: .alert)
+                        self.present(ac, animated: true, completion: nil)
+                        let okAction = UIAlertAction(title: "OK", style: .default)
+                        ac.addAction(okAction)
+                        return
+                    }
+                    let signInVC = AuthPageView()
+                    self.navigationController?.pushViewController(signInVC, animated: true)
+            
+            }
+        
+        }
+
     }
     
     private func setConstraints() {
