@@ -134,123 +134,88 @@ class ExploreViewController: UIViewController {
 
       }
     }
-  }
-  private func setupViews() {
-    view.backgroundColor = .brandBlack
-    view.addSubview(scrollView)
-    scrollView.addSubview(contentView)
-    contentView.addSubview(exploreLabel)
-    contentView.addSubview(searchButton)
-    contentView.addSubview(recentlyLabel)
-    contentView.addSubview(recentlyButton)
-    contentView.addSubview(recentlyView)
-    contentView.addSubview(topTrendingLabel)
-    contentView.addSubview(topTrendingView)
-    contentView.addSubview(topikLabel)
-    contentView.addSubview(topikButton)
-    contentView.addSubview(topicView)
-  }
 }
 
 extension ExploreViewController {
-  private func setConstraints() {
-    NSLayoutConstraint.activate([
-      scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
-      contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-      contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-      contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-      contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-      contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-    ])
-    exploreLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      exploreLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.exploreLabelTopSpacing),
-      exploreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.exploreLabelLeadingSpacing)
-    ])
-    searchButton.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      searchButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.searchButtonTopSpacing),
-      searchButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.searchButtonTrailingSpacing)
-    ])
-    recentlyLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      recentlyLabel.topAnchor.constraint(equalTo: exploreLabel.bottomAnchor, constant: Constants.recentlyLabelTopSpacing),
-      recentlyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.recentlyLabelLeadingSpacing)
-    ])
-    recentlyButton.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      recentlyButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: Constants.recentlyButtonTopSpacing),
-      recentlyButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.recentlyButtonTrailingSpacing)
-    ])
-    recentlyView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      recentlyView.topAnchor.constraint(equalTo: recentlyLabel.bottomAnchor, constant: Constants.recentlyViewTopSpacing),
-      recentlyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.recentlyViewSideSpacing),
-      recentlyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.recentlyViewSideSpacing),
-      recentlyView.heightAnchor.constraint(equalToConstant: Constants.recentlyViewHeightSize)
-    ])
-    topTrendingLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      topTrendingLabel.topAnchor.constraint(equalTo: recentlyView.bottomAnchor, constant: Constants.topTrendingLabelTopSpacing),
-      topTrendingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.topTrendingLabelLeadingSpacing)
-    ])
-    topTrendingView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      topTrendingView.topAnchor.constraint(equalTo: topTrendingLabel.bottomAnchor, constant: 20),
-      topTrendingView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-      topTrendingView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-      topTrendingView.heightAnchor.constraint(equalToConstant: 200),
-    ])
-    topikLabel.translatesAutoresizingMaskIntoConstraints = false
-    topTrendingLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      topikLabel.topAnchor.constraint(equalTo: topTrendingView.bottomAnchor, constant: 66),
-      topikLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24)
-    ])
-    topikButton.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      topikButton.topAnchor.constraint(equalTo: topTrendingView.bottomAnchor, constant: 66),
-      topikButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24)
-    ])
-    topicView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      topicView.topAnchor.constraint(equalTo: topikLabel.bottomAnchor, constant: 10),
-      topicView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-      topicView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-      topicView.heightAnchor.constraint(equalToConstant: 160),
-      topicView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-    ])
-  }
-
-  func showMiniPlayer() {
-    miniPlayerVC.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(miniPlayerVC)
-    NSLayoutConstraint.activate([
-      miniPlayerVC.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      miniPlayerVC.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      miniPlayerVC.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
-      miniPlayerVC.heightAnchor.constraint(equalToConstant: 70)
-    ])
-  }
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                    
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+        ])
+        exploreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            exploreLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.exploreLabelTopSpacing),
+            exploreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.exploreLabelLeadingSpacing)
+        ])
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            searchButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.searchButtonTopSpacing),
+            searchButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.searchButtonTrailingSpacing)
+        ])
+        recentlyLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recentlyLabel.topAnchor.constraint(equalTo: exploreLabel.bottomAnchor, constant: Constants.recentlyLabelTopSpacing),
+            recentlyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.recentlyLabelLeadingSpacing)
+        ])
+        recentlyButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recentlyButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: Constants.recentlyButtonTopSpacing),
+            recentlyButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.recentlyButtonTrailingSpacing)
+        ])
+        recentlyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recentlyView.topAnchor.constraint(equalTo: recentlyLabel.bottomAnchor, constant: Constants.recentlyViewTopSpacing),
+            recentlyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.recentlyViewSideSpacing),
+            recentlyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.recentlyViewSideSpacing),
+            recentlyView.heightAnchor.constraint(equalToConstant: Constants.recentlyViewHeightSize)
+        ])
+        topTrendingLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topTrendingLabel.topAnchor.constraint(equalTo: recentlyView.bottomAnchor, constant: Constants.topTrendingLabelTopSpacing),
+            topTrendingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.topTrendingLabelLeadingSpacing)
+        ])
+        topTrendingView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topTrendingView.topAnchor.constraint(equalTo: topTrendingLabel.bottomAnchor, constant: 20),
+            topTrendingView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            topTrendingView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            topTrendingView.heightAnchor.constraint(equalToConstant: 200),
+        ])
+        topikLabel.translatesAutoresizingMaskIntoConstraints = false
+        topTrendingLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topikLabel.topAnchor.constraint(equalTo: topTrendingView.bottomAnchor, constant: 66),
+            topikLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24)
+        ])
+        topikButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topikButton.topAnchor.constraint(equalTo: topTrendingView.bottomAnchor, constant: 66),
+            topikButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24)
+        ])
+        topicView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topicView.topAnchor.constraint(equalTo: topikLabel.bottomAnchor, constant: 10),
+            topicView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            topicView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            topicView.heightAnchor.constraint(equalToConstant: 160),
+            topicView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
 }
 
-extension ExploreViewController: TopTrendingViewDelegate {
-
-  func topTrendingView(_ topTrendingView: TopTrendingView, didSelectSongAt indexPath: IndexPath) {
-    let selectedSong = topTrendingView.songs[indexPath.row]
-    if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
-      showMiniPlayer()
-      if musicPlayer.isPlayingMusic(from: audioURL) {
-        musicPlayer.pauseMusic()
-      } else {
-        musicPlayer.loadPlayer(from: audioURL, playerType: .musicResults)
-      }
-    } else {
-      print("Error: No audio URL available")
+extension ExploreViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Обработка нажатия на кнопку поиска
+        let searchText = searchBar.text ?? ""
+        print("Searching for '\(searchText)'")
     }
   }
 }
