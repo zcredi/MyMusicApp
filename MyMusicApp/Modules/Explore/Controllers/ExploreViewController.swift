@@ -84,7 +84,7 @@ class ExploreViewController: UIViewController {
     fetchPopularMusic()
     topTrendingView.delegate = self
     miniPlayerVC.delegate = self
-    musicPlayer.delegate = self
+//    musicPlayer.delegate = self
     miniPlayerVC.setupCurrentViewController(controller: self)
     miniPlayerVC.setupTargetController(controller: songPageViewController)
   }
@@ -269,34 +269,35 @@ extension ExploreViewController: MiniPlayerViewDelegate {
   }
 }
 
-extension ExploreViewController: MusicPlayerDelegate {
+extension ExploreViewController {
+    
 
-  func updateCurrentURL(_ url: String) {
-    guard let musicResult = getMusicResultFromURL(url)
-    else {
-      miniPlayerVC.updateSongTitle("")
-      miniPlayerVC.updateSongImage(nil)
-      return
-    }
-    miniPlayerVC.updateSongTitle(musicResult.name.label)
-    miniPlayerVC.updateSongArtist(musicResult.artist.label)
-    if let imageUrlString = musicResult.images.first?.label,
-       let imageUrl = URL(string: imageUrlString) {
-      URLSession.shared.dataTask(with: imageUrl) { data, response, error in
-        DispatchQueue.main.async {
-          if let imageData = data, let image = UIImage(data: imageData) {
-            self.miniPlayerVC.updateSongImage(image)
-            self.songPageViewController.songInfo = SongInfo(model: musicResult, image: image)
-            self.musicPlayer.musicModel = SongInfo(model: musicResult, image: image)
-          } else {
-            self.miniPlayerVC.updateSongImage(nil)
-          }
-        }
-      }.resume()
-    } else {
-      miniPlayerVC.updateSongImage(nil)
-    }
-  }
+//  func updateCurrentURL(_ url: String) {
+//    guard let musicResult = getMusicResultFromURL(url)
+//    else {
+//      miniPlayerVC.updateSongTitle("")
+//      miniPlayerVC.updateSongImage(nil)
+//      return
+//    }
+//    miniPlayerVC.updateSongTitle(musicResult.name.label)
+//    miniPlayerVC.updateSongArtist(musicResult.artist.label)
+//    if let imageUrlString = musicResult.images.first?.label,
+//       let imageUrl = URL(string: imageUrlString) {
+//      URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+//        DispatchQueue.main.async {
+//          if let imageData = data, let image = UIImage(data: imageData) {
+//            self.miniPlayerVC.updateSongImage(image)
+//            self.songPageViewController.songInfo = SongInfo(model: musicResult, image: image)
+//            self.musicPlayer.musicModel = SongInfo(model: musicResult, image: image)
+//          } else {
+//            self.miniPlayerVC.updateSongImage(nil)
+//          }
+//        }
+//      }.resume()
+//    } else {
+//      miniPlayerVC.updateSongImage(nil)
+//    }
+//  }
 
   private func getMusicResultFromURL(_ url: String) -> Entry? {
     let entry = Music.shared.musicResults.first { $0.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href  == url }
