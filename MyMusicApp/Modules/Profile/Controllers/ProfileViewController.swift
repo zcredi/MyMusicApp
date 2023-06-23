@@ -70,8 +70,13 @@ extension ProfileViewController: ProfileViewDelegate {
                                      style: .default) { (_) in
             self.signOut()
         }
+        
+        cancelAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+        okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+        
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
+        alertController.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
         present(alertController, animated: true, completion: nil)
     }
     

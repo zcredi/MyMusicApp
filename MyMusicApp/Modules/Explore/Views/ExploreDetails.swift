@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ExploreDetailsDelegate: AnyObject {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+}
+
 class ExploreDetails: UIView {
     enum Constants {
         static let idExploreDetailsCell: String = "idExploreDetailsCell"
@@ -14,12 +18,25 @@ class ExploreDetails: UIView {
         static let collectionViewLeadingSpacing: CGFloat = 12.0
         static let collectionViewTrailingSpacing: CGFloat = 16.0
     }
-    
+
+  weak var delegate: ExploreDetailsDelegate?
+  var genreID: Int
+  var songs: [Entry] = [] {
+    didSet {
+      DispatchQueue.main.async {
+        self.collectionView.reloadData()
+      }
+    }
+  }
+
+  func update(with musicResults: [Entry]) {
+    songs = musicResults
+  }
     //MARK: - Create UI
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -30,14 +47,16 @@ class ExploreDetails: UIView {
     
     //MARK: - Lifecycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        collectionView.register(ExploreDetailCollectionViewCell.self, forCellWithReuseIdentifier: Constants.idExploreDetailsCell)
-        setupViews()
-        setConstraints()
-        setDelegates()
-    }
+  init(genreID: Int) {
+      self.genreID = genreID
+      super.init(frame: .zero)
+
+      collectionView.register(ExploreDetailCollectionViewCell.self, forCellWithReuseIdentifier: Constants.idExploreDetailsCell)
+      setupViews()
+      setConstraints()
+      setDelegates()
+      fetchPopularMusic(genre: genreID)
+  }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -52,7 +71,22 @@ class ExploreDetails: UIView {
         backgroundColor = .clear
         addSubview(collectionView)
     }
-    
+
+   private func fetchPopularMusic(genre: Int) {
+        let urlString = "https://itunes.apple.com/us/rss/topsongs/genre=\(genre)/limit=25/json"
+        let networkService = NetworkService()
+        networkService.fetchMusicDataFromAPI(urlString: urlString) { result in
+            switch result {
+            case .success(let musicResponse):
+                DispatchQueue.main.async {
+                    Music.shared.musicResults = musicResponse.feed.entry
+                    self.update(with: Music.shared.musicResults)
+                }
+            case .failure(let error):
+                print("Error fetching music data: \(error)")
+            }
+        }
+    }
 }
 
 extension ExploreDetails {
@@ -70,16 +104,17 @@ extension ExploreDetails {
 
 extension ExploreDetails: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        songs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.idExploreDetailsCell, for: indexPath) as? ExploreDetailCollectionViewCell else { return UICollectionViewCell() }
-        
+          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.idExploreDetailsCell, for: indexPath) as? ExploreDetailCollectionViewCell else { return UICollectionViewCell() }
+
+          let musicResult = songs[indexPath.item]
+        let songNumber = indexPath.row+1
+        cell.configureCell(with: musicResult, songNumber: songNumber)
         return cell
     }
-    
-    
 }
 
 extension ExploreDetails: UICollectionViewDelegateFlowLayout {
