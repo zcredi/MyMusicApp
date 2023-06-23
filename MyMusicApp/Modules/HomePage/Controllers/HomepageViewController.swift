@@ -39,7 +39,8 @@ class HomepageViewController: UIViewController {
     private let songPageViewController = SongPageViewController()
     private let musicPlayer = MusicPlayer.instance
     private let miniPlayerVC = MiniPlayerVC()
-    
+    private var recentlyArray = [RecentlyModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         miniPlayerVC.setupCurrentViewController(controller: self)
@@ -247,6 +248,13 @@ class HomepageViewController: UIViewController {
             recentlyMusicTableView.heightAnchor.constraint(equalToConstant: 300),
             recentlyMusicTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+}
+
+extension HomepageViewController {
+    func selectItem() {
+        recentlyMusicTableView.setRecentlyArray(recentlyArray)
+        recentlyMusicTableView.reloadData()
     }
 }
 

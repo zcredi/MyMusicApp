@@ -62,6 +62,9 @@
 		867CFF2D2A41F26800BD3D53 /* AlbumTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2C2A41F26800BD3D53 /* AlbumTopicViewController.swift */; };
 		867CFF2F2A41F58800BD3D53 /* AlbumCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2E2A41F58800BD3D53 /* AlbumCollectionView.swift */; };
 		867CFF312A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF302A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift */; };
+		86B9A8E42A44CCFA00A95892 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9A8E32A44CCFA00A95892 /* RealmManager.swift */; };
+		86B9A8E62A44CDAC00A95892 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9A8E52A44CDAC00A95892 /* FavoriteModel.swift */; };
+		86B9A8E92A44D97700A95892 /* RecentlyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9A8E82A44D97700A95892 /* RecentlyModel.swift */; };
 		86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE79FE2A371AD900663854 /* UIColor+App.swift */; };
 		86CE7A012A371AE300663854 /* UIFont+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A002A371AE300663854 /* UIFont+App.swift */; };
 		86CE7A032A371AF300663854 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CE7A022A371AF300663854 /* MainTabBarController.swift */; };
@@ -132,6 +135,9 @@
 		867CFF2C2A41F26800BD3D53 /* AlbumTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTopicViewController.swift; sourceTree = "<group>"; };
 		867CFF2E2A41F58800BD3D53 /* AlbumCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionView.swift; sourceTree = "<group>"; };
 		867CFF302A41FBEC00BD3D53 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		86B9A8E32A44CCFA00A95892 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		86B9A8E52A44CDAC00A95892 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		86B9A8E82A44D97700A95892 /* RecentlyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyModel.swift; sourceTree = "<group>"; };
 		86CE79FE2A371AD900663854 /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		86CE7A002A371AE300663854 /* UIFont+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+App.swift"; sourceTree = "<group>"; };
 		86CE7A022A371AF300663854 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -335,8 +341,17 @@
 				573F6D972A3A208D002990D8 /* API */,
 				573F6D882A3A208D002990D8 /* Applecation */,
 				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
+				86B9A8E32A44CCFA00A95892 /* RealmManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		86B9A8E72A44D95A00A95892 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86B9A8E82A44D97700A95892 /* RecentlyModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		86CE79FA2A371A3600663854 /* Modules */ = {
@@ -391,6 +406,7 @@
 		86CE7A082A371BD400663854 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				86B9A8E72A44D95A00A95892 /* Models */,
 				86CE7A072A371BCA00663854 /* Modules */,
 				86CE7A062A371BC500663854 /* Views */,
 				86CE7A052A371BB200663854 /* Controllers */,
@@ -468,6 +484,7 @@
 		86CE7A242A38A6E100663854 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				86B9A8E52A44CDAC00A95892 /* FavoriteModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -658,7 +675,9 @@
 				864F5DE92A409A5200D3DB7E /* SearchViewController.swift in Sources */,
 				43F5409D2A4313660084C6B6 /* NotificationView.swift in Sources */,
 				86CE7A312A39D61A00663854 /* TopTrendingView.swift in Sources */,
+				86B9A8E42A44CCFA00A95892 /* RealmManager.swift in Sources */,
 				573F6D852A3A202D002990D8 /* MusicModel.swift in Sources */,
+				86B9A8E92A44D97700A95892 /* RecentlyModel.swift in Sources */,
 				86CE7A262A38A6FA00663854 /* ExploreViewController.swift in Sources */,
 				572BFA962A43258E0001D805 /* AlbumDetailCell.swift in Sources */,
 				864F5DDC2A3F499600D3DB7E /* RecentlyCollectionViewCell.swift in Sources */,
@@ -669,6 +688,7 @@
 				573F6D9E2A3A208D002990D8 /* UILabel + ext.swift in Sources */,
 				573F6DA42A3A208D002990D8 /* NetworkManager.swift in Sources */,
 				573F6DF42A3B0B61002990D8 /* MusicPlayer.swift in Sources */,
+				86B9A8E62A44CDAC00A95892 /* FavoriteModel.swift in Sources */,
 				86CE79FF2A371AD900663854 /* UIColor+App.swift in Sources */,
 				7EDADD012A38BD73004E560F /* AlbumView.swift in Sources */,
 				86CE7A192A375F2E00663854 /* HomepageViewController.swift in Sources */,
