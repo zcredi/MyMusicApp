@@ -74,7 +74,7 @@ extension RecentlyCollectionViewCell {
     private func setConstraints() {
         numberMusicLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            //            numberMusicLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.numberMusicLabelTopSpacing),
+//            numberMusicLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.numberMusicLabelTopSpacing),
             numberMusicLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.numberMusicLabelLeadingSpacing),
             numberMusicLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
