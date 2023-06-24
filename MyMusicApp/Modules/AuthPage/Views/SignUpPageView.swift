@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpPageView: UIViewController {
     
@@ -132,7 +133,7 @@ class SignUpPageView: UIViewController {
         button.layer.cornerRadius = 4
         button.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(goToHomePage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
         return button
     }()
     
@@ -182,12 +183,30 @@ class SignUpPageView: UIViewController {
         navigationController?.pushViewController(signInVC, animated: true)
     }
     
-    @objc func goToHomePage() {
-        let homePageVC = HomepageViewController()
-        navigationController?.pushViewController(homePageVC, animated: true)
+    @objc func signUpPressed() {
+
+        if let email = emailInput.text, let password = passwordInput.text {
+        
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                
+                if let e = error {
+                    let ac = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    ac.addAction(okAction)
+                    return
+                } else {
+                    let homePageVC = HomepageViewController()
+                    self.navigationController?.pushViewController(homePageVC, animated: true)
+                }
+            
+            }
+        
+        }
     }
 
 
+    
     
     private func setConstraints() {
         
