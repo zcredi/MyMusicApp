@@ -84,8 +84,18 @@ class ExploreDetailViewController: UIViewController {
   
   @objc
   private func playerButtonTapped() {
-    print("Play")
-    showMiniPlayer()
+    let selectedSong = exploreView.songs[0]
+    if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
+      showMiniPlayer()
+      if musicPlayer.isPlayingMusic(from: audioURL) {
+        musicPlayer.pauseMusic()
+      } else {
+        musicPlayer.loadPlayer(from: audioURL, playerType: .musicResults)
+      }
+    } else {
+      print("Error: No audio URL available")
+      showMiniPlayer()
+    }
   }
   
   private func setupViews() {
