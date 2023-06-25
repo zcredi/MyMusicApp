@@ -10,6 +10,9 @@ import Kingfisher
 
 protocol TopTrendingViewDelegate: AnyObject {
   func topTrendingView(_ topTrendingView: TopTrendingView, didSelectSongAt indexPath: IndexPath)
+  func setEntryModel(model: Entry)
+  func isCurrentModelFavorite(model: Entry) -> Bool
+  func likeButtonDidTap(model: Entry)
 }
 
 class TopTrendingView: UIView, UIScrollViewDelegate {
@@ -53,7 +56,7 @@ class TopTrendingView: UIView, UIScrollViewDelegate {
 
   private lazy var likeButton: UIButton = {
     let button = UIButton(type: .system)
-    button.setImage(UIImage(named: "like"), for: .normal)
+    button.setImage(UIImage(named: "heart.fill"), for: .normal)
     return button
   }()
 
@@ -61,6 +64,7 @@ class TopTrendingView: UIView, UIScrollViewDelegate {
     let scrollView = UIScrollView()
     scrollView.showsHorizontalScrollIndicator = false
     scrollView.alwaysBounceHorizontal = true
+      
     return scrollView
   }()
 
@@ -81,18 +85,19 @@ class TopTrendingView: UIView, UIScrollViewDelegate {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    configureScrollView()
     setupViews()
     setConstraints()
     scrollView.delegate = self
-
+    configureScrollView()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private func configureScrollView() {
+  func configureScrollView() {
+      guard let delegate = delegate else { return }
+      
     let screenSize: CGRect = UIScreen.main.bounds
     let screenWidth = screenSize.width - 48
     scrollView.contentSize = CGSize(width: screenWidth * CGFloat(imageArray.count),
@@ -128,8 +133,16 @@ class TopTrendingView: UIView, UIScrollViewDelegate {
       ])
 
       let likeButton = UIButton(type: .system)
-      likeButton.setImage(UIImage(named: "like"), for: .normal)
-      imageView.addSubview(likeButton)
+        if delegate.isCurrentModelFavorite(model: songs[index]) {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        
+      likeButton.addTarget(self, action: #selector(changeLikeStatus), for: .touchUpInside)
+      likeButton.tintColor = .neutralWhite
+      
+      scrollView.addSubview(likeButton)
       likeButton.translatesAutoresizingMaskIntoConstraints = false
       NSLayoutConstraint.activate([
         likeButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -Constants.likeButtonBottomSpacing),
@@ -148,6 +161,15 @@ class TopTrendingView: UIView, UIScrollViewDelegate {
     let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
     musicPageControl.currentPage = Int(pageNumber)
   }
+    
+    @objc private func changeLikeStatus(_ sender: UIButton) {
+        if sender.imageView?.image == UIImage(systemName: "heart") {
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        delegate?.setEntryModel(model: songs[musicPageControl.currentPage])
+    }
 }
 
 extension TopTrendingView {

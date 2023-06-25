@@ -19,6 +19,8 @@ class FavoritesViewController: UIViewController {
 
     private var favoriteArray: Results<FavoritesModel>?
     
+    var exploreViewController: ExploreViewController?
+    
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +29,20 @@ class FavoritesViewController: UIViewController {
         configureTableView()
         setupConstraints()
         songViewController?.favoriteVC = self
-        loadInRealm()
-        setFavoritesArray(favoriteArray!)
     }
  
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+        loadInRealm()
+        setFavoritesArray(favoriteArray!)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func loadInRealm() {
@@ -43,15 +53,16 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: FavoritesViewControllerProtocol {
     func appendFavoriteSong(_ model: Entry) {
         let urlString = model.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href
-        customArray.append(CustomCellModel(avatarImageString: model.images.first?.label ?? "",
-                                           title: model.name.label,
-                                           subtitle: model.artist.label,
-                                           album: "",
-                                           url: urlString ?? ""))
-        var favoriteSong = FavoritesModel()
+//        customArray.append(CustomCellModel(avatarImageString: model.images.first?.label ?? "",
+//                                           title: model.name.label,
+//                                           subtitle: model.artist.label,
+//                                           album: "",
+//                                           url: urlString ?? ""))
+        let favoriteSong = FavoritesModel()
         favoriteSong.songName = model.name.label
         favoriteSong.songAuthor = model.artist.label
         favoriteSong.songImage = model.images[0].label
+        favoriteSong.favoriteStatus = true
         isContaints(model: favoriteSong)
         RealmManager.shared.saveFavoritesModel(favoriteSong)
         loadInRealm()
@@ -62,23 +73,25 @@ extension FavoritesViewController: FavoritesViewControllerProtocol {
     func removeSongFromFavorites(selectedSong: Entry) {
         guard let foundedURLString = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href else { return }
 
-        guard let index = customArray.firstIndex(where: { $0.url == foundedURLString }) else { return }
-        var favoriteSong = FavoritesModel()
+//        guard let index = customArray.firstIndex(where: { $0.url == foundedURLString }) else { return }
+        let favoriteSong = FavoritesModel()
         favoriteSong.songName = selectedSong.name.label
         favoriteSong.songAuthor = selectedSong.artist.label
         favoriteSong.songImage = selectedSong.images[0].label
+        favoriteSong.favoriteStatus = false
         isContaints(model: favoriteSong)
 
-        customArray.remove(at: index)
         tableView.reloadData()
     }
 
     func isCurrentSongFavorite(selectedSong: Entry) -> Bool {
-        guard let foundedURLString = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href else { return false }
-
-        return customArray.contains { song in
-            song.url == foundedURLString
-        }
+//        guard let foundedURLString = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href, let favoriteArray = favoriteArray else { return false }
+        guard let favoriteArray = favoriteArray else { return false }
+        let selectedSongName = selectedSong.name.label
+    
+        return favoriteArray.contains(where: { favoritesModel in
+            favoritesModel.songName == selectedSongName
+        })
     }
 }
 
@@ -122,7 +135,6 @@ extension FavoritesViewController {
 //            newArray.append(favoritesTest)
 //        }
 //        tableView.reloadData()
-        print(favoriteArray)
     }
 }
 
@@ -192,16 +204,12 @@ extension FavoritesViewController: CellDelegate {
         let alertController = UIAlertController(title: "Delete from Favorites?", message: "", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-            
-            let model = self.customArray[indexPath.row]
-            var favoriteSong = FavoritesModel()
-            favoriteSong.songName = model.title
-            favoriteSong.songAuthor = model.subtitle
-            favoriteSong.songImage = model.avatarImageString
-            self.isContaints(model: favoriteSong)
-            self.customArray.remove(at: indexPath.row)
+            guard let model = self.favoriteArray?[indexPath.row] else { return }
+           
+            self.isContaints(model: model)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.songViewController?.reloadLikeButton()
+            self.exploreViewController?.reloadTopTrending()
         }
 
         alertController.addAction(cancelAction)

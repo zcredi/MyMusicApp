@@ -39,9 +39,13 @@ class MainTabBarController: UITabBarController {
         
         homepage.songPageViewController = songPageViewController
         explore.songPageViewController = songPageViewController
+        explore.favoriteViewController = favorites
+        favorites.exploreViewController = explore
+        
         homepage.bindFavoriteViewController(controller: favorites)
-        homepage.miniPlayerVC.setupTargetController(controller: songPageViewController)
         explore.miniPlayerVC.setupTargetController(controller: songPageViewController)
+        homepage.miniPlayerVC.setupTargetController(controller: songPageViewController)
+     
         
         
         setViewControllers([homepage, explore, favorites, profile], animated: true)
