@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class PasswordConfirmationView: UIViewController {
-        
+    
     private lazy var forgotPasswordLabel: UILabel = {
         let label = UILabel()
         label.text = "Forgot Password?"
@@ -59,7 +59,7 @@ class PasswordConfirmationView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
     
     private lazy var eyeImage: UIButton = {
@@ -98,7 +98,7 @@ class PasswordConfirmationView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
     
     private lazy var confirmPasswordEyeImage: UIButton = {
@@ -109,8 +109,7 @@ class PasswordConfirmationView: UIViewController {
         button.addTarget(self, action: #selector(togglePasswordVisibility2), for: .touchUpInside)
         return button
     }()
-
-
+    
     private lazy var changePasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("CHANGE PASSWORD", for: .normal)
@@ -123,15 +122,19 @@ class PasswordConfirmationView: UIViewController {
         button.addTarget(self, action: #selector(changePasswordPressed), for: .touchUpInside)
         return button
     }()
-
-        
+    
+    // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setConstraints()
         view.backgroundColor = UIColor.brandBlack
     }
+}
 
+// MARK: - setupView, setConstraints
+extension PasswordConfirmationView {
+    
     private func setupView() {
         view.addSubview(forgotPasswordLabel)
         view.addSubview(informationLabel)
@@ -144,43 +147,11 @@ class PasswordConfirmationView: UIViewController {
         view.addSubview(confirmPasswordLineImage)
         view.addSubview(confirmPasswordEyeImage)
         view.addSubview(changePasswordButton)
-        
-    }
-    
-    @objc func togglePasswordVisibility() {
-        passwordInput.isSecureTextEntry.toggle()
-    }
-    
-    @objc func togglePasswordVisibility2() {
-        confirmPasswordInput.isSecureTextEntry.toggle()
-    }
-    
-    @objc func changePasswordPressed() {
-        
-        if let password = passwordInput.text, let confirmedPassword = confirmPasswordInput.text {
-        
-            Auth.auth().currentUser?.updatePassword(to: password) { error in
-
-                    if password != confirmedPassword {
-                        let ac = UIAlertController(title: "Error", message: "Passwords are not equal!", preferredStyle: .alert)
-                        self.present(ac, animated: true, completion: nil)
-                        let okAction = UIAlertAction(title: "OK", style: .default)
-                        ac.addAction(okAction)
-                        return
-                    }
-                    let signInVC = AuthPageView()
-                    self.navigationController?.pushViewController(signInVC, animated: true)
-            
-            }
-        
-        }
-
     }
     
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-        
             forgotPasswordLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 112),
             forgotPasswordLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
@@ -236,10 +207,40 @@ class PasswordConfirmationView: UIViewController {
             changePasswordButton.trailingAnchor.constraint(equalTo: confirmPasswordLineImage.trailingAnchor),
             changePasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             changePasswordButton.heightAnchor.constraint(equalToConstant: 46),
-            changePasswordButton.widthAnchor.constraint(equalToConstant: 295),
-            
-        
+            changePasswordButton.widthAnchor.constraint(equalToConstant: 295)
         ])
+    }
+}
 
+// MARK: - Target methods
+extension PasswordConfirmationView {
+    
+    @objc func togglePasswordVisibility() {
+        passwordInput.isSecureTextEntry.toggle()
+    }
+    
+    @objc func togglePasswordVisibility2() {
+        confirmPasswordInput.isSecureTextEntry.toggle()
+    }
+    
+    @objc func changePasswordPressed() {
+        if let password = passwordInput.text, let confirmedPassword = confirmPasswordInput.text {
+                
+                if password != confirmedPassword {
+                    let ac = UIAlertController(title: "Error", message: "Passwords are not equal!", preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+                    ac.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
+                    ac.addAction(okAction)
+                    return
+                } else {
+                    FirebaseManager.shared.updatePassword(to: password) { error in
+                }
+                
+                let signInVC = AuthPageView()
+                self.navigationController?.pushViewController(signInVC, animated: true)
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ class UsernameView: UIView {
         return label
     }()
     
-    private let usernameTextField: UITextField = {
+    let usernameTextField: UITextField = {
         let textField = UITextField()
         textField.text = "John Huston"
         textField.textColor = .neutralWhite

@@ -81,10 +81,12 @@ extension ProfileViewController: ProfileViewDelegate {
     }
     
     func signOut() {
-//        let onboardingVC = HomepageViewController()
-//        onboardingVC.modalPresentationStyle = .fullScreen
-//        onboardingVC.modalTransitionStyle = .crossDissolve
-//        self.present(onboardingVC, animated: true)
+        FirebaseManager.shared.signOut {
+            let authPageVC = AuthPageView()
+            authPageVC.modalPresentationStyle = .fullScreen
+            authPageVC.modalTransitionStyle = .crossDissolve
+            self.navigationController?.pushViewController(authPageVC, animated: true)
+        }
     }
 }
 

@@ -64,10 +64,10 @@ class ProfileSettingsView: UIView {
         return button
     }()
     
-    private let usernameView = UsernameView()
-    private let emailView = EmailView()
-    private let genderView = GenderView()
-    private let dateView = DateView()
+    let usernameView = UsernameView()
+    let emailView = EmailView()
+    let genderView = GenderView()
+    let dateView = DateView()
     
     private let changePasswordButton: UIButton = {
         let button = UIButton(type: .system)

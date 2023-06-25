@@ -25,12 +25,17 @@ class ProfileSettingsViewController: UIViewController {
         setupConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUserInfo()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
     }
 }
    
-// MARK: - Set Views and Setup Constraints
+// MARK: - Set Views, Setup Constraints, Update UserInfo
 extension ProfileSettingsViewController {
     
     private func configureVC() {
@@ -47,6 +52,13 @@ extension ProfileSettingsViewController {
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
+    }
+    
+    private func updateUserInfo() {
+        guard let name = FirebaseManager.shared.getFromUserDefaultsUserInfo()?.name,
+              let email = FirebaseManager.shared.getFromUserDefaultsUserInfo()?.email else { return }
+        profileSettingsView.usernameView.usernameTextField.text = name
+        profileSettingsView.emailView.emailTextField.text = email
     }
 }
 
@@ -87,10 +99,9 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
     }
     
     func changePassword() {
-//        let onboardingVC = HomepageViewController()
-//        onboardingVC.modalPresentationStyle = .fullScreen
-//        onboardingVC.modalTransitionStyle = .crossDissolve
-//        self.present(onboardingVC, animated: true)
+        let passwordConfirmationVC = PasswordConfirmationView()
+        passwordConfirmationVC.modalPresentationStyle = .formSheet
+        self.present(passwordConfirmationVC, animated: true)
     }
 
 }

@@ -60,9 +60,9 @@ class ForgotPasswordPageView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
-
+    
     private lazy var sendButton: UIButton = {
         let button = UIButton()
         button.setTitle("SEND", for: .normal)
@@ -75,15 +75,19 @@ class ForgotPasswordPageView: UIViewController {
         button.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
         return button
     }()
-
-        
+    
+    // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setConstraints()
         view.backgroundColor = UIColor.brandBlack
     }
+}
 
+// MARK: - setupView, setConstraints
+extension ForgotPasswordPageView {
+    
     private func setupView() {
         view.addSubview(forgotPasswordLabel)
         view.addSubview(informationLabel)
@@ -91,42 +95,11 @@ class ForgotPasswordPageView: UIViewController {
         view.addSubview(mailImage)
         view.addSubview(emailLineImage)
         view.addSubview(sendButton)
-        
     }
-    
-    @objc func goToSignInPage() {
-        let signInVC = AuthPageView()
-        navigationController?.pushViewController(signInVC, animated: true)
-    }
-    
-    @objc func sendPressed() {
-        
-        if let email = emailInput.text {
-        
-            Auth.auth().sendPasswordReset(withEmail: email) { error in
-                
-                if let e = error {
-                    let ac = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    self.present(ac, animated: true, completion: nil)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    ac.addAction(okAction)
-                    return
-                } else {
-                    let passwordConfirmationVC = PasswordConfirmationView()
-                    self.navigationController?.pushViewController(passwordConfirmationVC, animated: true)
-                }
-            
-            }
-        
-        }
-
-    }
-
     
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-                    
             forgotPasswordLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 112),
             forgotPasswordLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
@@ -155,10 +128,36 @@ class ForgotPasswordPageView: UIViewController {
             sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             sendButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sendButton.heightAnchor.constraint(equalToConstant: 46),
-            sendButton.widthAnchor.constraint(equalToConstant: 295),
-            
-        
+            sendButton.widthAnchor.constraint(equalToConstant: 295)
         ])
-
+    }
+}
+ 
+// MARK: - Target methods
+extension ForgotPasswordPageView {
+    
+    @objc func goToSignInPage() {
+        let signInVC = AuthPageView()
+        navigationController?.pushViewController(signInVC, animated: true)
+    }
+    
+    @objc func sendPressed() {
+        if let email = emailInput.text {
+            FirebaseManager.shared.resetPassword(email: email) { error in
+                
+                if let e = error {
+                    let ac = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+                    ac.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
+                    ac.addAction(okAction)
+                    return
+                } else {
+                    let passwordConfirmationVC = PasswordConfirmationView()
+                    self.navigationController?.pushViewController(passwordConfirmationVC, animated: true)
+                }
+            }
+        }
     }
 }
