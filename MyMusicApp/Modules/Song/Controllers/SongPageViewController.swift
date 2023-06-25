@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SongPageViewController: UIPageViewController {
+final class SongPageViewController: UIPageViewController, SongPageViewControllerProtocol {
     
     var trackInfo: Entry? {
         didSet {
