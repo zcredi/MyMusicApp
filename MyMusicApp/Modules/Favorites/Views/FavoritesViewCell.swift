@@ -79,7 +79,7 @@ class FavoritesViewCell: UITableViewCell {
         } else {
             avatarImageView.image = nil
         }
-        
+
         songLabel.text = model.title
         artistLabel.text = model.subtitle
     }

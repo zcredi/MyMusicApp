@@ -20,7 +20,7 @@ class RecentlyCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Create UI
-    
+
     private lazy var numberMusicLabel = UILabel(text: "01", font: .robotoRegular14(), textColor: .neutralWhite)
     
     private lazy var nameMusicLabel = UILabel(text: "Nice For What", font: .robotoRegular16(), textColor: .neutralWhite)
@@ -53,12 +53,32 @@ class RecentlyCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     @objc
         private func playButtonPressed(_ sender: UIButton) {
             let isPlaying = sender.isSelected
             sender.isSelected = !isPlaying
             isPlaying ? playButton.setImage(UIImage(named: "play"), for: .normal) : playButton.setImage(UIImage(named: "stop"), for: .normal)
         }
+    
+    public func configure(model: RecentlyModel, songNumber: Int) {
+        nameMusicLabel.text = model.songName
+        authorMusicLabel.text = model.songAuthor
+        numberMusicLabel.text = songNumber.description
+        
+        if model.songStatus {
+            playButton.setImage(UIImage(systemName: "stop"), for: .normal)
+        } else {
+            playButton.setImage(UIImage(systemName: "play"), for: .normal)
+        }
+        
+        if let imageUrlString = model.songImage,
+           let imageUrl = URL(string: imageUrlString) {
+            musicImage.kf.setImage(with: imageUrl)
+        } else {
+            musicImage.image = nil
+        }
+    }
     
     private func setupViews() {
 

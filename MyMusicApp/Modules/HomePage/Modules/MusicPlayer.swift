@@ -111,7 +111,7 @@ class MusicPlayer {
                                     queue: DispatchQueue.main) { [weak self] CMTime in
       guard let self = self else { return }
       songController?.updateSlider(value: Float(CMTime.seconds))
-      songController?.updateCurrentTimeLabel(duration: Int(CMTime.seconds))
+    songController?.updateCurrentTimeLabel(duration: Int(CMTime.seconds))
     }
   }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RecentlyView: UIView {
     enum Constants {
@@ -14,6 +15,8 @@ class RecentlyView: UIView {
         static let collectionViewLeadingSpacing: CGFloat = 12.0
         static let collectionViewTrailingSpacing: CGFloat = 16.0
     }
+    
+    private var recentlyArray = [RecentlyModel]()
     
     //MARK: - Create UI
     
@@ -53,6 +56,22 @@ class RecentlyView: UIView {
         addSubview(collectionView)
     }
     
+    public func setRecentlyArray(_ array: Results<RecentlyModel>) {
+//        recentlyArray = array
+        var newArray = [RecentlyModel]()
+        array.forEach { recently in
+            var test = [RecentlyModel]()
+            let recentlyTest = RecentlyModel()
+            recentlyTest.songName = recently.songName
+            recentlyTest.songAuthor = recently.songAuthor
+            recentlyTest.songImage = recently.songImage
+            newArray.append(recentlyTest)
+        }
+        recentlyArray = newArray.reversed()
+        collectionView.reloadData()
+        print(recentlyArray)
+    }
+    
 }
 
 extension RecentlyView {
@@ -69,11 +88,15 @@ extension RecentlyView {
 
 extension RecentlyView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        recentlyArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.idRecentlyCell, for: indexPath) as? RecentlyCollectionViewCell else { return UICollectionViewCell() }
+        
+        let songNumber = indexPath.row + 1
+        let recentlyModel = recentlyArray[indexPath.row]
+        cell.configure(model: recentlyModel, songNumber: songNumber)
         
         return cell
     }
