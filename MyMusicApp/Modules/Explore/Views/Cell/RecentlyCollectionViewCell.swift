@@ -9,8 +9,8 @@ import UIKit
 
 class RecentlyCollectionViewCell: UICollectionViewCell {
     enum Constants {
-        static let numberMusicLabelLeadingSpacing: CGFloat = 24.0
-        static let musicImageTopSpacing: CGFloat = 10.0
+        static let numberMusicLabelLeadingSpacing: CGFloat = 10.0
+        static let musicImageTopSpacing: CGFloat = 7.0
         static let musicImageLeadingSpacing: CGFloat = 20.0
         static let nameMusicLabelTopSpacing: CGFloat = 7.0
         static let nameMusicLabelLeadingSpacing: CGFloat = 16.0
@@ -101,17 +101,21 @@ extension RecentlyCollectionViewCell {
         musicImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             musicImage.topAnchor.constraint(equalTo: topAnchor, constant: Constants.musicImageTopSpacing),
-            musicImage.leadingAnchor.constraint(equalTo: numberMusicLabel.trailingAnchor, constant: Constants.musicImageTopSpacing)
+            musicImage.leadingAnchor.constraint(equalTo: numberMusicLabel.trailingAnchor, constant: Constants.musicImageLeadingSpacing),
+            musicImage.widthAnchor.constraint(equalToConstant: 40),
+            musicImage.heightAnchor.constraint(equalToConstant: 40)
         ])
         nameMusicLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameMusicLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.nameMusicLabelTopSpacing),
-            nameMusicLabel.leadingAnchor.constraint(equalTo: musicImage.trailingAnchor, constant: Constants.nameMusicLabelLeadingSpacing)
+            nameMusicLabel.leadingAnchor.constraint(equalTo: musicImage.trailingAnchor, constant: Constants.nameMusicLabelLeadingSpacing),
+//            nameMusicLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -5)
         ])
         authorMusicLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             authorMusicLabel.topAnchor.constraint(equalTo: nameMusicLabel.bottomAnchor, constant: Constants.authorMusicLabelTopSpacing),
-            authorMusicLabel.leadingAnchor.constraint(equalTo: musicImage.trailingAnchor, constant: Constants.authorMusicLabelLeadingSpacing)
+            authorMusicLabel.leadingAnchor.constraint(equalTo: musicImage.trailingAnchor, constant: Constants.authorMusicLabelLeadingSpacing),
+//            authorMusicLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -5)
         ])
         playButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -9,7 +9,13 @@ import UIKit
 import AVFoundation
 import RealmSwift
 
+protocol HomepageViewControllerDelegate: AnyObject {
+    func didUpdateRecentlyArray(recentlyArray: Results<RecentlyModel>)
+}
+
 class HomepageViewController: UIViewController {
+    
+    weak var delegate: HomepageViewControllerDelegate?
     
     //MARK: - Outlets
     
@@ -40,7 +46,7 @@ class HomepageViewController: UIViewController {
     private let musicPlayer = MusicPlayer.instance
     private let miniPlayerVC = MiniPlayerVC()
     private let songPageViewController = SongPageViewController()
-    private var recentlyArray: Results<RecentlyModel>?
+    var recentlyArray: Results<RecentlyModel>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -286,6 +292,8 @@ extension HomepageViewController {
 }
 
 extension HomepageViewController: NewSongsViewDelegate {
+  
+    
     //MARK: - NewSongsViewDelegate
     
     func newSongsView(_ newSongsView: NewSongsView, didSelectSongAt indexPath: IndexPath) {
@@ -308,6 +316,9 @@ extension HomepageViewController: NewSongsViewDelegate {
         } else {
             print("Error: No audio URL available")
         }
+        RealmManager.shared.saveRecentlyModel(recentlySong)
+        ExploreViewController.recentlyArray = recentlyArray
+
     }
 }
 
@@ -369,3 +380,4 @@ extension HomepageViewController: MusicPlayerDelegate {
         }
     }
 }
+

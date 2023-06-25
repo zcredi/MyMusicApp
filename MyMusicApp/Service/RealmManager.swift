@@ -36,4 +36,21 @@ class RealmManager {
             realm.deleteAll()
         }
     }
+    
+    func getResultFavoritesModel() -> Results<FavoritesModel> {
+        realm.objects(FavoritesModel.self)
+    }
+
+    func saveFavoritesModel(_ model: FavoritesModel) {
+        try! realm.write {
+            realm.add(model)
+        }
+    }
+    
+    func deleteFavoritesModel(_ model: FavoritesModel) {
+        try! realm.write {
+            let object = realm.objects(FavoritesModel.self).filter("songName = %@", model.songName)
+            realm.delete(object)
+        }
+    }
 }
