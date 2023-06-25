@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import RealmSwift
 
 class HomepageViewController: UIViewController {
     
@@ -34,11 +35,12 @@ class HomepageViewController: UIViewController {
     private let popularAlbumLabel = UILabel()
     private let albumsView = PopularAlbumView()
     private let recentlyMusicLabel = UILabel()
-    private let recentlyMusicTableView = RecentlyMusicTableView()
+        private let recentlyMusicTableView = RecentlyMusicTableView()
     
     private let musicPlayer = MusicPlayer.instance
     private let miniPlayerVC = MiniPlayerVC()
     private let songPageViewController = SongPageViewController()
+    private var recentlyArray: Results<RecentlyModel>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,8 @@ class HomepageViewController: UIViewController {
         newSongsView.delegate = self
         miniPlayerVC.delegate = self
         musicPlayer.delegate = self
+        loadInRealm()
+        selectItem()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -203,7 +207,7 @@ class HomepageViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                    
+            
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -248,13 +252,54 @@ class HomepageViewController: UIViewController {
     }
 }
 
+extension HomepageViewController {
+    func loadInRealm() {
+        recentlyArray = RealmManager.shared.getResultRecentlyModel()
+        //        var test = [RecentlyModel]()
+        //        RealmManager.shared.getResultRecentlyModel().forEach { recently in
+        //            let recentlyTest = RecentlyModel()
+        //            recentlyTest.songName = recently.songName
+        //            recentlyTest.songAuthor = recently.songAuthor
+        //            recentlyTest.songImage = recently.songImage
+        //            test.append(recentlyTest)
+        //        }
+        //        recentlyArray = test
+    }
+}
+
+extension HomepageViewController {
+    func isContaints(model: RecentlyModel) {
+        recentlyArray?.forEach({ recently in
+            if model.songName == recently.songName {
+                RealmManager.shared.deleteRecentlyModel(model)
+            }
+        })
+    }
+}
+
+extension HomepageViewController {
+    func selectItem() {
+        guard let recentlyArray = recentlyArray else { return }
+        recentlyMusicTableView.setRecentlyArray(recentlyArray)
+        recentlyMusicTableView.reloadData()
+    }
+}
+
 extension HomepageViewController: NewSongsViewDelegate {
     //MARK: - NewSongsViewDelegate
     
     func newSongsView(_ newSongsView: NewSongsView, didSelectSongAt indexPath: IndexPath) {
         let selectedSong = newSongsView.songs[indexPath.row]
+        var recentlySong = RecentlyModel()
+        recentlySong.songName = selectedSong.name.label
+        recentlySong.songAuthor = selectedSong.artist.label
+        recentlySong.songImage = selectedSong.images[0].label
+        isContaints(model: recentlySong)
+        RealmManager.shared.saveRecentlyModel(recentlySong)
+        loadInRealm()
         if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
             showMiniPlayer()
+            selectItem()
             if musicPlayer.isPlayingMusic(from: audioURL) {
                 musicPlayer.pauseMusic()
             } else {
