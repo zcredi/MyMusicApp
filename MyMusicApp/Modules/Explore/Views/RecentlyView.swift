@@ -12,8 +12,8 @@ class RecentlyView: UIView {
     enum Constants {
         static let idRecentlyCell: String = "idRecentlyCell"
         static let collectionViewSizeSpacing: CGFloat = 4.0
-        static let collectionViewLeadingSpacing: CGFloat = 12.0
-        static let collectionViewTrailingSpacing: CGFloat = 16.0
+        static let collectionViewLeadingSpacing: CGFloat = 5.0
+        static let collectionViewTrailingSpacing: CGFloat = 8.0
     }
     
     private var recentlyArray = [RecentlyModel]()
@@ -57,7 +57,6 @@ class RecentlyView: UIView {
     }
     
     public func setRecentlyArray(_ array: Results<RecentlyModel>) {
-//        recentlyArray = array
         var newArray = [RecentlyModel]()
         array.forEach { recently in
             var test = [RecentlyModel]()
@@ -69,7 +68,6 @@ class RecentlyView: UIView {
         }
         recentlyArray = newArray.reversed()
         collectionView.reloadData()
-        print(recentlyArray)
     }
     
 }

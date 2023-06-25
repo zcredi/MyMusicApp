@@ -22,7 +22,7 @@ class ExploreDetailViewController: UIViewController {
   //MARK: - Create UI
   
   private lazy var playImage: UIImageView = {
-    let imageView = UIImageView(image: UIImage(named: "playWhite"))
+    let imageView = UIImageView(image: UIImage(named: "playwhite"))
     return imageView
   }()
   

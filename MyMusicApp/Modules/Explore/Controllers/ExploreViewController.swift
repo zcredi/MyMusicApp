@@ -48,14 +48,14 @@ class ExploreViewController: UIViewController {
     
     private lazy var recentlyLabel = UILabel(text: "Recently Music", font: .robotoMedium18(), textColor: .neutralWhite)
     
-    private lazy var recentlyButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("View all", for: .normal)
-        button.setTitleColor(.neutralWhite, for: .normal)
-        button.titleLabel?.font = UIFont.robotoBold12()
-        button.addTarget(self, action: #selector(recentlyButtonTapped), for: .touchUpInside)
-        return button
-    }()
+//    private lazy var recentlyButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("View all", for: .normal)
+//        button.setTitleColor(.neutralWhite, for: .normal)
+//        button.titleLabel?.font = UIFont.robotoBold12()
+//        button.addTarget(self, action: #selector(recentlyButtonTapped), for: .touchUpInside)
+//        return button
+//    }()
     
     private lazy var topTrendingLabel = UILabel(text: "Top Trending", font: .robotoBold22(), textColor: .neutralWhite)
     private lazy var topikLabel = UILabel(text: "Topic", font: .robotoBold22(), textColor: .neutralWhite)
@@ -72,14 +72,19 @@ class ExploreViewController: UIViewController {
     private lazy var recentlyView = RecentlyView()
     private lazy var topTrendingView = TopTrendingView()
     private lazy var topicView = TopicView()
-    private let songPageViewController = SongPageViewController()
     private let musicPlayer = MusicPlayer.instance
-    private let miniPlayerVC = MiniPlayerVC()
-    private var recentlyArray: Results<RecentlyModel>?
+    let miniPlayerVC = MiniPlayerVC()
     private let recentlyMusicTableView = RecentlyMusicTableView()
-    
+    static var recentlyArray: Results<RecentlyModel>?
+    var songPageViewController: SongPageViewControllerProtocol?
     
     //MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectItem()
+        loadInRealm()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,9 +94,10 @@ class ExploreViewController: UIViewController {
         fetchPopularMusic()
         topTrendingView.delegate = self
         miniPlayerVC.delegate = self
-        //    musicPlayer.delegate = self
+//            musicPlayer.delegate = self
         miniPlayerVC.setupCurrentViewController(controller: self)
-        miniPlayerVC.setupTargetController(controller: songPageViewController)
+        selectItem()
+        loadInRealm()
     }
     
     func setupSearchButton() {
@@ -106,7 +112,10 @@ class ExploreViewController: UIViewController {
     }
     
     @objc private func searchPressed() {
+        guard let songPageViewController = songPageViewController as? SongPageViewController else { return }
         let searchViewController = SearchViewController()
+        searchViewController.songPageViewController = songPageViewController
+        searchViewController.miniPlayerVC.setupTargetController(controller: songPageViewController)
         navigationController?.pushViewController(searchViewController, animated: true)
     }
     
@@ -147,7 +156,7 @@ class ExploreViewController: UIViewController {
         contentView.addSubview(exploreLabel)
         contentView.addSubview(searchButton)
         contentView.addSubview(recentlyLabel)
-        contentView.addSubview(recentlyButton)
+//        contentView.addSubview(recentlyButton)
         contentView.addSubview(recentlyView)
         contentView.addSubview(topTrendingLabel)
         contentView.addSubview(topTrendingView)
@@ -186,11 +195,11 @@ extension ExploreViewController {
             recentlyLabel.topAnchor.constraint(equalTo: exploreLabel.bottomAnchor, constant: Constants.recentlyLabelTopSpacing),
             recentlyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.recentlyLabelLeadingSpacing)
         ])
-        recentlyButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            recentlyButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: Constants.recentlyButtonTopSpacing),
-            recentlyButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.recentlyButtonTrailingSpacing)
-        ])
+//        recentlyButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            recentlyButton.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: Constants.recentlyButtonTopSpacing),
+//            recentlyButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.recentlyButtonTrailingSpacing)
+//        ])
         recentlyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             recentlyView.topAnchor.constraint(equalTo: recentlyLabel.bottomAnchor, constant: Constants.recentlyViewTopSpacing),
@@ -245,13 +254,13 @@ extension ExploreViewController {
 
 extension ExploreViewController {
     func loadInRealm() {
-        recentlyArray = RealmManager.shared.getResultRecentlyModel()
+        ExploreViewController.recentlyArray = RealmManager.shared.getResultRecentlyModel()
     }
 }
 
 extension ExploreViewController {
     func isContaints(model: RecentlyModel) {
-        recentlyArray?.forEach({ recently in
+        ExploreViewController.recentlyArray?.forEach({ recently in
             if model.songName == recently.songName {
                 RealmManager.shared.deleteRecentlyModel(model)
             }
@@ -261,9 +270,8 @@ extension ExploreViewController {
 
 extension ExploreViewController {
     func selectItem() {
-        guard let recentlyArray = recentlyArray else { return }
+        guard let recentlyArray = ExploreViewController.recentlyArray else { return }
         recentlyView.setRecentlyArray(recentlyArray)
-        recentlyView.reloadInputViews()
     }
 }
 

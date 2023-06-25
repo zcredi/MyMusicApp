@@ -48,7 +48,6 @@ class RecentlyMusicTableView: UITableView {
         }
         recentlyArray = newArray.reversed()
         reloadData()
-        print(recentlyArray)
     }
 }
 
@@ -60,7 +59,6 @@ extension RecentlyMusicTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Table")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedCell.identifier, for: indexPath) as? RecommendedCell else {
             return UITableViewCell()
         }
@@ -68,5 +66,9 @@ extension RecentlyMusicTableView: UITableViewDelegate, UITableViewDataSource {
         let recentlyModel = recentlyArray[indexPath.row]
         cell.configure(model: recentlyModel, songNumber: songNumber)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
