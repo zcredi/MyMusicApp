@@ -79,7 +79,6 @@ class ExploreDetailViewController: UIViewController {
     setConstraints()
     miniPlayerVC.delegate = self
     musicPlayer.delegate = self
-    exploreView.delegate = self
   }
   
   @objc
@@ -183,24 +182,6 @@ extension ExploreDetailViewController: MiniPlayerViewDelegate {
     musicPlayer.pauseMusic()
   }
   
-}
-
-extension ExploreDetailViewController: ExploreDetailsDelegate {
-  
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    print("tap tap")
-    let selectedSong = exploreView.songs[indexPath.row]
-    if let audioURL = selectedSong.links.first(where: { $0.attributes.rel == "enclosure" })?.attributes.href {
-      showMiniPlayer()
-      if musicPlayer.isPlayingMusic(from: audioURL) {
-        musicPlayer.pauseMusic()
-      } else {
-        musicPlayer.loadPlayer(from: audioURL, playerType: .musicResults)
-      }
-    } else {
-      print("Error: No audio URL available")
-    }
-  }
 }
 
 extension ExploreDetailViewController: MusicPlayerDelegate {
