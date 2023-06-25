@@ -10,10 +10,11 @@ import SnapKit
 
 class SearchViewController: UIViewController {
 
-  private let songPageViewController = SongPageViewController()
   private let musicPlayer = MusicPlayer.instance
-  private let miniPlayerVC = MiniPlayerVC()
+  let miniPlayerVC = MiniPlayerVC()
+  var songPageViewController: SongPageViewControllerProtocol?
 
+    
     private var searchVC: UISearchController = {
         let searchVC = UISearchController()
         searchVC.searchBar.searchBarStyle = .minimal
@@ -53,7 +54,6 @@ class SearchViewController: UIViewController {
         selectDefaultCategory()
 
       miniPlayerVC.setupCurrentViewController(controller: self)
-      miniPlayerVC.setupTargetController(controller: songPageViewController)
       miniPlayerVC.delegate = self
       musicPlayer.delegate = self
     }

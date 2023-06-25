@@ -41,17 +41,16 @@ class HomepageViewController: UIViewController {
     private let popularAlbumLabel = UILabel()
     private let albumsView = PopularAlbumView()
     private let recentlyMusicLabel = UILabel()
-        private let recentlyMusicTableView = RecentlyMusicTableView()
+    private let recentlyMusicTableView = RecentlyMusicTableView()
     
     private let musicPlayer = MusicPlayer.instance
-    private let miniPlayerVC = MiniPlayerVC()
-    private let songPageViewController = SongPageViewController()
+    let miniPlayerVC = MiniPlayerVC()
+    var songPageViewController: SongPageViewControllerProtocol?
     var recentlyArray: Results<RecentlyModel>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         miniPlayerVC.setupCurrentViewController(controller: self)
-        miniPlayerVC.setupTargetController(controller: songPageViewController)
         
         view.backgroundColor = .black
         setupViews()
@@ -70,6 +69,8 @@ class HomepageViewController: UIViewController {
     }
     
     func bindFavoriteViewController(controller: FavoritesViewControllerProtocol) {
+        guard let songPageViewController = songPageViewController else { return }
+        
         songPageViewController.setFavoriteViewController(controller: controller)
     }
     
@@ -192,6 +193,7 @@ class HomepageViewController: UIViewController {
     
     @objc private func searchPressed() {
         let searchViewController = SearchViewController()
+        searchViewController.songPageViewController = songPageViewController
         navigationController?.pushViewController(searchViewController, animated: true)
     }
     
@@ -298,7 +300,7 @@ extension HomepageViewController: NewSongsViewDelegate {
     
     func newSongsView(_ newSongsView: NewSongsView, didSelectSongAt indexPath: IndexPath) {
         let selectedSong = newSongsView.songs[indexPath.row]
-        var recentlySong = RecentlyModel()
+        let recentlySong = RecentlyModel()
         recentlySong.songName = selectedSong.name.label
         recentlySong.songAuthor = selectedSong.artist.label
         recentlySong.songImage = selectedSong.images[0].label
@@ -353,7 +355,7 @@ extension HomepageViewController: MusicPlayerDelegate {
                 DispatchQueue.main.async {
                     if let imageData = data, let image = UIImage(data: imageData) {
                         self.miniPlayerVC.updateSongImage(image)
-                        self.songPageViewController.trackInfo = musicResult
+                        self.songPageViewController?.trackInfo = musicResult
                     } else {
                         self.miniPlayerVC.updateSongImage(nil)
                     }

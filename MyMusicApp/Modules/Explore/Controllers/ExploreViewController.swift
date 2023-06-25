@@ -72,11 +72,11 @@ class ExploreViewController: UIViewController {
     private lazy var recentlyView = RecentlyView()
     private lazy var topTrendingView = TopTrendingView()
     private lazy var topicView = TopicView()
-    private let songPageViewController = SongPageViewController()
     private let musicPlayer = MusicPlayer.instance
-    private let miniPlayerVC = MiniPlayerVC()
+    let miniPlayerVC = MiniPlayerVC()
     private let recentlyMusicTableView = RecentlyMusicTableView()
     static var recentlyArray: Results<RecentlyModel>?
+    var songPageViewController: SongPageViewControllerProtocol?
     
     //MARK: - Lifecycle
     
@@ -96,7 +96,6 @@ class ExploreViewController: UIViewController {
         miniPlayerVC.delegate = self
 //            musicPlayer.delegate = self
         miniPlayerVC.setupCurrentViewController(controller: self)
-        miniPlayerVC.setupTargetController(controller: songPageViewController)
         selectItem()
         loadInRealm()
     }
@@ -113,7 +112,10 @@ class ExploreViewController: UIViewController {
     }
     
     @objc private func searchPressed() {
+        guard let songPageViewController = songPageViewController as? SongPageViewController else { return }
         let searchViewController = SearchViewController()
+        searchViewController.songPageViewController = songPageViewController
+        searchViewController.miniPlayerVC.setupTargetController(controller: songPageViewController)
         navigationController?.pushViewController(searchViewController, animated: true)
     }
     
