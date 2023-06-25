@@ -73,15 +73,24 @@ class FavoritesViewCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-    func configureCell(model: CustomCellModel) {
-        if let imageUrl = URL(string: model.avatarImageString) {
-         avatarImageView.kf.setImage(with: imageUrl)
+    func configureCell(model: FavoritesModel) {
+        if let imageUrlString = model.songImage,
+           let imageUrl = URL(string: imageUrlString) {
+            avatarImageView.kf.setImage(with: imageUrl)
         } else {
             avatarImageView.image = nil
         }
-
-        songLabel.text = model.title
-        artistLabel.text = model.subtitle
+        songLabel.text = model.songName
+        artistLabel.text = model.songAuthor
+        
+//        if let imageUrl = URL(string: model.avatarImageString) {
+//         avatarImageView.kf.setImage(with: imageUrl)
+//        } else {
+//            avatarImageView.image = nil
+//        }
+//
+//        songLabel.text = model.title
+//        artistLabel.text = model.subtitle
     }
 }
 
