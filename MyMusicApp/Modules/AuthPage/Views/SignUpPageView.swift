@@ -54,7 +54,7 @@ class SignUpPageView: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-        
+    
     private let emailInput: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
@@ -82,7 +82,7 @@ class SignUpPageView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
     
     private let passwordInput: UITextField = {
@@ -112,7 +112,7 @@ class SignUpPageView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
     
     private lazy var eyeImage: UIButton = {
@@ -144,18 +144,22 @@ class SignUpPageView: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(goToSignInPage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signInPressed), for: .touchUpInside)
         return button
     }()
-
-        
+    
+    // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setConstraints()
         navigationItem.hidesBackButton = true
     }
+}
 
+// MARK: - setupView, setConstraints
+extension SignUpPageView {
+    
     private func setupView() {
         view.addSubview(smokeBackgroundImage)
         view.addSubview(overlayView)
@@ -173,45 +177,9 @@ class SignUpPageView: UIViewController {
         view.addSubview(signInButton)
     }
     
-    @objc func togglePasswordVisibility() {
-        passwordInput.isSecureTextEntry.toggle()
-    }
-
-    
-    @objc func goToSignInPage() {
-        let signInVC = AuthPageView()
-        navigationController?.pushViewController(signInVC, animated: true)
-    }
-    
-    @objc func signUpPressed() {
-
-        if let email = emailInput.text, let password = passwordInput.text {
-        
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                
-                if let e = error {
-                    let ac = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
-                    self.present(ac, animated: true, completion: nil)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    ac.addAction(okAction)
-                    return
-                } else {
-                    let homePageVC = HomepageViewController()
-                    self.navigationController?.pushViewController(homePageVC, animated: true)
-                }
-            
-            }
-        
-        }
-    }
-
-
-    
-    
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-        
             smokeBackgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
             smokeBackgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             smokeBackgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -264,7 +232,7 @@ class SignUpPageView: UIViewController {
             passwordLineImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             passwordLineImage.trailingAnchor.constraint(equalTo: passwordInput.leadingAnchor, constant: -50),
             passwordLineImage.widthAnchor.constraint(equalToConstant: 295),
-
+            
             eyeImage.topAnchor.constraint(equalTo: passwordInput.topAnchor),
             eyeImage.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
             eyeImage.trailingAnchor.constraint(equalTo: passwordLineImage.trailingAnchor),
@@ -283,10 +251,39 @@ class SignUpPageView: UIViewController {
             signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signInButton.heightAnchor.constraint(equalToConstant: 46),
-            signInButton.widthAnchor.constraint(equalToConstant: 295),
-
-        
+            signInButton.widthAnchor.constraint(equalToConstant: 295)
         ])
+    }
+}
 
+// MARK: - Target methods
+extension SignUpPageView {
+    
+    @objc func togglePasswordVisibility() {
+        passwordInput.isSecureTextEntry.toggle()
+    }
+    
+    @objc func signUpPressed() {
+        if let email = emailInput.text, let password = passwordInput.text, let name = nameInput.text {
+            FirebaseManager.shared.createAccount(email: email, password: password, username: name) { error in
+                if let e = error {
+                    let ac = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+                    ac.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
+                    ac.addAction(okAction)
+                    return
+                } else {
+                    let homePageVC = ProfileViewController()
+                    self.navigationController?.pushViewController(homePageVC, animated: true)
+                }
+            }
+        }
+    }
+    
+    @objc func signInPressed() {
+        let signInVC = AuthPageView()
+        navigationController?.pushViewController(signInVC, animated: true)
     }
 }

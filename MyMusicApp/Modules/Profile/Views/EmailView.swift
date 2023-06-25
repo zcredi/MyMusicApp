@@ -20,7 +20,7 @@ class EmailView: UIView {
         return label
     }()
     
-    private let emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let textField = UITextField()
         textField.text = "Muffiluma@gmail.com"
         textField.textColor = .neutralWhite

@@ -33,7 +33,7 @@ class AuthPageView: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-        
+    
     let emailInput: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(
@@ -61,7 +61,7 @@ class AuthPageView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
     
     let passwordInput: UITextField = {
@@ -91,7 +91,7 @@ class AuthPageView: UIViewController {
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
-
+        
     }()
     
     private lazy var eyeImage: UIButton = {
@@ -140,7 +140,7 @@ class AuthPageView: UIViewController {
         button.titleLabel?.font = UIFont.robotoBold14()
         button.setTitleColor(UIColor.brandGreen, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(goToSignUpPage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
         return button
     }()
     
@@ -150,17 +150,22 @@ class AuthPageView: UIViewController {
         button.titleLabel?.font = UIFont.montserrat14()
         button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(goToForgotPasswordPage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(forgotPasswordPressed), for: .touchUpInside)
         return button
     }()
     
+    // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setConstraints()
         navigationItem.hidesBackButton = true
     }
+}
 
+// MARK: - setupView, setConstraints
+extension AuthPageView {
+    
     private func setupView() {
         view.addSubview(smokeBackgroundImage)
         view.addSubview(overlayView)
@@ -179,48 +184,9 @@ class AuthPageView: UIViewController {
         view.addSubview(signUpButton)
     }
     
-    @objc func togglePasswordVisibility() {
-        passwordInput.isSecureTextEntry.toggle()
-    }
-
-    @objc func goToForgotPasswordPage() {
-        let forgotPasswordVC = ForgotPasswordPageView()
-        navigationController?.pushViewController(forgotPasswordVC, animated: true)
-    }
-
-    @objc func goToSignUpPage() {
-        let signUpVC = SignUpPageView()
-        navigationController?.pushViewController(signUpVC, animated: true)
-    }
-
-    @objc func signInPressed() {
-
-        if let email = emailInput.text, let password = passwordInput.text {
-
-            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-
-                if let e = error {
-                    let ac = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
-                    self.present(ac, animated: true, completion: nil)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    ac.addAction(okAction)
-                    return
-                } else {
-                    let homePageVC = HomepageViewController()
-                    self.navigationController?.pushViewController(homePageVC, animated: true)
-                }
-
-            }
-
-        }
-
-    }
-
-    
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-        
             smokeBackgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
             smokeBackgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             smokeBackgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -267,7 +233,7 @@ class AuthPageView: UIViewController {
             forgotPasswordButton.topAnchor.constraint(equalTo: passwordInput.bottomAnchor, constant: 36),
             forgotPasswordButton.bottomAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: -64),
             forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordLineImage.trailingAnchor),
-
+            
             eyeImage.topAnchor.constraint(equalTo: passwordInput.topAnchor),
             eyeImage.leadingAnchor.constraint(equalTo: passwordInput.trailingAnchor),
             eyeImage.trailingAnchor.constraint(equalTo: passwordLineImage.trailingAnchor),
@@ -287,17 +253,52 @@ class AuthPageView: UIViewController {
             optionsImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             optionsImage.heightAnchor.constraint(equalToConstant: 46),
             optionsImage.widthAnchor.constraint(equalToConstant: 295),
-
+            
             questionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36),
             questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 88),
             
             signUpButton.topAnchor.constraint(equalTo: questionLabel.topAnchor),
             signUpButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36),
-            signUpButton.leadingAnchor.constraint(equalTo: questionLabel.trailingAnchor, constant: 5),
-        
+            signUpButton.leadingAnchor.constraint(equalTo: questionLabel.trailingAnchor, constant: 5)
         ])
-
     }
-
+}
     
+// MARK: - Target methods
+extension AuthPageView {
+    
+    @objc func togglePasswordVisibility() {
+        passwordInput.isSecureTextEntry.toggle()
+    }
+    
+    @objc func forgotPasswordPressed() {
+        let forgotPasswordVC = ForgotPasswordPageView()
+        navigationController?.pushViewController(forgotPasswordVC, animated: true)
+    }
+    
+    @objc func signInPressed() {
+        
+        if let email = emailInput.text, let password = passwordInput.text {
+            
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                if let e = error {
+                    let ac = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
+                    self.present(ac, animated: true, completion: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+                    ac.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
+                    ac.addAction(okAction)
+                    return
+                } else {
+                    let homePageVC = ProfileViewController()
+                    self.navigationController?.pushViewController(homePageVC, animated: true)
+                }
+            }
+        }
+    }
+    
+    @objc func signUpPressed() {
+        let signUpVC = SignUpPageView()
+        navigationController?.pushViewController(signUpVC, animated: true)
+    }
 }
