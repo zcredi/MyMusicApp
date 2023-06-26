@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 
 class ProfileSettingsViewController: UIViewController {
     
@@ -30,8 +33,24 @@ class ProfileSettingsViewController: UIViewController {
         updateUserInfo()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let name = profileSettingsView.usernameView.usernameTextField.text,
+           let email = profileSettingsView.emailView.emailTextField.text,
+           let gender = profileSettingsView.genderView.genderTextField.text,
+           let date = profileSettingsView.dateView.dateTextField.text {
+            FirebaseManager.shared.saveDataToFirestore(name: name, email: email, gender: gender, date: date)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationController?.navigationBar.barStyle = .black
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
 }
    
@@ -55,10 +74,28 @@ extension ProfileSettingsViewController {
     }
     
     private func updateUserInfo() {
-        guard let name = FirebaseManager.shared.getFromUserDefaultsUserInfo()?.name,
-              let email = FirebaseManager.shared.getFromUserDefaultsUserInfo()?.email else { return }
-        profileSettingsView.usernameView.usernameTextField.text = name
-        profileSettingsView.emailView.emailTextField.text = email
+        let db = Firestore.firestore()
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        db.collection("users").document(userID).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let name = data?["name"] as? String ?? ""
+                let email = data?["email"] as? String ?? ""
+                let gender = data?["gender"] as? String ?? ""
+                let date = data?["date"] as? String ?? ""
+                
+                self.profileSettingsView.usernameView.usernameTextField.text = name
+                self.profileSettingsView.emailView.emailTextField.text = email
+                self.profileSettingsView.genderView.genderTextField.text = gender
+                self.profileSettingsView.dateView.dateTextField.text = date
+                
+                FirebaseManager.shared.downloadProfileImage { image, error in
+                    self.profileSettingsView.profileImage.image = image
+                }
+            } else {
+                print("Документ не найден")
+            }
+        }
     }
 }
 
@@ -112,6 +149,10 @@ extension ProfileSettingsViewController: UINavigationControllerDelegate, UIImage
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
         profileSettingsView.profileImage.image = image
+        
+        if let url = info[.imageURL] as? URL {
+            FirebaseManager.shared.uploadProfileImage(url: url)
+        }
         picker.dismiss(animated: true, completion: nil)
     }
 

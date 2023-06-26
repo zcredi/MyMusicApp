@@ -24,6 +24,9 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        FirebaseManager.shared.downloadProfileImage { image, error in
+            self.profileView.profileImage.image = image
+        }
     }
 }
 

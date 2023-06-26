@@ -22,7 +22,6 @@ class UsernameView: UIView {
     
     let usernameTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "John Huston"
         textField.textColor = .neutralWhite
         textField.font = .robotoMedium16()
         textField.textAlignment = .right
