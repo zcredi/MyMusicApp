@@ -77,6 +77,13 @@ class ExploreViewController: UIViewController {
     private let recentlyMusicTableView = RecentlyMusicTableView()
     static var recentlyArray: Results<RecentlyModel>?
     var songPageViewController: SongPageViewControllerProtocol?
+    var favoriteViewController: FavoritesViewControllerProtocol?
+    var currentModel: Entry? {
+        didSet {
+            guard let currentModel = currentModel else { return }
+            likeButtonDidTap(model: currentModel)
+        }
+    }
     
     //MARK: - Lifecycle
     
@@ -98,6 +105,10 @@ class ExploreViewController: UIViewController {
         miniPlayerVC.setupCurrentViewController(controller: self)
         selectItem()
         loadInRealm()
+    }
+    
+    func reloadTopTrending() {
+        topTrendingView.configureScrollView()
     }
     
     func setupSearchButton() {
@@ -289,6 +300,26 @@ extension ExploreViewController: TopTrendingViewDelegate {
         } else {
             print("Error: No audio URL available")
         }
+    }
+    
+    func setEntryModel(model: Entry) {
+        currentModel = model
+    }
+    
+    func likeButtonDidTap(model: Entry) {
+        guard let favoriteViewController = favoriteViewController else { return }
+        
+        if favoriteViewController.isCurrentSongFavorite(selectedSong: model) {
+            favoriteViewController.removeSongFromFavorites(selectedSong: model)
+        } else {
+            favoriteViewController.appendFavoriteSong(model)
+        }
+    }
+    
+    func isCurrentModelFavorite(model: Entry) -> Bool {
+        guard let favoriteViewController = favoriteViewController else { return false }
+
+        return favoriteViewController.isCurrentSongFavorite(selectedSong: model)
     }
 }
 

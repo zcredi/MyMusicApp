@@ -46,8 +46,10 @@ final class SongViewController: UIViewController, SongViewControllerProtocol {
         
         if favoriteVC.isCurrentSongFavorite(selectedSong: currentTrackModel) {
             songView.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            songView.likeButton.tintColor = .brandGreen
         } else {
             songView.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            songView.likeButton.tintColor = .neutralWhite
         }
     }
     
