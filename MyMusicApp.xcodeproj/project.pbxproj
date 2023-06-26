@@ -371,12 +371,12 @@
 		866D44352A3368CC00A64A2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
+				869605672A47189C00215FB0 /* RealmManager.swift */,
 				430E7CFF2A485B8B00AC8ABB /* Firebase */,
 				573F6D972A3A208D002990D8 /* API */,
 				573F6D882A3A208D002990D8 /* Applecation */,
-				86CE7A022A371AF300663854 /* MainTabBarController.swift */,
 				869605652A4709DF00215FB0 /* GoogleService-Info.plist */,
-				869605672A47189C00215FB0 /* RealmManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -746,7 +746,6 @@
 				435909792A44C45700CE10EC /* UsernameView.swift in Sources */,
 				869605852A48899B00215FB0 /* SongViewController.swift in Sources */,
 				8696056B2A47192300215FB0 /* RecentlyModel.swift in Sources */,
-				7EDADCFD2A3856C7004E560F /* SongViewController.swift in Sources */,
 				430E7D012A485BAF00AC8ABB /* UserInfo.swift in Sources */,
 				869605862A48899B00215FB0 /* SongPageViewController.swift in Sources */,
 				573F6DF62A3B21AE002990D8 /* ModelsForIRSS.swift in Sources */,
