@@ -17,13 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let viewController = AuthPageView()
+        let viewController = WelcomePageView()
         let navigationController = UINavigationController(rootViewController: viewController)
         
         if #available(iOS 15.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .brandBlack
+            appearance.backgroundColor = .clear
             
             // устанавливаем цвет и изображение для кнопки назад
             navigationController.navigationBar.standardAppearance = appearance

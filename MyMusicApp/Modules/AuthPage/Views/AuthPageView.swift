@@ -290,7 +290,7 @@ extension AuthPageView {
                     ac.addAction(okAction)
                     return
                 } else {
-                    let homePageVC = ProfileViewController()
+                    let homePageVC = MainTabBarController()
                     self.navigationController?.pushViewController(homePageVC, animated: true)
                 }
             }

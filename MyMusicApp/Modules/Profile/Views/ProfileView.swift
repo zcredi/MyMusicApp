@@ -96,13 +96,13 @@ extension ProfileView {
     
     private func setupConstraints() {
         accountLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(64)
+            make.top.equalToSuperview().inset(100)
             make.leading.equalToSuperview().inset(24)
             make.height.equalTo(56)
         }
         
         settingsButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(86)
+            make.top.equalToSuperview().inset(115)
             make.trailing.equalToSuperview().inset(26)
             make.width.height.equalTo(20)
         }
