@@ -38,7 +38,6 @@ class ProfileSettingsView: UIView {
     let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "profileMock")
         image.layer.cornerRadius = 71
         image.layer.borderWidth = 3
         image.layer.borderColor = CGColor(red: 173, green: 176, blue: 192, alpha: 1)

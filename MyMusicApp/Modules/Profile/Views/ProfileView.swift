@@ -34,10 +34,9 @@ class ProfileView: UIView {
         return button
     }()
     
-    private let profileImage: UIImageView = {
+    let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "profileMock")
         return image
     }()
     

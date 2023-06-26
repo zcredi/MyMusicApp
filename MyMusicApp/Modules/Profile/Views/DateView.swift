@@ -20,9 +20,8 @@ class DateView: UIView {
         return label
     }()
     
-    private let dateTextField: UITextField = {
+    let dateTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "01/01/1900"
         textField.textColor = .neutralWhite
         textField.font = .robotoMedium16()
         textField.textAlignment = .right

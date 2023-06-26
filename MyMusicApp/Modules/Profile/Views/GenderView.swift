@@ -20,9 +20,8 @@ class GenderView: UIView {
         return label
     }()
     
-    private let genderTextField: UITextField = {
+    let genderTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "Male"
         textField.textColor = .neutralWhite
         textField.font = .robotoMedium16()
         textField.textAlignment = .right

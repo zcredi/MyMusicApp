@@ -225,21 +225,25 @@ extension PasswordConfirmationView {
     
     @objc func changePasswordPressed() {
         if let password = passwordInput.text, let confirmedPassword = confirmPasswordInput.text {
-                
-                if password != confirmedPassword {
-                    let ac = UIAlertController(title: "Error", message: "Passwords are not equal!", preferredStyle: .alert)
-                    self.present(ac, animated: true, completion: nil)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
-                    ac.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
-                    ac.addAction(okAction)
-                    return
-                } else {
-                    FirebaseManager.shared.updatePassword(to: password) { error in
+            
+            if password != confirmedPassword {
+                let ac = UIAlertController(title: "Error", message: "Passwords are not equal!", preferredStyle: .alert)
+                self.present(ac, animated: true, completion: nil)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                okAction.setValue(UIColor.brandGreen, forKey: "titleTextColor")
+                ac.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .neutralGray
+                ac.addAction(okAction)
+                return
+            } else {
+                FirebaseManager.shared.updatePassword(to: password) { error in
                 }
                 
-                let signInVC = AuthPageView()
-                self.navigationController?.pushViewController(signInVC, animated: true)
+                if self.presentingViewController != nil {
+                    self.dismiss(animated: true)
+                } else {
+                    let signInVC = AuthPageView()
+                    self.navigationController?.pushViewController(signInVC, animated: true)
+                }
             }
         }
     }

@@ -22,7 +22,6 @@ class EmailView: UIView {
     
     let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "Muffiluma@gmail.com"
         textField.textColor = .neutralWhite
         textField.font = .robotoMedium16()
         textField.textAlignment = .right

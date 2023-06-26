@@ -7,13 +7,17 @@
 
 import Firebase
 import FirebaseFirestore
+import FirebaseDatabase
+import FirebaseStorage
 
 final class FirebaseManager {
     
     static let shared = FirebaseManager()
+    
     var userDefaults = UserDefaults.standard
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
+    
     private var userUid: String {
         get {
             if let uid = userDefaults.string(forKey: "UserUID") {
@@ -26,6 +30,7 @@ final class FirebaseManager {
             userDefaults.set(newValue, forKey: "UserUID")
         }
     }
+    
     let db = Firestore.firestore()
     
     func createAccount(email: String, password: String, username: String, completion: @escaping (Error?) -> ()) {
@@ -129,19 +134,48 @@ final class FirebaseManager {
         }
     }
     
-    func getFromUserDefaultsUserInfo() -> UserInfo? {
-        guard let info = userDefaults.object(forKey: "userInfo") as? Data else {
-            return nil
-        }
-        guard let decodedInfo = try? decoder.decode(UserInfo.self, from: info) else {
-            return nil
-        }
-        
-        return decodedInfo
-    }
-    
     private func saveInUserDefaults(userInfo: UserInfo) {
         guard let encoded = try? encoder.encode(userInfo) else { return }
         userDefaults.set(encoded, forKey: "userInfo")
+    }
+    
+    func saveDataToFirestore(name: String, email: String, gender: String, date: String) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let data: [String: Any] = ["name": name, "email": email, "gender": gender, "date": date]
+        db.collection("users").document(userID).updateData(data) { (error) in
+            if let error = error {
+                print("Ошибка обновления полей: \(error.localizedDescription)")
+            } else {
+                print("Поля успешно обновлено")
+            }
+        }
+    }
+    
+    func uploadProfileImage(url: URL) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        // Create a reference to the file you want to upload
+        let imageRef = Storage.storage().reference().child("images/\(userID).jpg")
+        
+        // Upload the file to the path
+        let uploadTask = imageRef.putFile(from: url, metadata: nil) { metadata, error in
+            if let error = error {
+                print("Ошибка загрузки фото профиля: \(error.localizedDescription)")
+            } else {
+                print("Фото успешно обновлено")
+            }
+        }
+    }
+    
+    func downloadProfileImage(completion: @escaping (UIImage?, Error?) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let imageRef = Storage.storage().reference().child("images/\(userID).jpg")
+        imageRef.getData(maxSize: 10*1024*1024) { data, error in
+            if let data = data, error == nil {
+                completion(UIImage(data: data), nil)
+            } else {
+                completion(nil, error)
+            }
+        }
     }
 }
