@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let viewController = WelcomePageView()
+        
         let navigationController = UINavigationController(rootViewController: viewController)
         
         if #available(iOS 15.0, *) {
@@ -34,7 +35,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.navigationBar.tintColor = .neutralWhite
             
             // скрываем текст на кнопке назад
-            viewController.navigationItem.backButtonTitle = ""
+            
+            viewController.navigationItem.backButtonTitle = " "
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
             window?.overrideUserInterfaceStyle = .unspecified
